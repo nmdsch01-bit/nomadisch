@@ -38,15 +38,18 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 25px;
+      justify-items: center;
     }
 
     .card {
       border: 1px solid #ddd;
       border-radius: 10px;
-      padding: 15px;
+      padding: 20px;
       text-align: center;
       background-color: #fafafa;
       transition: transform 0.2s, box-shadow 0.2s;
+      max-width: 300px;
+      width: 100%;
     }
 
     .card:hover {
@@ -55,12 +58,12 @@
     }
 
     .card img {
-  max-width: 180px;
-  height: auto;
-  border-radius: 8px;
-  margin: 10px auto;
-  display: block;
-}
+      max-width: 180px;
+      height: auto;
+      border-radius: 8px;
+      margin: 10px auto;
+      display: block;
+    }
 
     .card h2 {
       font-size: 20px;
@@ -76,7 +79,7 @@
       display: inline-block;
       margin-top: 15px;
       padding: 12px 24px;
-      background-color: #28a745;
+      background-color: #95bf47; /* VERDE TED'S */
       color: #fff;
       text-decoration: none;
       border-radius: 8px;
@@ -84,7 +87,7 @@
     }
 
     .btn:hover {
-      background-color: #1e7e34;
+      background-color: #7fa83c;
     }
   </style>
 </head>
@@ -97,25 +100,23 @@
     Practical guides and systems designed to help you build real skills and projects.
   </p>
 
-  <!-- TED'S WOODWORKING -->
   <div class="grid">
-<div class="products">
 
-  <div class="card">
-    <img src="assets/WOOD2.jpg">
-    <h3>Ted's Woodworking</h3>
-    <p>Woodworking plans and projects.</p>
-    <a href="tedswood.html" class="btn">Learn More</a>
-  </div>
-
-</div>
-
+    <!-- TED'S WOODWORKING -->
     <div class="card">
-  <img src="assets/apa_aff_1.jpg" alt="AppaNail">
-  <h3>AppaNail</h3>
-  <p>Daily nail care support solution designed for healthier looking nails.</p>
-  <a href="appanail.html" class="btn">View Review</a>
-</div>
+      <img src="assets/WOOD2.jpg" alt="Ted's Woodworking">
+      <h2>Ted's Woodworking</h2>
+      <p>Step-by-step woodworking plans and projects for all skill levels.</p>
+      <a href="tedswood.html" class="btn">Learn More</a>
+    </div>
+
+    <!-- APPANAIL -->
+    <div class="card">
+      <img src="assets/apa_aff_1.jpg" alt="AppaNail">
+      <h2>AppaNail</h2>
+      <p>Daily nail care support solution designed for healthier looking nails.</p>
+      <a href="appanail.html" class="btn">View Review</a>
+    </div>
 
     <!-- PRÓXIMOS PRODUTOS ENTRAM AQUI -->
 

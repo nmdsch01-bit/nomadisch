@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Recommended Products | Nomadisch</title>
 
-  <meta name="description" content="Discover carefully selected products and guides designed to help you build skills, save money, and create real projects at home.">
+  <meta name="description" content="Carefully selected digital products and guides designed to help you build skills, save money, and create real projects at home.">
 
+  <!-- FORCE UPDATE v2 -->
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -18,7 +20,7 @@
 
     .container {
       max-width: 1100px;
-      margin: auto;
+      margin: 0 auto;
     }
 
     h1 {
@@ -45,16 +47,16 @@
       padding: 20px;
       text-align: center;
       background-color: #fafafa;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
     }
 
     .card img {
-      max-width: 180px;
+      max-width: 160px;
       height: auto;
       border-radius: 8px;
       margin: 15px auto;
@@ -67,16 +69,16 @@
     }
 
     .card p {
-      font-size: 16px;
+      font-size: 15px;
       color: #555;
     }
 
     .btn {
       display: inline-block;
       margin-top: 15px;
-      padding: 12px 24px;
-      background-color: #95bf47; /* VERDE SHOPIFY */
-      color: #fff;
+      padding: 12px 26px;
+      background-color: #95bf47; /* SHOPIFY GREEN */
+      color: #ffffff;
       text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
@@ -89,11 +91,12 @@
 </head>
 
 <body>
+
   <div class="container">
 
     <h1>Recommended Products</h1>
     <p class="subtitle">
-      Practical guides and systems designed to help you build real skills and projects.
+      Digital products and guides we truly recommend.
     </p>
 
     <div class="grid">
@@ -102,24 +105,21 @@
       <div class="card">
         <img src="assets/WOOD2.jpg" alt="Ted's Woodworking">
         <h3>Ted's Woodworking</h3>
-        <p>Woodworking plans and step-by-step project guides.</p>
-        <a href="https://www.nomadisch.com.br/teds-woodworking.html" class="btn">
-          View Review
-        </a>
+        <p>Step-by-step woodworking plans to build real projects.</p>
+        <a href="/teds-woodworking.html" class="btn">View Review</a>
       </div>
 
       <!-- APPANAIL -->
       <div class="card">
         <img src="assets/apa_aff_1.jpg" alt="AppaNail">
         <h3>AppaNail</h3>
-        <p>Daily nail care support solution for healthier-looking nails.</p>
-        <a href="appanail.html" class="btn">
-          View Review
-        </a>
+        <p>Daily nail care support for healthier-looking nails.</p>
+        <a href="/appanail.html" class="btn">View Review</a>
       </div>
 
     </div>
 
   </div>
+
 </body>
 </html>

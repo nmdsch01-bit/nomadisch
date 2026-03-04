@@ -3,171 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz – Descubra Seu Animal de Poder</title>
+<title>Quiz – Animal de Poder</title>
+
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background: #faf6ef;
         margin: 0;
-        padding: 0;
-        color: #333;
+        font-family: "Georgia", serif;
+        background: #000 url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80") 
+                    no-repeat center top;
+        background-size: cover;
+        color: #f8f8f8;
+        text-shadow: 0 0 8px rgba(0,0,0,0.8);
     }
-    header {
-        background: #4d2c1d;
+
+    .overlay {
+        background: rgba(0,0,0,0.7);
+        min-height: 100vh;
         padding: 20px;
+    }
+
+    header {
         text-align: center;
+        padding: 20px 0;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 2px;
         color: #fff;
     }
+
     .container {
-        max-width: 700px;
-        margin: 20px auto;
-        background: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        max-width: 750px;
+        margin: auto;
+        background: rgba(0,0,0,0.65);
+        padding: 25px;
+        border-radius: 12px;
+        border: 2px solid #444;
+        box-shadow: 0 0 20px #111;
     }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #ffd27f;
+        text-align: center;
+    }
+
+    .pergunta {
+        font-size: 22px;
+        margin-bottom: 20px;
+        color: #ffe9c4;
+        text-align: center;
+    }
+
     button {
         width: 100%;
-        padding: 12px;
-        margin-top: 10px;
+        padding: 15px;
+        margin: 10px 0;
+        font-size: 16px;
         border: none;
         border-radius: 8px;
-        background: #4d2c1d;
-        color: #fff;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    button:hover {
-        background: #6b3d29;
-    }
-</style>
-</head>
-<body>
+        background: linear-gradient(90deg, #5c2d12, #8a4b23);
+        color
 
-<header>
-    <h1>Descubra Seu Animal de Poder</h1>
-</header>
-
-<div class="container">
-
-    <!-- Adsterra Native Banner -->
-    <script async data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
-    <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
-
-    <h2 id="topoFrase">Os animais de poder não são escolhidos… eles chamam quando é a hora certa.</h2>
-
-    <div id="quiz"></div>
-
-    <button id="btnProximo" style="display:none;">Próxima Pergunta</button>
-
-</div>
-
-<script>
-// Frases rotativas no topo
-const frasesTopo = [
-    "Os animais de poder não são escolhidos… eles chamam quando é a hora certa.",
-    "Se você encontrou este caminho, talvez seu animal já esteja procurando por você.",
-    "A sabedoria ancestral se revela apenas a quem está pronto para ouvir.",
-    "O espírito guia observa seus passos desde antes de você perceber sua presença.",
-    "Cada resposta desperta um pouco da sua medicina interior.",
-    "Os sinais chegam através de sonhos, intuições e encontros inesperados.",
-    "Seu animal de poder pode ter te acompanhado por toda a vida, em silêncio.",
-    "A jornada revela quem realmente está ao seu lado no mundo espiritual.",
-    "Abra sua mente — seu guia pode ser mais forte do que imagina.",
-    "Quando a alma chama, o animal responde."
-];
-
-// 15 perguntas com energias, não animais
-const perguntas = [
-    {
-        pergunta: "1. O que você mais busca neste momento?",
-        respostas: [
-            { txt: "Clareza e visão ampla", animal: "aguia" },
-            { txt: "Intuição e força interior", animal: "lobo" },
-            { txt: "Silêncio e autoconhecimento", animal: "urso" },
-            { txt: "Poder e coragem profunda", animal: "onca" },
-            { txt: "Transformação e cura", animal: "serpente" },
-            { txt: "Leveza e alegria", animal: "beija" },
-            { txt: "Renovação e mudança", animal: "borboleta" },
-            { txt: "Sabedoria e mistério", animal: "coruja" },
-            { txt: "Liberdade e energia vital", animal: "cavalo" },
-            { txt: "Conexão ancestral profunda", animal: "baleia" }
-        ]
-    },
-    {
-        pergunta: "2. Como você lida com desafios?",
-        respostas: [
-            { txt: "Busco ver o todo antes de agir", animal: "aguia"},
-            { txt: "Ouço meu instinto", animal: "lobo"},
-            { txt: "Recuo e reflito", animal: "urso"},
-            { txt: "Enfrento com coragem", animal: "onca"},
-            { txt: "Me reinvento", animal: "serpente"},
-            { txt: "Mantenho leveza", animal: "beija"},
-            { txt: "Aceito mudanças", animal: "borboleta"},
-            { txt: "Busco conhecimento oculto", animal: "coruja"},
-            { txt: "Uso minha resistência", animal: "cavalo"},
-            { txt: "Escuto meu interior", animal: "baleia"}
-        ]
-    },
-
-    // Vou gerar TODAS as outras 13 perguntas abaixo
-];
-
-// Gerar as outras perguntas automaticamente
-while (perguntas.length < 15) {
-    const n = perguntas.length + 1;
-    perguntas.push({
-        pergunta: `${n}. Qual energia melhor descreve sua essência neste momento?`,
-        respostas: perguntas[0].respostas
-    });
-}
-
-// Controle do quiz
-let indice = 0;
-let pontos = {
-    aguia:0, lobo:0, urso:0, onca:0, serpente:0,
-    beija:0, borboleta:0, coruja:0, cavalo:0, baleia:0
-};
-
-function mostrarPergunta() {
-    document.getElementById("topoFrase").innerText =
-        frasesTopo[Math.floor(Math.random()*frasesTopo.length)];
-
-    const q = perguntas[indice];
-    const div = document.getElementById("quiz");
-    div.innerHTML = `<h3>${q.pergunta}</h3>`;
-
-    q.respostas.forEach(r => {
-        const btn = document.createElement("button");
-        btn.innerText = r.txt;
-        btn.onclick = () => {
-            pontos[r.animal]++;
-            proxima();
-        };
-        div.appendChild(btn);
-    });
-}
-
-function proxima() {
-    indice++;
-    if (indice >= perguntas.length) {
-        finalizar();
-    } else {
-        mostrarPergunta();
-    }
-}
-
-function finalizar() {
-    const resultadoAnimal = Object.keys(pontos).reduce((a,b) =>
-        pontos[a] > pontos[b] ? a : b
-    );
-
-    window.location.href = `resultado.html?animal=${resultadoAnimal}`;
-}
-
-mostrarPergunta();
-
-</script>
-</body>
-</html>
 

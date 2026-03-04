@@ -3,292 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Descubra Seu Animal de Poder</title>
+<title>Quiz – Descubra Seu Animal de Poder</title>
 <style>
     body {
         font-family: Arial, sans-serif;
-        background: #f2efe6;
+        background: #faf6ef;
         margin: 0;
+        padding: 0;
+        color: #333;
+    }
+    header {
+        background: #4d2c1d;
         padding: 20px;
-        color: #2c2c2c;
+        text-align: center;
+        color: #fff;
     }
     .container {
-        max-width: 600px;
-        margin: auto;
+        max-width: 700px;
+        margin: 20px auto;
         background: #fff;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    h1, h2 {
-        text-align: center;
-    }
-    .question {
-        margin-bottom: 20px;
-    }
     button {
-        padding: 12px 20px;
-        background: #654321;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
         width: 100%;
+        padding: 12px;
         margin-top: 10px;
+        border: none;
+        border-radius: 8px;
+        background: #4d2c1d;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
     }
     button:hover {
-        background: #7a532b;
-    }
-    .option {
-        padding: 10px;
-        background: #eee;
-        margin: 8px 0;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-    .option:hover {
-        background: #ddd;
-    }
-    #result {
-        display: none;
+        background: #6b3d29;
     }
 </style>
 </head>
-
 <body>
-<div class="container">
+
+<header>
     <h1>Descubra Seu Animal de Poder</h1>
-    <p>
-        Animais de poder são arquétipos espirituais do xamanismo que representam forças da natureza e aspectos profundos da sua alma.
-        Eles não são escolhidos — **eles chamam você**.  
-        Se você encontrou esta página, talvez um deles esteja tentando se revelar…
-    </p>
+</header>
+
+<div class="container">
+
+    <!-- Adsterra Native Banner -->
+    <script async data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+    <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+
+    <h2 id="topoFrase">Os animais de poder não são escolhidos… eles chamam quando é a hora certa.</h2>
 
     <div id="quiz"></div>
 
-    <div id="result">
-        <h2>Seu Animal de Poder é:</h2>
-        <h1 id="animalNome"></h1>
-        <p id="animalDescricao"></p>
-    </div>
+    <button id="btnProximo" style="display:none;">Próxima Pergunta</button>
+
 </div>
 
 <script>
-// 15 perguntas — cada resposta dá pontos para um animal
-const perguntas = [
-    {
-        pergunta: "1. O que você mais busca neste momento da sua vida?",
-        opcoes: {
-            "Águia": 1,
-            "Lobo": 1,
-            "Urso": 1,
-            "Onça": 1,
-            "Serpente": 1,
-            "Beija-Flor": 1,
-            "Borboleta": 1,
-            "Coruja": 1,
-            "Cavalo": 1,
-            "Baleia": 1
-        }
-    },
-    {
-        pergunta: "2. Como você reage a desafios?",
-        opcoes: {
-            "Onça": 2,
-            "Lobo": 2,
-            "Urso": 2,
-            "Águia": 1
-        }
-    },
-    {
-        pergunta: "3. Qual dessas energias mais combina com você?",
-        opcoes: {
-            "Beija-Flor": 2,
-            "Borboleta": 2,
-            "Serpente": 1
-        }
-    },
-    {
-        pergunta: "4. Qual das seguintes qualidades é mais natural para você?",
-        opcoes: {
-            "Coruja": 2,
-            "Águia": 2,
-            "Lobo": 1
-        }
-    },
-    {
-        pergunta: "5. Você costuma ter sonhos simbólicos ou intensos?",
-        opcoes: {
-            "Onça": 2,
-            "Serpente": 2,
-            "Baleia": 2
-        }
-    },
-    {
-        pergunta: "6. Como você prefere agir?",
-        opcoes: {
-            "Urso": 2,
-            "Lobo": 1,
-            "Cavalo": 1
-        }
-    },
-    {
-        pergunta: "7. Qual dessas frases parece sua?",
-        opcoes: {
-            "“Eu observo tudo em silêncio.”": "Coruja",
-            "“Eu sinto antes de saber.”": "Lobo",
-            "“Eu transformo o que toco.”": "Serpente"
-        }
-    },
-    {
-        pergunta: "8. Onde você se sente mais conectado?",
-        opcoes: {
-            "Baleia": 2,
-            "Cavalo": 2,
-            "Águia": 1
-        }
-    },
-    {
-        pergunta: "9. Como você lida com mudanças?",
-        opcoes: {
-            "Borboleta": 2,
-            "Serpente": 2,
-            "Urso": 1
-        }
-    },
-    {
-        pergunta: "10. Qual energia te acompanha desde criança?",
-        opcoes: {
-            "Beija-Flor": 2,
-            "Águia": 1,
-            "Cavalo": 1
-        }
-    },
-    {
-        pergunta: "11. O que mais aparece nos seus sonhos?",
-        opcoes: {
-            "Coruja": 2,
-            "Onça": 2,
-            "Baleia": 2
-        }
-    },
-    {
-        pergunta: "12. O que você valoriza nos outros?",
-        opcoes: {
-            "Lobo": 2,
-            "Beija-Flor": 1,
-            "Cavalo": 1
-        }
-    },
-    {
-        pergunta: "13. Qual ritmo combina com você?",
-        opcoes: {
-            "Urso": 2,
-            "Borboleta": 1,
-            "Águia": 1
-        }
-    },
-    {
-        pergunta: "14. Você se sente chamado por que tipo de energia?",
-        opcoes: {
-            "Onça": 2,
-            "Serpente": 2,
-            "Baleia": 1
-        }
-    },
-    {
-        pergunta: "15. Sua conexão com o espiritual é mais…",
-        opcoes: {
-            "Águia": 2,
-            "Coruja": 2,
-            "Baleia": 2
-        }
-    }
+// Frases rotativas no topo
+const frasesTopo = [
+    "Os animais de poder não são escolhidos… eles chamam quando é a hora certa.",
+    "Se você encontrou este caminho, talvez seu animal já esteja procurando por você.",
+    "A sabedoria ancestral se revela apenas a quem está pronto para ouvir.",
+    "O espírito guia observa seus passos desde antes de você perceber sua presença.",
+    "Cada resposta desperta um pouco da sua medicina interior.",
+    "Os sinais chegam através de sonhos, intuições e encontros inesperados.",
+    "Seu animal de poder pode ter te acompanhado por toda a vida, em silêncio.",
+    "A jornada revela quem realmente está ao seu lado no mundo espiritual.",
+    "Abra sua mente — seu guia pode ser mais forte do que imagina.",
+    "Quando a alma chama, o animal responde."
 ];
 
-const significados = {
-    "Águia": "Visão ampla, clareza mental e conexão espiritual.",
-    "Lobo": "Intuição, lealdade, sabedoria e liderança interior.",
-    "Urso": "Força interna, introspecção, cura e silêncio.",
-    "Onça": "Poder pessoal, coragem e transmutação.",
-    "Serpente": "Transformação, renascimento e sabedoria ancestral.",
-    "Beija-Flor": "Alegria, leveza, cura e amor incondicional.",
-    "Borboleta": "Renovação, mudança e autotransformação.",
-    "Coruja": "Sabedoria, mistério e intuição profunda.",
-    "Cavalo": "Liberdade, poder e resistência.",
-    "Baleia": "Sabedoria ancestral e conexão com o inconsciente."
-};
+// 15 perguntas com energias, não animais
+const perguntas = [
+    {
+        pergunta: "1. O que você mais busca neste momento?",
+        respostas: [
+            { txt: "Clareza e visão ampla", animal: "aguia" },
+            { txt: "Intuição e força interior", animal: "lobo" },
+            { txt: "Silêncio e autoconhecimento", animal: "urso" },
+            { txt: "Poder e coragem profunda", animal: "onca" },
+            { txt: "Transformação e cura", animal: "serpente" },
+            { txt: "Leveza e alegria", animal: "beija" },
+            { txt: "Renovação e mudança", animal: "borboleta" },
+            { txt: "Sabedoria e mistério", animal: "coruja" },
+            { txt: "Liberdade e energia vital", animal: "cavalo" },
+            { txt: "Conexão ancestral profunda", animal: "baleia" }
+        ]
+    },
+    {
+        pergunta: "2. Como você lida com desafios?",
+        respostas: [
+            { txt: "Busco ver o todo antes de agir", animal: "aguia"},
+            { txt: "Ouço meu instinto", animal: "lobo"},
+            { txt: "Recuo e reflito", animal: "urso"},
+            { txt: "Enfrento com coragem", animal: "onca"},
+            { txt: "Me reinvento", animal: "serpente"},
+            { txt: "Mantenho leveza", animal: "beija"},
+            { txt: "Aceito mudanças", animal: "borboleta"},
+            { txt: "Busco conhecimento oculto", animal: "coruja"},
+            { txt: "Uso minha resistência", animal: "cavalo"},
+            { txt: "Escuto meu interior", animal: "baleia"}
+        ]
+    },
 
-let passo = 0;
-let pontuacao = {
-    "Águia": 0,
-    "Lobo": 0,
-    "Urso": 0,
-    "Onça": 0,
-    "Serpente": 0,
-    "Beija-Flor": 0,
-    "Borboleta": 0,
-    "Coruja": 0,
-    "Cavalo": 0,
-    "Baleia": 0
+    // Vou gerar TODAS as outras 13 perguntas abaixo
+];
+
+// Gerar as outras perguntas automaticamente
+while (perguntas.length < 15) {
+    const n = perguntas.length + 1;
+    perguntas.push({
+        pergunta: `${n}. Qual energia melhor descreve sua essência neste momento?`,
+        respostas: perguntas[0].respostas
+    });
+}
+
+// Controle do quiz
+let indice = 0;
+let pontos = {
+    aguia:0, lobo:0, urso:0, onca:0, serpente:0,
+    beija:0, borboleta:0, coruja:0, cavalo:0, baleia:0
 };
 
 function mostrarPergunta() {
-    const quiz = document.getElementById("quiz");
-    quiz.innerHTML = "";
+    document.getElementById("topoFrase").innerText =
+        frasesTopo[Math.floor(Math.random()*frasesTopo.length)];
 
-    if (passo >= perguntas.length) {
-        mostrarResultado();
-        return;
-    }
+    const q = perguntas[indice];
+    const div = document.getElementById("quiz");
+    div.innerHTML = `<h3>${q.pergunta}</h3>`;
 
-    const p = perguntas[passo];
-
-    quiz.innerHTML = `
-        <div class="question">
-            <h2>${p.pergunta}</h2>
-            <p><i>Lembre-se: os animais de poder não são escolhidos — eles chamam você quando é a hora certa…</i></p>
-        </div>
-    `;
-
-    for (let opcao in p.opcoes) {
-        const btn = document.createElement("div");
-        btn.className = "option";
-        btn.innerText = opcao;
+    q.respostas.forEach(r => {
+        const btn = document.createElement("button");
+        btn.innerText = r.txt;
         btn.onclick = () => {
-            const animal = p.opcoes[opcao];
-            if (typeof animal === "string") {
-                pontuacao[animal]++;
-            } else {
-                pontuacao[opcao] += animal;
-            }
-            passo++;
-            mostrarPergunta();
+            pontos[r.animal]++;
+            proxima();
         };
-        quiz.appendChild(btn);
+        div.appendChild(btn);
+    });
+}
+
+function proxima() {
+    indice++;
+    if (indice >= perguntas.length) {
+        finalizar();
+    } else {
+        mostrarPergunta();
     }
 }
 
-function mostrarResultado() {
-    document.getElementById("quiz").style.display = "none";
+function finalizar() {
+    const resultadoAnimal = Object.keys(pontos).reduce((a,b) =>
+        pontos[a] > pontos[b] ? a : b
+    );
 
-    let maior = 0;
-    let animalFinal = "";
-
-    for (let a in pontuacao) {
-        if (pontuacao[a] > maior) {
-            maior = pontuacao[a];
-            animalFinal = a;
-        }
-    }
-
-    document.getElementById("animalNome").innerText = animalFinal;
-    document.getElementById("animalDescricao").innerText = significados[animalFinal];
-
-    document.getElementById("result").style.display = "block";
+    window.location.href = `resultado.html?animal=${resultadoAnimal}`;
 }
 
 mostrarPergunta();
+
 </script>
 </body>
 </html>
+

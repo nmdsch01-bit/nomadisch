@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz – Animal de Poder</title>
+<title>Seu Animal de Poder</title>
 
 <style>
     body {
-        margin: 0;
+        margin:0;
         font-family: "Georgia", serif;
-        background: #000 url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80") 
+        background: #000 url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80")
                     no-repeat center top;
         background-size: cover;
-        color: #f8f8f8;
-        text-shadow: 0 0 8px rgba(0,0,0,0.8);
+        color: #fff;
+        text-shadow: 0 0 8px #000;
     }
 
     .overlay {
@@ -22,46 +22,129 @@
         padding: 20px;
     }
 
-    header {
-        text-align: center;
-        padding: 20px 0;
-        font-size: 28px;
-        font-weight: bold;
-        letter-spacing: 2px;
-        color: #fff;
-    }
-
     .container {
         max-width: 750px;
-        margin: auto;
-        background: rgba(0,0,0,0.65);
+        margin: 30px auto;
+        background: rgba(0,0,0,0.6);
         padding: 25px;
         border-radius: 12px;
         border: 2px solid #444;
         box-shadow: 0 0 20px #111;
+        text-align: center;
+    }
+
+    h1 {
+        color: #ffd27f;
+        margin-bottom: 10px;
     }
 
     h2 {
-        margin-bottom: 20px;
-        color: #ffd27f;
-        text-align: center;
+        color: #ffe1b0;
+        margin-top: 5px;
     }
 
-    .pergunta {
-        font-size: 22px;
-        margin-bottom: 20px;
-        color: #ffe9c4;
-        text-align: center;
-    }
-
-    button {
+    img {
         width: 100%;
-        padding: 15px;
-        margin: 10px 0;
-        font-size: 16px;
-        border: none;
+        border-radius: 10px;
+        margin: 15px 0;
+        box-shadow: 0 0 20px #000;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 1.5;
+        color: #f5e9d3;
+    }
+
+    .adbox {
+        margin-top: 20px;
+        background: rgba(255,255,255,0.08);
+        padding: 10px;
         border-radius: 8px;
-        background: linear-gradient(90deg, #5c2d12, #8a4b23);
-        color
+    }
+</style>
+</head>
+<body>
+<div class="overlay">
 
+<div class="container">
+    <h1>Seu Animal de Poder é...</h1>
+    <h2 id="animalNome"></h2>
 
+    <img id="animalImg" src="" alt="Animal de Poder">
+
+    <p id="descricao"></p>
+
+    <div class="adbox">
+        <!-- Adsterra Native Banner -->
+        <script async data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+        <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+    </div>
+</div>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const animal = params.get("animal");
+
+const dados = {
+    aguia: {
+        nome: "Águia",
+        img: "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?auto=format&fit=crop&w=900&q=80",
+        desc: "A Águia traz visão espiritual, propósito elevado e a força para enxergar além do horizonte da alma."
+    },
+    lobo: {
+        nome: "Lobo",
+        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80",
+        desc: "O Lobo é seu guia de intuição ancestral, sabedoria silenciosa e proteção espiritual."
+    },
+    urso: {
+        nome: "Urso",
+        img: "https://images.unsplash.com/photo-1508264165352-258a6d1c5e0e?auto=format&fit=crop&w=900&q=80",
+        desc: "O Urso simboliza cura, força interior e introspecção profunda."
+    },
+    onca: {
+        nome: "Onça",
+        img: "https://images.unsplash.com/photo-1611095977511-7a3a32b6d454?auto=format&fit=crop&w=900&q=80",
+        desc: "A Onça carrega poder pessoal, coragem instintiva e domínio das sombras."
+    },
+    serpente: {
+        nome: "Serpente",
+        img: "https://images.unsplash.com/photo-1621375391848-4f89c0ebdc80?auto=format&fit=crop&w=900&q=80",
+        desc: "A Serpente revela renascimento, cura, transformação e sabedoria ancestral."
+    },
+    beija: {
+        nome: "Beija-Flor",
+        img: "https://images.unsplash.com/photo-1508264165352-258a6d1c5e0e?auto=format&fit=crop&w=900&q=80",
+        desc: "O Beija-Flor traz leveza, alegria e cura emocional suave."
+    },
+    borboleta: {
+        nome: "Borboleta",
+        img: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=900&q=80",
+        desc: "A Borboleta guia processos de mudança, transição e libertação da alma."
+    },
+    coruja: {
+        nome: "Coruja",
+        img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=900&q=80",
+        desc: "A Coruja enxerga o invisível, carrega mistérios e sabedoria profunda."
+    },
+    cavalo: {
+        nome: "Cavalo",
+        img: "https://images.unsplash.com/photo-1598554747431-9a58554f4ecf?auto=format&fit=crop&w=900&q=80",
+        desc: "O Cavalo representa liberdade, movimento e energia vital abundante."
+    },
+    baleia: {
+        nome: "Baleia",
+        img: "https://images.unsplash.com/photo-1486911278844-a81c5267e227?auto=format&fit=crop&w=900&q=80",
+        desc: "A Baleia é guardiã da memória ancestral, profundidade emocional e sabedoria antiga."
+    }
+};
+
+document.getElementById("animalNome").innerText = dados[animal].nome;
+document.getElementById("animalImg").src = dados[animal].img;
+document.getElementById("descricao").innerText = dados[animal].desc;
+</script>
+
+</body>
+</html>

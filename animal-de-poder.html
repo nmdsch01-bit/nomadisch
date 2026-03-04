@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seu Animal de Poder</title>
+<title>Quiz – Animal de Poder</title>
 
 <style>
     body {
-        margin:0;
+        margin: 0;
         font-family: "Georgia", serif;
-        background: #000 url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80")
+        background: #000 url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80") 
                     no-repeat center top;
         background-size: cover;
-        color: #fff;
-        text-shadow: 0 0 8px #000;
+        color: #f8f8f8;
+        text-shadow: 0 0 8px rgba(0,0,0,0.8);
     }
 
     .overlay {
@@ -22,128 +22,164 @@
         padding: 20px;
     }
 
+    header {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        color: #fff;
+    }
+
     .container {
         max-width: 750px;
-        margin: 30px auto;
-        background: rgba(0,0,0,0.6);
+        margin: auto;
+        background: rgba(0,0,0,0.65);
         padding: 25px;
         border-radius: 12px;
         border: 2px solid #444;
         box-shadow: 0 0 20px #111;
-        text-align: center;
-    }
-
-    h1 {
-        color: #ffd27f;
-        margin-bottom: 10px;
     }
 
     h2 {
-        color: #ffe1b0;
-        margin-top: 5px;
+        margin-bottom: 20px;
+        color: #ffd27f;
+        text-align: center;
     }
 
-    img {
+    .pergunta {
+        font-size: 22px;
+        margin-bottom: 20px;
+        color: #ffe9c4;
+        text-align: center;
+    }
+
+    button {
         width: 100%;
-        border-radius: 10px;
-        margin: 15px 0;
-        box-shadow: 0 0 20px #000;
+        padding: 15px;
+        margin: 10px 0;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(90deg, #5c2d12, #8a4b23);
+        color: #fff;
+        cursor: pointer;
+        transition: 0.2s;
+        box-shadow: 0 0 8px rgba(255,185,85,0.3);
     }
 
-    p {
-        font-size: 18px;
-        line-height: 1.5;
-        color: #f5e9d3;
+    button:hover {
+        background: linear-gradient(90deg, #8a4b23, #b66a32);
+        transform: scale(1.03);
     }
 
+    /* Adsterra container */
     .adbox {
-        margin-top: 20px;
+        margin: 15px 0;
         background: rgba(255,255,255,0.08);
         padding: 10px;
         border-radius: 8px;
+        text-align: center;
     }
 </style>
 </head>
 <body>
+
 <div class="overlay">
 
+<header>Descubra Seu Animal de Poder</header>
+
 <div class="container">
-    <h1>Seu Animal de Poder é...</h1>
-    <h2 id="animalNome"></h2>
-
-    <img id="animalImg" src="" alt="Animal de Poder">
-
-    <p id="descricao"></p>
 
     <div class="adbox">
         <!-- Adsterra Native Banner -->
         <script async data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
         <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
     </div>
+
+    <h2 id="topoFrase">Os animais de poder chamam você quando sua alma está pronta…</h2>
+
+    <div id="quiz"></div>
+
 </div>
 
 </div>
 
 <script>
-const params = new URLSearchParams(window.location.search);
-const animal = params.get("animal");
+// Frases místicas
+const frasesTopo = [
+    "Os animais de poder chamam você quando sua alma está pronta…",
+    "Se você chegou até aqui, seu guia espiritual deseja se revelar.",
+    "O espírito ancestral se aproxima quando sua energia desperta.",
+    "A Lua observa, os ventos sussurram — seu animal se aproxima.",
+    "Antigos xamãs acreditavam que o guia escolhe você, não o contrário.",
+    "Um animal observa sua jornada silenciosamente há muito tempo."
+];
 
-const dados = {
-    aguia: {
-        nome: "Águia",
-        img: "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?auto=format&fit=crop&w=900&q=80",
-        desc: "A Águia traz visão espiritual, propósito elevado e a força para enxergar além do horizonte da alma."
-    },
-    lobo: {
-        nome: "Lobo",
-        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80",
-        desc: "O Lobo é seu guia de intuição ancestral, sabedoria silenciosa e proteção espiritual."
-    },
-    urso: {
-        nome: "Urso",
-        img: "https://images.unsplash.com/photo-1508264165352-258a6d1c5e0e?auto=format&fit=crop&w=900&q=80",
-        desc: "O Urso simboliza cura, força interior e introspecção profunda."
-    },
-    onca: {
-        nome: "Onça",
-        img: "https://images.unsplash.com/photo-1611095977511-7a3a32b6d454?auto=format&fit=crop&w=900&q=80",
-        desc: "A Onça carrega poder pessoal, coragem instintiva e domínio das sombras."
-    },
-    serpente: {
-        nome: "Serpente",
-        img: "https://images.unsplash.com/photo-1621375391848-4f89c0ebdc80?auto=format&fit=crop&w=900&q=80",
-        desc: "A Serpente revela renascimento, cura, transformação e sabedoria ancestral."
-    },
-    beija: {
-        nome: "Beija-Flor",
-        img: "https://images.unsplash.com/photo-1508264165352-258a6d1c5e0e?auto=format&fit=crop&w=900&q=80",
-        desc: "O Beija-Flor traz leveza, alegria e cura emocional suave."
-    },
-    borboleta: {
-        nome: "Borboleta",
-        img: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=900&q=80",
-        desc: "A Borboleta guia processos de mudança, transição e libertação da alma."
-    },
-    coruja: {
-        nome: "Coruja",
-        img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=900&q=80",
-        desc: "A Coruja enxerga o invisível, carrega mistérios e sabedoria profunda."
-    },
-    cavalo: {
-        nome: "Cavalo",
-        img: "https://images.unsplash.com/photo-1598554747431-9a58554f4ecf?auto=format&fit=crop&w=900&q=80",
-        desc: "O Cavalo representa liberdade, movimento e energia vital abundante."
-    },
-    baleia: {
-        nome: "Baleia",
-        img: "https://images.unsplash.com/photo-1486911278844-a81c5267e227?auto=format&fit=crop&w=900&q=80",
-        desc: "A Baleia é guardiã da memória ancestral, profundidade emocional e sabedoria antiga."
+// 15 perguntas
+const perguntas = [
+    {
+        pergunta: "1. O que você mais busca neste momento?",
+        respostas: [
+            { txt: "Clareza e visão ampliada", animal: "aguia" },
+            { txt: "Intuição e proteção interior", animal: "lobo" },
+            { txt: "Silêncio e força interna", animal: "urso" },
+            { txt: "Poder e coragem instintiva", animal: "onca" },
+            { txt: "Transformação e cura profunda", animal: "serpente" },
+            { txt: "Leveza e alegria da alma", animal: "beija" },
+            { txt: "Renovação e mudança", animal: "borboleta" },
+            { txt: "Sabedoria e mistério", animal: "coruja" },
+            { txt: "Liberdade e energia vital", animal: "cavalo" },
+            { txt: "Sensibilidade e conexão ancestral", animal: "baleia" }
+        ]
     }
+];
+
+// Repete variações para gerar 15 perguntas
+while (perguntas.length < 15) {
+    const n = perguntas.length + 1;
+    perguntas.push({
+        pergunta: `${n}. Qual energia mais ressoa com seu momento atual?`,
+        respostas: perguntas[0].respostas
+    });
+}
+
+// Controle
+let i = 0;
+let pontos = {
+    aguia:0, lobo:0, urso:0, onca:0, serpente:0,
+    beija:0, borboleta:0, coruja:0, cavalo:0, baleia:0
 };
 
-document.getElementById("animalNome").innerText = dados[animal].nome;
-document.getElementById("animalImg").src = dados[animal].img;
-document.getElementById("descricao").innerText = dados[animal].desc;
+function render() {
+    document.getElementById("topoFrase").innerText =
+        frasesTopo[Math.floor(Math.random()*frasesTopo.length)];
+
+    const q = perguntas[i];
+    let html = `<div class='pergunta'>${q.pergunta}</div>`;
+
+    q.respostas.forEach(r => {
+        html += `<button onclick="responder('${r.animal}')">${r.txt}</button>`;
+    });
+
+    document.getElementById("quiz").innerHTML = html;
+}
+
+function responder(animal) {
+    pontos[animal]++;
+    i++;
+    if (i >= perguntas.length) finalizar();
+    else render();
+}
+
+function finalizar() {
+    const animal = Object.keys(pontos).reduce((a,b) =>
+        pontos[a] > pontos[b] ? a : b
+    );
+    window.location.href = "resultado.html?animal=" + animal;
+}
+
+render();
 </script>
 
 </body>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seu Animal de Poder</title>
+<style>
+    body {
+        background: #faf6ef;
+        font-family: Arial, sans-serif;
+        margin:0;
+        padding:0;
+    }
+    .container {
+        max-width:700px;
+        margin:30px auto;
+        background:#fff;
+        padding:20px;
+        border-radius:10px;
+        box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Seu Animal de Poder é...</h1>
+    <h2 id="animalNome"></h2>
+    <p id="descricao"></p>
+
+    <!-- Adsterra Native Banner abaixo do resultado -->
+    <script async data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+    <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const animal = params.get("animal");
+
+const textos = {
+    aguia: {
+        nome: "A Águia",
+        desc: "Você carrega a medicina da visão, clareza mental e propósito elevado. A águia revela caminhos ocultos e te chama para enxergar acima das ilusões."
+    },
+    lobo: {
+        nome: "O Lobo",
+        desc: "Você é guiado pela intuição, lealdade e força interior. O lobo ensina sabedoria ancestral e a confiança no caminho próprio."
+    },
+    urso: {
+        nome: "O Urso",
+        desc: "Sua alma busca introspecção, cura e estabilidade. O urso é mestre do silêncio e do poder interior profundo."
+    },
+    onca: {
+        nome: "A Onça",
+        desc: "Você possui poder, coragem e capacidade de transmutar sombras. A onça é guardiã da força pessoal oculta."
+    },
+    serpente: {
+        nome: "A Serpente",
+        desc: "Você vive ciclos de renascimento, cura e transformação. A serpente simboliza sabedoria ancestral e renovação."
+    },
+    beija: {
+        nome: "O Beija-Flor",
+        desc: "Você vibra amor, leveza e cura emocional. O beija-flor traz alegria e suavidade para sua jornada."
+    },
+    borboleta: {
+        nome: "A Borboleta",
+        desc: "Sua essência é mudança, libertação e transformação. A borboleta guia processos de transição e renascimento."
+    },
+    coruja: {
+        nome: "A Coruja",
+        desc: "Você acessa mistérios, intuição profunda e sabedoria oculta. A coruja enxerga o invisível e o não dito."
+    },
+    cavalo: {
+        nome: "O Cavalo",
+        desc: "Você carrega liberdade, energia vital e força de movimento. O cavalo guia jornadas espirituais e resistência."
+    },
+    baleia: {
+        nome: "A Baleia",
+        desc: "Você possui conexão ancestral, sensibilidade profunda e sabedoria dos registros antigos. A baleia guia almas antigas."
+    }
+};
+
+document.getElementById("animalNome").innerText = textos[animal].nome;
+document.getElementById("descricao").innerText = textos[animal].desc;
+</script>
+
+</body>
+</html>

@@ -2,185 +2,453 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz – Animal de Poder</title>
+<title>Quiz – Descubra Seu Animal de Poder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
     body {
         margin: 0;
-        font-family: "Georgia", serif;
-        background: #000 url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80") 
-                    no-repeat center top;
+        padding: 0;
+        background: #000 url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
         background-size: cover;
-        color: #f8f8f8;
-        text-shadow: 0 0 8px rgba(0,0,0,0.8);
-    }
-
-    .overlay {
-        background: rgba(0,0,0,0.7);
-        min-height: 100vh;
-        padding: 20px;
-    }
-
-    header {
-        text-align: center;
-        padding: 20px 0;
-        font-size: 28px;
-        font-weight: bold;
-        letter-spacing: 2px;
         color: #fff;
+        font-family: "Cinzel", serif;
+        text-shadow: 0 0 6px #000;
     }
 
-    .container {
-        max-width: 750px;
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 32px;
+        letter-spacing: 2px;
+        color: #e2d9ff;
+        text-shadow: 0 0 10px #6a4cf5;
+    }
+
+    .ad-top, footer {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .quiz-container {
+        max-width: 800px;
         margin: auto;
-        background: rgba(0,0,0,0.65);
-        padding: 25px;
+        background: rgba(0, 0, 0, 0.75);
+        padding: 20px;
         border-radius: 12px;
-        border: 2px solid #444;
-        box-shadow: 0 0 20px #111;
+        box-shadow: 0 0 25px #6a4cf5;
     }
 
     h2 {
-        margin-bottom: 20px;
-        color: #ffd27f;
         text-align: center;
+        margin-bottom: 20px;
+        color: #d8c7ff;
+        text-shadow: 0 0 8px #7553ff;
     }
 
-    .pergunta {
-        font-size: 22px;
-        margin-bottom: 20px;
-        color: #ffe9c4;
-        text-align: center;
-    }
-
-    button {
+    .option {
         width: 100%;
-        padding: 15px;
         margin: 10px 0;
-        font-size: 16px;
+        padding: 12px;
         border: none;
         border-radius: 8px;
-        background: linear-gradient(90deg, #5c2d12, #8a4b23);
-        color: #fff;
+        font-size: 16px;
         cursor: pointer;
-        transition: 0.2s;
-        box-shadow: 0 0 8px rgba(255,185,85,0.3);
+        font-family: serif;
+        background: rgba(40, 40, 40, 0.8);
+        color: #fff;
+        transition: 0.3s;
+        text-shadow: 0 0 4px #000;
     }
 
-    button:hover {
-        background: linear-gradient(90deg, #8a4b23, #b66a32);
-        transform: scale(1.03);
+    .option:hover {
+        background: rgba(120, 90, 255, 0.8);
+        transform: scale(1.02);
+        box-shadow: 0 0 12px #8c6bff;
     }
 
-    /* Adsterra container */
-    .adbox {
-        margin: 15px 0;
-        background: rgba(255,255,255,0.08);
-        padding: 10px;
-        border-radius: 8px;
-        text-align: center;
+    #nextBtn {
+        display: none;
+        width: 100%;
+        padding: 15px;
+        margin-top: 20px;
+        font-size: 18px;
+        cursor: pointer;
+        background: #8c6bff;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+    #nextBtn:hover {
+        background: #6a4cf5;
+        box-shadow: 0 0 15px #b9a1ff;
+    }
+
+    /* RESULTADO */
+    .result {
+        display: flex;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.75);
+        border-radius: 12px;
+        box-shadow: 0 0 30px #6a4cf5;
+    }
+
+    .hidden { display: none; }
+
+    .result-img-frame {
+        width: 40%;
+        padding-right: 20px;
+    }
+
+    .result-img-frame img {
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 0 25px #b18cff;
+    }
+
+    .result-text-frame {
+        width: 60%;
+        padding-left: 20px;
+    }
+
+    .result-text-frame h2 {
+        font-size: 28px;
+        color: #e0d4ff;
+        text-shadow: 0 0 10px #9b7cff;
+    }
+
+    footer {
+        margin-top: 40px;
+        padding: 20px;
     }
 </style>
 </head>
+
 <body>
 
-<div class="overlay">
-
-<header>Descubra Seu Animal de Poder</header>
-
-<div class="container">
-
-    <div class="adbox">
-        <!-- Adsterra Native Banner -->
-        <script async data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
-        <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
-    </div>
-
-    <h2 id="topoFrase">Os animais de poder chamam você quando sua alma está pronta…</h2>
-
-    <div id="quiz"></div>
-
-</div>
-
-</div>
+<!-- ADS TOP -->
+<div class="ad-top">
+<script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+<div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
 
 <script>
-// Frases místicas
-const frasesTopo = [
-    "Os animais de poder chamam você quando sua alma está pronta…",
-    "Se você chegou até aqui, seu guia espiritual deseja se revelar.",
-    "O espírito ancestral se aproxima quando sua energia desperta.",
-    "A Lua observa, os ventos sussurram — seu animal se aproxima.",
-    "Antigos xamãs acreditavam que o guia escolhe você, não o contrário.",
-    "Um animal observa sua jornada silenciosamente há muito tempo."
+  atOptions = {
+    'key' : '3b682b95b642d285fbebc498d78d27dc',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/3b682b95b642d285fbebc498d78d27dc/invoke.js"></script>
+</div>
+
+<h1>✨ Descubra Seu Animal de Poder ✨</h1>
+
+<div class="quiz-container">
+    <div id="quiz"></div>
+    <button id="nextBtn" onclick="nextQuestion()">Próxima</button>
+</div>
+
+<div id="result" class="result hidden">
+    <div class="result-img-frame">
+        <img id="resultImg" src="">
+    </div>
+
+    <div class="result-text-frame">
+        <h2 id="resultTitle"></h2>
+        <p id="resultDescription"></p>
+    </div>
+</div>
+
+<!-- ADS FOOTER -->
+<footer>
+<script>
+  atOptions = {
+    'key' : '3b682b95b642d285fbebc498d78d27dc',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/3b682b95b642d285fbebc498d78d27dc/invoke.js"></script>
+</footer>
+
+<script>
+// 15 PERGUNTAS
+const questions = [
+  "O que sua energia busca neste momento da vida?",
+  "Como você reage quando algo inesperado acontece?",
+  "Como sua intuição se manifesta?",
+  "Que tipo de força domina seu interior?",
+  "O que você protege acima de tudo?",
+  "Como você avança quando tudo parece travado?",
+  "Que tipo de sabedoria você mais valoriza?",
+  "Como você lida com seus próprios ciclos internos?",
+  "Como você observa o mundo ao seu redor?",
+  "Como você toma decisões importantes?",
+  "Como você lida com seus medos?",
+  "O que mais inspira seus sonhos?",
+  "Como você se conecta com a espiritualidade?",
+  "Como você expressa sua verdadeira essência?",
+  "O que te guia quando ninguém está olhando?"
 ];
 
-// 15 perguntas
-const perguntas = [
-    {
-        pergunta: "1. O que você mais busca neste momento?",
-        respostas: [
-            { txt: "Clareza e visão ampliada", animal: "aguia" },
-            { txt: "Intuição e proteção interior", animal: "lobo" },
-            { txt: "Silêncio e força interna", animal: "urso" },
-            { txt: "Poder e coragem instintiva", animal: "onca" },
-            { txt: "Transformação e cura profunda", animal: "serpente" },
-            { txt: "Leveza e alegria da alma", animal: "beija" },
-            { txt: "Renovação e mudança", animal: "borboleta" },
-            { txt: "Sabedoria e mistério", animal: "coruja" },
-            { txt: "Liberdade e energia vital", animal: "cavalo" },
-            { txt: "Sensibilidade e conexão ancestral", animal: "baleia" }
-        ]
-    }
-];
+// 150 RESPOSTAS
+const answers = {
 
-// Repete variações para gerar 15 perguntas
-while (perguntas.length < 15) {
-    const n = perguntas.length + 1;
-    perguntas.push({
-        pergunta: `${n}. Qual energia mais ressoa com seu momento atual?`,
-        respostas: perguntas[0].respostas
-    });
-}
+"Lobo": [
+"Busca pela profundidade emocional e instintos tribais.",
+"Enfrenta o inesperado com união interior e estratégia.",
+"Uma intuição que uiva em alertas silenciosos.",
+"Força de liderança e proteção coletiva.",
+"Protege sua matilha espiritual e seus vínculos verdadeiros.",
+"Avança farejando caminhos ocultos.",
+"Valoriza sabedoria ancestral passada entre gerações.",
+"Segue ciclos de recolhimento e explosão de energia.",
+"Observa com atenção e leitura emocional precisa.",
+"Decide ouvindo o chamado interno e o vento.",
+"Enfrenta medos encarando a noite.",
+"Sonha com liberdade e territórios amplos.",
+"Conecta-se ao espírito por meio do coletivo.",
+"Expressa essência pela lealdade.",
+"Guiado pelo instinto puro e eco lunar."
+],
 
-// Controle
-let i = 0;
-let pontos = {
-    aguia:0, lobo:0, urso:0, onca:0, serpente:0,
-    beija:0, borboleta:0, coruja:0, cavalo:0, baleia:0
+"Águia": [
+"Busca visão elevada e clareza sobre o próprio destino.",
+"Diante do inesperado, sobe mais alto para enxergar o todo.",
+"Sua intuição vem como flashes de luz repentina.",
+"Força que nasce da coragem e da perspectiva ampla.",
+"Protege seus propósitos e sua liberdade espiritual.",
+"Avança elevando a mente acima das tempestades.",
+"Valoriza a sabedoria que surge do silêncio das alturas.",
+"Vive ciclos de expansão e revelações interiores.",
+"Observa o mundo de cima, captando padrões que ninguém percebe.",
+"Decide enxergando além do imediato.",
+"Supera medos encarando-os de frente, como quem mergulha no vento.",
+"Sonha com horizontes distantes e novas possibilidades.",
+"Conecta-se ao espírito pelo voo interno da consciência.",
+"Expressa essência pela clareza e firmeza.",
+"Guiada pela luz que sempre brilha acima das nuvens."
+],
+
+"Urso": [
+"Busca descanso, cura e força interior profunda.",
+"Enfrenta o inesperado com estabilidade e firmeza.",
+"Intuição que surge no silêncio da introspecção.",
+"Força que cresce em momentos de recolhimento.",
+"Protege seu território emocional e sua paz.",
+"Avança quando sente que suas raízes estão firmes.",
+"Valoriza sabedoria meditativa e calma.",
+"Segue ciclos de recolhimento e renascimento energético.",
+"Observa o mundo com prudência e coração atento.",
+"Decide com centro firme e pés plantados na terra.",
+"Enfrenta medos com coragem tranquila.",
+"Sonha com equilíbrio, segurança e cura ancestral.",
+"Conecta-se ao espírito através da respiração profunda.",
+"Expressa essência com estabilidade e força calma.",
+"Guiado pelo coração que ruge suavemente."
+],
+
+"Tigre": [
+"Busca intensidade, paixão e instinto aguçado.",
+"Reage ao inesperado com coragem feroz.",
+"Intuição que aparece como um salto certeiro.",
+"Força que nasce da autoconfiança.",
+"Protege sua independência e sua identidade.",
+"Avança rasgando obstáculos com determinação.",
+"Valoriza sabedoria do movimento e da ação.",
+"Segue ciclos de explosão de energia e silêncio predatório.",
+"Observa o mundo com olhos penetrantes.",
+"Decide guiado pelo impulso instintivo preciso.",
+"Enfrenta medos com ataque calculado.",
+"Sonha com liberdade selvagem e territórios próprios.",
+"Conecta-se ao espírito através da chama interior.",
+"Expressa essência pelo magnetismo e presença.",
+"Guiado pela chama do instinto que nunca se apaga."
+],
+
+"Coruja": [
+"Busca mistério, profundidade e sabedoria oculta.",
+"Diante do inesperado, observa em silêncio antes de agir.",
+"Intuição que chega como sussurros da noite.",
+"Força que nasce da compreensão do oculto.",
+"Protege segredos e espaços sagrados.",
+"Avança silenciosamente, guiada pela percepção.",
+"Valoriza sabedoria interna e visão espiritual.",
+"Segue ciclos de revelação e ocultamento.",
+"Observa o mundo por trás do véu.",
+"Decide enxergando o que os outros não veem.",
+"Enfrenta medos mergulhando na escuridão.",
+"Sonha com mundos sutis e portais espirituais.",
+"Conecta-se ao espírito pelo silêncio profundo.",
+"Expressa essência pela intuição e mistério.",
+"Guiada pelos olhos que veem além."
+],
+
+"Cavalo": [
+"Busca liberdade, movimento e expansão.",
+"Responde ao inesperado correndo para novos caminhos.",
+"Intuição que flui como vento sobre a pele.",
+"Força que nasce da coragem de avançar.",
+"Protege sua liberdade e seus laços verdadeiros.",
+"Avança com resistência e espírito indomável.",
+"Valoriza sabedoria das jornadas e experiências.",
+"Segue ciclos de partida e chegada.",
+"Observa o mundo com ânimo e vontade.",
+"Decide com impulso do coração viajante.",
+"Enfrenta medos em galope firme.",
+"Sonha com vastidões e possibilidades infinitas.",
+"Conecta-se ao espírito pelas trilhas internas.",
+"Expressa essência pela força e liberdade.",
+"Guiado pelo vento que chama seu nome."
+],
+
+"Serpente": [
+"Busca transformação, cura e renovação.",
+"Reage ao inesperado com percepção total.",
+"Intuição que cresce no ventre energético.",
+"Força que nasce do renascimento constante.",
+"Protege seus processos internos e sua energia vital.",
+"Avança mudando de pele sempre que necessário.",
+"Valoriza sabedoria do corpo e da energia sutil.",
+"Segue ciclos de morte e renascimento interior.",
+"Observa o mundo sentindo vibrações.",
+"Decide guiada pela energia que se move.",
+"Enfrenta medos transformando-os.",
+"Sonha com metamorfoses e nova força.",
+"Conecta-se ao espírito pelo kundalini interno.",
+"Expressa essência pela cura profunda.",
+"Guiada pela sabedoria ancestral da terra."
+],
+
+"Pantera": [
+"Busca mistério, poder pessoal e autoconhecimento profundo.",
+"Reage ao inesperado com precisão e silêncio.",
+"Intuição que chega como passos suaves na escuridão.",
+"Força que nasce da presença magnética.",
+"Protege sua energia e sua essência verdadeira.",
+"Avança movendo-se entre sombras e luz.",
+"Valoriza sabedoria introspectiva e instintiva.",
+"Segue ciclos de recolhimento e salto repentino.",
+"Observa o mundo com elegância predatória.",
+"Decide com precisão instintiva.",
+"Enfrenta medos caminhando entre sombras.",
+"Sonha com territórios invisíveis ao olhar comum.",
+"Conecta-se ao espírito pelo silêncio felino.",
+"Expressa essência pela intensidade magnética.",
+"Guiada pela escuridão que revela poder."
+],
+
+"Golfinho": [
+"Busca alegria, leveza e harmonia emocional.",
+"Reage ao inesperado com jogo de cintura.",
+"Intuição que chega como ondas suaves.",
+"Força que nasce da empatia e alegria.",
+"Protege seus vínculos afetivos.",
+"Avança fluindo sem resistência.",
+"Valoriza sabedoria do som e da vibração.",
+"Segue ciclos de mergulho e respiro.",
+"Observa o mundo com doçura e clareza.",
+"Decide com o coração conectado ao coletivo.",
+"Enfrenta medos com leveza consciente.",
+"Sonha com liberdade oceânica.",
+"Conecta-se ao espírito através do prazer do viver.",
+"Expressa essência pela alegria profunda.",
+"Guiado pelas marés internas."
+],
+
+"Falcão": [
+"Busca precisão, foco e propósito.",
+"Reage ao inesperado com velocidade e cálculo.",
+"Intuição que chega como visão ampliada.",
+"Força que nasce da concentração extrema.",
+"Protege seus objetivos.",
+"Avança com ataques certeiros.",
+"Valoriza sabedoria prática.",
+"Segue ciclos de voo e mergulho.",
+"Observa o mundo em detalhes minuciosos.",
+"Decide com foco absoluto.",
+"Enfrenta medos com direção.",
+"Sonha com conquistas e alturas.",
+"Conecta-se ao espírito pela disciplina.",
+"Expressa essência pela objetividade.",
+"Guiado pelo propósito que corta o vento."
+]
+
 };
 
-function render() {
-    document.getElementById("topoFrase").innerText =
-        frasesTopo[Math.floor(Math.random()*frasesTopo.length)];
+let index = 0;
+let score = {
+"Lobo":0,"Águia":0,"Urso":0,"Tigre":0,"Coruja":0,
+"Cavalo":0,"Serpente":0,"Pantera":0,"Golfinho":0,"Falcão":0
+};
 
-    const q = perguntas[i];
-    let html = `<div class='pergunta'>${q.pergunta}</div>`;
+function loadQuestion() {
+    const q = questions[index];
+    let html = `<h2>${q}</h2>`;
 
-    q.respostas.forEach(r => {
-        html += `<button onclick="responder('${r.animal}')">${r.txt}</button>`;
+    Object.keys(answers).forEach(animal => {
+        html += `<button class='option' onclick='selectOption("${animal}")'>${answers[animal][index]}</button>`;
     });
 
     document.getElementById("quiz").innerHTML = html;
 }
 
-function responder(animal) {
-    pontos[animal]++;
-    i++;
-    if (i >= perguntas.length) finalizar();
-    else render();
+function selectOption(animal) {
+    score[animal]++;
+    document.getElementById("nextBtn").style.display = "block";
 }
 
-function finalizar() {
-    const animal = Object.keys(pontos).reduce((a,b) =>
-        pontos[a] > pontos[b] ? a : b
-    );
-    window.location.href = "resultado.html?animal=" + animal;
+function nextQuestion() {
+    index++;
+    document.getElementById("nextBtn").style.display = "none";
+
+    if (index < questions.length) {
+        loadQuestion();
+    } else {
+        showResult();
+    }
 }
 
-render();
+const finalDescriptions = {
+"Lobo": "O Lobo aparece para aqueles que precisam recuperar sua força instintiva. Ele é guardião de trilhas invisíveis e mestre da lealdade. Seu chamado desperta coragem, sabedoria ancestral e conexão com a matilha espiritual. Se o Lobo te escolheu, é porque um novo ciclo está prestes a começar.",
+"Águia": "A Águia te chama quando é hora de enxergar acima das ilusões. Ela rasga o céu com coragem e clareza, abrindo portais espirituais. Prepare-se para revelações profundas e expansão da consciência.",
+"Urso": "O Urso surge quando é tempo de cura profunda e recolhimento sábio. Seu espírito ensina força calma, proteção e renascimento interior.",
+"Tigre": "O Tigre traz o fogo da coragem e da intensidade. Ele desperta magnetismo, poder pessoal e instinto verdadeiro.",
+"Coruja": "A Coruja revela mistérios e enxuga véus. Ela vê o que está oculto e guia você com sabedoria silenciosa.",
+"Cavalo": "O Cavalo traz liberdade, movimento e expansão espiritual. Ele chama aqueles destinados a novas jornadas.",
+"Serpente": "A Serpente te escolhe quando é hora de transformação profunda. Ela desperta cura, renovação e sabedoria energética.",
+"Pantera": "A Pantera ativa seu poder oculto, sua força silenciosa e sua profundidade espiritual. É guardiã do mistério interior.",
+"Golfinho": "O Golfinho traz alegria, harmonia e cura emocional. Ele te lembra da beleza do fluxo leve da vida.",
+"Falcão": "O Falcão chega quando é hora de foco, direção e precisão. Ele anuncia conquistas e clareza espiritual."
+};
+
+function showResult() {
+    document.querySelector('.quiz-container').style.display = 'none';
+    const resultDiv = document.getElementById('result');
+    resultDiv.classList.remove('hidden');
+
+    const finalAnimal = Object.entries(score).sort((a,b)=>b[1]-a[1])[0][0];
+
+    const imgPath = `images.animais.de.poder/${finalAnimal.toLowerCase()}.jpg`;
+    document.getElementById("resultImg").src = imgPath;
+    document.getElementById("resultTitle").innerText = `Seu Animal de Poder é: ${finalAnimal}`;
+
+    document.getElementById("resultDescription").innerText = finalDescriptions[finalAnimal];
+}
+
+loadQuestion();
 </script>
+
 
 </body>
 </html>
+

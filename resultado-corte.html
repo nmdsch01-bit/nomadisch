@@ -1,93 +1,94 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Seu Corte Ideal</title>
 
 <style>
-
 body{
-font-family:Arial;
-margin:0;
-background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
+    font-family:Arial, sans-serif;
+    margin:0;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    text-align:center;
+    min-height:100vh;
 }
-
-.result-box{
-
-background:white;
-padding:40px;
-border-radius:20px;
-max-width:700px;
-width:90%;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    margin-top:50px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
-
+h1{
+    font-size:30px;
+    margin-bottom:15px;
+}
+h2{
+    font-size:24px;
+    margin-bottom:10px;
+}
 img{
-width:260px;
-border-radius:14px;
-margin:20px 0;
+    width:90%;
+    max-width:400px;
+    border-radius:15px;
+    margin-top:20px;
 }
-
+p{
+    font-size:18px;
+    margin-top:15px;
+}
 button{
-
-background:#ff4d6d;
-color:white;
-border:none;
-padding:14px 20px;
-border-radius:10px;
-font-size:16px;
-cursor:pointer;
-
+    padding:14px 22px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    margin-top:25px;
+    cursor:pointer;
+    background:#ff4d6d;
+    color:white;
 }
-
 button:hover{
-background:#ff2d55;
+    background:#ff2d55;
 }
-
+.ad{
+    margin:25px 0;
+}
 </style>
 
 </head>
-
 <body>
 
-<div style="display:flex; justify-content:center; margin-top:20px;">
+<div class="container">
 
-<script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
-<div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+    <h1 id="titulo">Seu corte ideal é...</h1>
+
+    <!-- ADSTERRA TOPO -->
+    <div class="ad">
+        <script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+        <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+    </div>
+
+    <h2 id="nome"></h2>
+    <img id="imagem" src="">
+    <p id="desc"></p>
+
+    <button onclick="location.href='quiz-corte-cabelo.html'">Refazer Teste</button>
+
+    <!-- ADSTERRA MEIO -->
+    <div class="ad">
+        <script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+        <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+    </div>
 
 </div>
-  
-<div class="result-box">
 
-<h1>Seu corte ideal é...</h1>
-
-<h2 id="titulo"></h2>
-
-<img id="imagem">
-
-<p id="desc"></p>
-
-<button onclick="location.href='quiz-corte-cabelo.html'">
-Refazer Teste
-</button>
-
-</div>
-
-<div style="display:flex; justify-content:center; margin-top:25px;">
-
-<script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
-<div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
-
+<!-- ADSTERRA RODAPÉ -->
+<div class="ad">
+    <script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+    <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
 </div>
 
 <script>
@@ -95,47 +96,39 @@ Refazer Teste
 let resultado = localStorage.getItem("resultadoCabelo")
 
 if(!resultado){
-
-document.getElementById("titulo").innerText="Nenhum resultado encontrado"
-document.getElementById("desc").innerText="Volte ao quiz e descubra qual corte combina com sua personalidade."
-
-}else{
+    document.getElementById("nome").innerText="Nenhum resultado encontrado"
+    document.getElementById("desc").innerText="Volte ao quiz e descubra seu corte ideal."
+} else {
 
 const cortes = {
-
-pixie:{
-nome:"Corte Pixie",
-img:"imagescortes/pixie.jpg",
-desc:"Você é ousada, independente e moderna. O corte pixie reflete sua coragem de ser autêntica."
-},
-
-chanel:{
-nome:"Chanel Clássico",
-img:"imagescortes/chanel.jpg",
-desc:"Elegância natural e estilo atemporal. O chanel combina com sua personalidade sofisticada."
-},
-
-repicado:{
-nome:"Repicado no Ombro",
-img:"imagescortes/repicado.jpg",
-desc:"Criativa e cheia de movimento. O repicado traduz sua energia espontânea e leve."
-},
-
-medio:{
-nome:"Cabelo Médio",
-img:"imagescortes/medio.jpg",
-desc:"Equilíbrio e versatilidade definem você. O comprimento médio acompanha sua personalidade adaptável."
-},
-
-afro:{
-nome:"Afro Natural",
-img:"imagescortes/afro.jpg",
-desc:"Poder, identidade e orgulho. O afro celebra sua força e autenticidade."
+  pixie:{
+    nome:"Pixie moderno",
+    img:"imagescortes/pixie.jpg",
+    desc:"Você é ousada, moderna e independente. O corte pixie reflete sua autenticidade."
+  },
+  chanel:{
+    nome:"Chanel clássico",
+    img:"imagescortes/chanel.jpg",
+    desc:"Elegância e sofisticação definem você. O corte chanel combina com seu estilo atemporal."
+  },
+  repicado:{
+    nome:"Repicado no ombro",
+    img:"imagescortes/repicado.jpg",
+    desc:"Leve e criativa. Esse corte entrega movimento e personalidade."
+  },
+  medio:{
+    nome:"Cabelo médio elegante",
+    img:"imagescortes/medio.jpg",
+    desc:"Equilíbrio e versatilidade são sua marca. Ótimo para muitas ocasiões."
+  },
+  afro:{
+    nome:"Afro natural poderoso",
+    img:"imagescortes/afro.jpg",
+    desc:"Autenticidade, orgulho e beleza definem você. O afro celebra sua identidade."
+  }
 }
 
-}
-
-document.getElementById("titulo").innerText = cortes[resultado].nome
+document.getElementById("nome").innerText = cortes[resultado].nome
 document.getElementById("imagem").src = cortes[resultado].img
 document.getElementById("desc").innerText = cortes[resultado].desc
 
@@ -145,5 +138,3 @@ document.getElementById("desc").innerText = cortes[resultado].desc
 
 </body>
 </html>
-
-

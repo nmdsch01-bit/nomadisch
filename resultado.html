@@ -1,154 +1,134 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultado do Quiz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seu Animal de Poder</title>
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: #0d1117;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Verdana', sans-serif;
+        background: #000;
+        color: #fff;
+        text-align: center;
+        background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1500&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
 
-        .container {
-            max-width: 550px;
-            background: #161b22;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(255,255,255,0.1);
-            text-align: center;
-        }
+    .container {
+        margin: 50px auto;
+        width: 90%;
+        max-width: 800px;
+        background: rgba(0,0,0,0.75);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0px 0px 25px rgba(255,255,255,0.4);
+        backdrop-filter: blur(6px);
+    }
 
-        h1 {
-            margin-bottom: 10px;
-            font-size: 26px;
-            text-transform: uppercase;
-        }
+    .animal-img {
+        width: 350px;
+        border-radius: 20px;
+        margin-top: 20px;
+        box-shadow: 0 0 20px #fff;
+        animation: brilho 4s infinite alternate ease-in-out;
+    }
 
-        img {
-            width: 100%;
-            border-radius: 12px;
-            margin-top: 20px;
-        }
+    @keyframes brilho {
+        0% { box-shadow: 0 0 10px #fff; }
+        100% { box-shadow: 0 0 40px #fff; }
+    }
 
-        .descricao {
-            margin-top: 20px;
-            font-size: 18px;
-            line-height: 1.5;
-        }
+    .desc {
+        margin-top: 25px;
+        font-size: 18px;
+        line-height: 1.6;
+    }
 
-        .btn {
-            margin-top: 25px;
-            display: inline-block;
-            padding: 12px 22px;
-            background: #238636;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-            font-size: 18px;
-            cursor: pointer;
-        }
+    .btn {
+        margin-top: 40px;
+        display: inline-block;
+        padding: 15px 30px;
+        background: #8a2be2;
+        color: #fff;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 20px;
+        box-shadow: 0 0 15px #8a2be2;
+        transition: 0.3s;
+    }
 
-        .btn:hover {
-            background: #2ea043;
-        }
-    </style>
+    .btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 25px #b87cff;
+    }
+</style>
 </head>
 
 <body>
-    <div class="container">
-        <h1 id="tituloAnimal">Seu Animal Poderoso é...</h1>
 
-        <img id="imgAnimal" src="" alt="Animal Poderoso">
+<!-- ANÚNCIO ADSTERRA -->
+<div style="margin-top:20px;">
+<script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+<div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+</div>
 
-        <div class="descricao" id="descricaoAnimal"></div>
+<div class="container">
+    <h1>✨ Seu Animal de Poder é:</h1>
+    <h2 id="animalNome"></h2>
 
-        <a class="btn" href="index.html">Refazer Quiz</a>
-    </div>
+    <img id="animalImagem" class="animal-img" src="" alt="Animal de Poder">
 
-    <script>
-        // pega o resultado salvo pelo quiz
-        const resultado = localStorage.getItem("animalEscolhido");
+    <p id="animalDescricao" class="desc"></p>
 
-        // caso a página seja acessada direto
-        if (!resultado) {
-            document.getElementById("tituloAnimal").innerText =
-                "Nenhum resultado encontrado!";
-            document.getElementById("descricaoAnimal").innerText =
-                "Volte ao quiz e responda para descobrir seu animal poderoso!";
-        }
+    <a href="index.html" class="btn">Refazer o Quiz</a>
+</div>
 
-        // textos e imagens associados com cada animal
-        const dadosAnimais = {
-            "lobo": {
-                nome: "Lobo",
-                img: "imagesanimaispoder/lobo.jpg",
-                desc: "Você é estrategista, leal e guiado por um forte senso de propósito."
-            },
-            "aguia": {
-                nome: "Águia",
-                img: "imagesanimaispoder/aguia.jpg",
-                desc: "Você possui visão ampla, sabedoria e capacidade de enxergar oportunidades antes dos outros."
-            },
-            "urso": {
-                nome: "Urso",
-                img: "imagesanimaispoder/urso.jpg",
-                desc: "Você é forte, protetor e profundamente intuitivo, mesmo quando está em silêncio."
-            },
-            "tigre": {
-                nome: "Tigre",
-                img: "imagesanimaispoder/tigre.jpg",
-                desc: "Corajoso, intenso e determinado. Seu espírito nunca recua diante de desafios."
-            },
-            "coruja": {
-                nome: "Coruja",
-                img: "imagesanimaispoder/coruja.jpg",
-                desc: "Você é um buscador da verdade, guiado pela sabedoria e pela observação profunda."
-            },
-            "cavalo": {
-                nome: "Cavalo",
-                img: "imagesanimaispoder/cavalo.jpg",
-                desc: "Livre, energético e movido por um espírito indomável."
-            },
-            "serpente": {
-                nome: "Serpente",
-                img: "imagesanimaispoder/serpente.jpg",
-                desc: "Transformação, renascimento e profundo conhecimento interior definem sua energia."
-            },
-            "pantera": {
-                nome: "Pantera",
-                img: "imagesanimaispoder/pantera.jpg",
-                desc: "Elegante, intensa e misteriosa. Uma força silenciosa que domina qualquer ambiente."
-            },
-            "golfinho": {
-                nome: "Golfinho",
-                img: "imagesanimaispoder/golfinho.jpg",
-                desc: "Você é leve, inteligente e conectado ao mundo emocional ao seu redor."
-            },
-            "falcao": {
-                nome: "Falcão",
-                img: "imagesanimaispoder/falcao.jpg",
-                desc: "Rápido, determinado e com enorme foco. Quando decide algo, vai até o fim."
-            }
-        };
+<script>
+    const animal = localStorage.getItem("animalEscolhido");
 
-        const animal = dadosAnimais[resultado];
+    if (!animal) {
+        document.getElementById("animalNome").innerText = "Nenhum resultado encontrado!";
+        document.getElementById("animalDescricao").innerText = "Volte ao quiz e responda para descobrir seu animal poderoso!";
+    }
 
-        // preenche os dados na página
-        if (animal) {
-            document.getElementById("tituloAnimal").innerText = animal.nome;
-            document.getElementById("imgAnimal").src = animal.img;
-            document.getElementById("descricaoAnimal").innerText = animal.desc;
-        }
-    </script>
+    document.getElementById("animalNome").innerText = animal;
+
+    const caminhos = {
+        "Lobo": "imagesanimaispoder/lobo.jpg",
+        "Águia": "imagesanimaispoder/aguia.jpg",
+        "Urso": "imagesanimaispoder/urso.jpg",
+        "Tigre": "imagesanimaispoder/tigre.jpg",
+        "Coruja": "imagesanimaispoder/coruja.jpg",
+        "Cavalo": "imagesanimaispoder/cavalo.jpg",
+        "Serpente": "imagesanimaispoder/serpente.jpg",
+        "Pantera": "imagesanimaispoder/pantera.jpg",
+        "Golfinho": "imagesanimaispoder/golfinho.jpg",
+        "Falcão": "imagesanimaispoder/falcao.jpg"
+    };
+
+    document.getElementById("animalImagem").src = caminhos[animal];
+
+    const descricoes = {
+        "Lobo": "O Lobo simboliza instinto, proteção e liderança espiritual. Quando ele te escolhe, significa que você está pronto para assumir seu verdadeiro caminho.",
+        "Águia": "A Águia traz visão superior, clareza e poder divino. Ela te chama quando é hora de elevar sua consciência.",
+        "Urso": "O Urso representa força interior, coragem e renascimento. Ele aparece quando você precisa despertar seu poder ancestral.",
+        "Tigre": "O Tigre é energia selvagem, coragem e domínio do destino. Ele te guia quando você precisa agir com firmeza.",
+        "Coruja": "A Coruja traz sabedoria, mistério e intuição profunda. Ela aparece para revelar verdades ocultas.",
+        "Cavalo": "O Cavalo simboliza liberdade, movimento e expansão. Ele te orienta quando você está pronto para avançar.",
+        "Serpente": "A Serpente manifesta cura, transformação e poder espiritual. Ela surge quando um renascimento está perto.",
+        "Pantera": "A Pantera representa coragem sombria, energia lunar e mistério. Ela te chama para despertar seu poder oculto.",
+        "Golfinho": "O Golfinho vibra alegria, comunicação e harmonia. Ele aparece quando você precisa equilibrar sua energia.",
+        "Falcão": "O Falcão representa precisão, foco e mensagem divina. Ele surge quando o Universo quer que você enxergue sinais."
+    };
+
+    document.getElementById("animalDescricao").innerText = descricoes[animal];
+</script>
+
 </body>
 </html>
+

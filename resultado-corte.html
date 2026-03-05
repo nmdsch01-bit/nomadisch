@@ -1,1 +1,56 @@
+<script>
+
+let resultado = localStorage.getItem("resultadoCabelo")
+
+if(!resultado){
+
+document.body.innerHTML = `
+<h2>Nenhum resultado encontrado</h2>
+<p>Faça o quiz primeiro.</p>
+<button onclick="location.href='quiz-corte-cabelo.html'">Fazer quiz</button>
+`
+
+}else{
+
+const cortes = {
+
+pixie:{
+nome:"Corte Pixie",
+img:"imagescortes/pixie.jpg",
+desc:"Você é ousada, moderna e independente. O corte pixie combina com sua personalidade forte e livre."
+},
+
+chanel:{
+nome:"Chanel Clássico",
+img:"imagescortes/chanel.jpg",
+desc:"Elegância e sofisticação definem você. O corte chanel reflete seu estilo clássico."
+},
+
+repicado:{
+nome:"Repicado no Ombro",
+img:"imagescortes/repicado.jpg",
+desc:"Criativa e cheia de movimento. O repicado traduz sua energia espontânea."
+},
+
+medio:{
+nome:"Cabelo Médio",
+img:"imagescortes/medio.jpg",
+desc:"Equilíbrio e naturalidade. O comprimento médio combina com sua personalidade versátil."
+},
+
+afro:{
+nome:"Afro Natural",
+img:"imagescortes/afro.jpg",
+desc:"Orgulho, identidade e poder. O afro expressa sua força autêntica."
+}
+
+}
+
+document.getElementById("titulo").innerText = cortes[resultado].nome
+document.getElementById("imagem").src = cortes[resultado].img
+document.getElementById("desc").innerText = cortes[resultado].desc
+
+}
+
+</script>
 

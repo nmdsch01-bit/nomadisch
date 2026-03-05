@@ -1,14 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Seu Corte Ideal</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.result-box{
+
+background:white;
+padding:40px;
+border-radius:20px;
+max-width:700px;
+width:90%;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+
+}
+
+img{
+width:260px;
+border-radius:14px;
+margin:20px 0;
+}
+
+button{
+
+background:#ff4d6d;
+color:white;
+border:none;
+padding:14px 20px;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+
+}
+
+button:hover{
+background:#ff2d55;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="result-box">
+
+<h1>Seu corte ideal é...</h1>
+
+<h2 id="titulo"></h2>
+
+<img id="imagem">
+
+<p id="desc"></p>
+
+<button onclick="location.href='quiz-corte-cabelo.html'">
+Refazer Teste
+</button>
+
+</div>
+
 <script>
 
 let resultado = localStorage.getItem("resultadoCabelo")
 
 if(!resultado){
 
-document.body.innerHTML = `
-<h2>Nenhum resultado encontrado</h2>
-<p>Faça o quiz primeiro.</p>
-<button onclick="location.href='quiz-corte-cabelo.html'">Fazer quiz</button>
-`
+document.getElementById("titulo").innerText="Nenhum resultado encontrado"
+document.getElementById("desc").innerText="Volte ao quiz e descubra qual corte combina com sua personalidade."
 
 }else{
 
@@ -17,31 +92,31 @@ const cortes = {
 pixie:{
 nome:"Corte Pixie",
 img:"imagescortes/pixie.jpg",
-desc:"Você é ousada, moderna e independente. O corte pixie combina com sua personalidade forte e livre."
+desc:"Você é ousada, independente e moderna. O corte pixie reflete sua coragem de ser autêntica."
 },
 
 chanel:{
 nome:"Chanel Clássico",
 img:"imagescortes/chanel.jpg",
-desc:"Elegância e sofisticação definem você. O corte chanel reflete seu estilo clássico."
+desc:"Elegância natural e estilo atemporal. O chanel combina com sua personalidade sofisticada."
 },
 
 repicado:{
 nome:"Repicado no Ombro",
 img:"imagescortes/repicado.jpg",
-desc:"Criativa e cheia de movimento. O repicado traduz sua energia espontânea."
+desc:"Criativa e cheia de movimento. O repicado traduz sua energia espontânea e leve."
 },
 
 medio:{
 nome:"Cabelo Médio",
 img:"imagescortes/medio.jpg",
-desc:"Equilíbrio e naturalidade. O comprimento médio combina com sua personalidade versátil."
+desc:"Equilíbrio e versatilidade definem você. O comprimento médio acompanha sua personalidade adaptável."
 },
 
 afro:{
 nome:"Afro Natural",
 img:"imagescortes/afro.jpg",
-desc:"Orgulho, identidade e poder. O afro expressa sua força autêntica."
+desc:"Poder, identidade e orgulho. O afro celebra sua força e autenticidade."
 }
 
 }
@@ -53,4 +128,8 @@ document.getElementById("desc").innerText = cortes[resultado].desc
 }
 
 </script>
+
+</body>
+</html>
+
 

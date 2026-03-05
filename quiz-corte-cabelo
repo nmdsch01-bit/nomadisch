@@ -1,1 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Qual corte de cabelo combina com sua personalidade?</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.quiz-box{
+background:white;
+width:90%;
+max-width:600px;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1{
+font-size:24px;
+}
+
+.progress{
+height:10px;
+background:#eee;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+.progress-bar{
+height:10px;
+width:0%;
+background:#ff4d6d;
+border-radius:20px;
+transition:0.4s;
+}
+
+.option{
+
+background:#f3f3f3;
+padding:14px;
+margin:10px 0;
+border-radius:10px;
+cursor:pointer;
+transition:0.3s;
+
+}
+
+.option:hover{
+background:#ffdde1;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="quiz-box">
+
+<h1 id="pergunta"></h1>
+
+<div class="progress">
+<div class="progress-bar" id="barra"></div>
+</div>
+
+<div id="respostas"></div>
+
+</div>
+
+<script>
+
+const perguntas = [
+
+{
+pergunta:"Como você costuma lidar com mudanças?",
+respostas:[
+["Adoro mudar tudo","pixie"],
+["Mudanças planejadas","chanel"],
+["Gosto de reinventar","repicado"],
+["Prefiro estabilidade","medio"],
+["Mudanças fazem parte da minha identidade","afro"]
+]
+},
+
+{
+pergunta:"Qual energia mais te define?",
+respostas:[
+["Corajosa","pixie"],
+["Elegante","chanel"],
+["Criativa","repicado"],
+["Equilibrada","medio"],
+["Poderosa","afro"]
+]
+},
+
+{
+pergunta:"Seu estilo é mais...",
+respostas:[
+["Moderno","pixie"],
+["Clássico","chanel"],
+["Despojado","repicado"],
+["Natural","medio"],
+["Autêntico","afro"]
+]
+},
+
+{
+pergunta:"Como as pessoas te veem?",
+respostas:[
+["Ousada","pixie"],
+["Sofisticada","chanel"],
+["Divertida","repicado"],
+["Calma","medio"],
+["Forte","afro"]
+]
+},
+
+{
+pergunta:"Qual dessas palavras te representa?",
+respostas:[
+["Liberdade","pixie"],
+["Elegância","chanel"],
+["Criatividade","repicado"],
+["Harmonia","medio"],
+["Identidade","afro"]
+]
+},
+
+{
+pergunta:"Seu visual ideal é...",
+respostas:[
+["Prático","pixie"],
+["Chique","chanel"],
+["Leve","repicado"],
+["Versátil","medio"],
+["Natural","afro"]
+]
+},
+
+{
+pergunta:"Seu maior ponto forte?",
+respostas:[
+["Coragem","pixie"],
+["Classe","chanel"],
+["Espontaneidade","repicado"],
+["Equilíbrio","medio"],
+["Personalidade","afro"]
+]
+},
+
+{
+pergunta:"Você prefere...",
+respostas:[
+["Minimalismo","pixie"],
+["Estilo atemporal","chanel"],
+["Movimento","repicado"],
+["Naturalidade","medio"],
+["Orgulho cultural","afro"]
+]
+},
+
+{
+pergunta:"Seu mood diário é...",
+respostas:[
+["Independente","pixie"],
+["Elegante","chanel"],
+["Livre","repicado"],
+["Tranquilo","medio"],
+["Empoderado","afro"]
+]
+},
+
+{
+pergunta:"Qual visual mais te atrai?",
+respostas:[
+["Moderno","pixie"],
+["Clássico","chanel"],
+["Despojado","repicado"],
+["Natural","medio"],
+["Poderoso","afro"]
+]
+}
+
+]
+
+let atual = 0
+
+let pontos = {
+pixie:0,
+chanel:0,
+repicado:0,
+medio:0,
+afro:0
+}
+
+function carregarPergunta(){
+
+let q = perguntas[atual]
+
+document.getElementById("pergunta").innerText = q.pergunta
+
+let respostasHTML=""
+
+q.respostas.forEach(r=>{
+
+respostasHTML+=`<div class="option" onclick="responder('${r[1]}')">${r[0]}</div>`
+
+})
+
+document.getElementById("respostas").innerHTML=respostasHTML
+
+let progresso = (atual/perguntas.length)*100
+
+document.getElementById("barra").style.width=progresso+"%"
+
+}
+
+function responder(tipo){
+
+pontos[tipo]++
+
+atual++
+
+if(atual < perguntas.length){
+
+carregarPergunta()
+
+}else{
+
+finalizar()
+
+}
+
+}
+
+function finalizar(){
+
+let vencedor = Object.keys(pontos).reduce((a,b)=>pontos[a]>pontos[b]?a:b)
+
+localStorage.setItem("resultadoCabelo",vencedor)
+
+window.location.href="resultado-corte.html"
+
+}
+
+carregarPergunta()
+
+</script>
+
+</body>
+
+</html>
 

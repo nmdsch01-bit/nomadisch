@@ -1,33 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Seu Animal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Seu Animal de Poder</title>
 
 <style>
 
 body{
-font-family:Arial;
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+color:white;
 text-align:center;
-background:#f4f4f4;
+
+/* FUNDO IGUAL AO QUIZ */
+
+background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 }
 
-.result{
-background:white;
-max-width:700px;
-margin:auto;
+.container{
+
+background:rgba(0,0,0,0.65);
+max-width:600px;
+margin:60px auto;
 padding:30px;
+border-radius:20px;
 }
 
-img{
-width:300px;
-border-radius:10px;
+h1{
+font-size:36px;
+margin-bottom:10px;
+}
+
+p{
+font-size:18px;
+line-height:1.6;
+}
+
+.animal-img{
+width:220px;
+margin:20px 0;
 }
 
 button{
-padding:15px;
+
 margin-top:20px;
+padding:15px 30px;
 font-size:18px;
+border:none;
+border-radius:10px;
+background:#ff6b00;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff8a30;
+}
+
+.ad{
+margin:25px 0;
 }
 
 </style>
@@ -35,68 +71,108 @@ font-size:18px;
 
 <body>
 
-<div class="result">
+<div class="container">
 
-<h1>Seu Animal de Poder é...</h1>
+<h1 id="animalTitulo"></h1>
 
-<h2 id="animal"></h2>
+<img id="animalImg" class="animal-img">
 
-<img id="imagem">
+<p id="animalTexto"></p>
 
-<p id="desc"></p>
+<div class="ad">
 
-<button onclick="location.href='animal-de-poder.html'">Refazer</button>
+<!-- ADSTERRA TOPO -->
+
+<script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+<div id="container-3c2eb1000098aa584074fbf52f463bc0"></div> </script>
+
+</div>
+
+<button onclick="refazer()">Refazer o Teste</button>
+
+<div class="ad">
+
+<!-- ADSTERRA MEIO -->
+
+<script <script> atOptions = { 'key' : '3b682b95b642d285fbebc498d78d27dc', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} }; </script> src="https://www.highperformanceformat.com/3b682b95b642d285fbebc498d78d27dc/invoke.js"></script>
+
+</div>
+
+</div>
+
+<div class="ad">
+
+<!-- ADSTERRA RODAPÉ -->
+
+<script type='text/javascript' src='https://www.effectivegatecpm.com/nffmhnkjvx?key=a0415d0a03770669277c71f533cceb23'></script>
 
 </div>
 
 <script>
 
-const data = JSON.parse(localStorage.getItem("quizResult"))
-
-let winner = Object.keys(data).reduce((a,b)=>data[a]>data[b]?a:b)
-
-const animals = {
+const animais = {
 
 lobo:{
-nome:"Lobo",
-img:"imagesanimaispoder/lobo.jpg",
-desc:"Você é leal, protetor e valoriza sua tribo."
+titulo:"Seu Animal de Poder é o LOBO",
+img:"https://i.imgur.com/2JgK5Gx.png",
+texto:"Você possui espírito de liderança, forte instinto e grande conexão com sua intuição."
 },
 
 aguia:{
-nome:"Águia",
-img:"imagesanimaispoder/aguia.jpg",
-desc:"Você tem visão, liberdade e espírito explorador."
-},
-
-urso:{
-nome:"Urso",
-img:"imagesanimaispoder/urso.jpg",
-desc:"Você é forte, protetor e resiliente."
-},
-
-tigre:{
-nome:"Tigre",
-img:"imagesanimaispoder/tigre.jpg",
-desc:"Você é intenso, corajoso e dominante."
+titulo:"Seu Animal de Poder é a ÁGUIA",
+img:"https://i.imgur.com/3nVq6jS.png",
+texto:"Você enxerga além do óbvio. Sua visão espiritual e inteligência estratégica são seu maior poder."
 },
 
 coruja:{
-nome:"Coruja",
-img:"imagesanimaispoder/coruja.jpg",
-desc:"Você é sábio, observador e estratégico."
+titulo:"Seu Animal de Poder é a CORUJA",
+img:"https://i.imgur.com/dH9sM4X.png",
+texto:"Você possui sabedoria profunda, percepção silenciosa e grande capacidade de entender as pessoas."
+},
+
+tigre:{
+titulo:"Seu Animal de Poder é o TIGRE",
+img:"https://i.imgur.com/3Yk6bFq.png",
+texto:"Você tem coragem, força interior e energia intensa para conquistar qualquer objetivo."
+},
+
+cervo:{
+titulo:"Seu Animal de Poder é o CERVO",
+img:"https://i.imgur.com/7bY0T7c.png",
+texto:"Você carrega sensibilidade, elegância espiritual e grande capacidade de empatia."
 }
 
+};
+
+function mostrarResultado(){
+
+let resultado = localStorage.getItem("animalResultado");
+
+if(!resultado){
+resultado="lobo";
 }
 
-document.getElementById("animal").innerText = animals[winner].nome
+let animal = animais[resultado];
 
-document.getElementById("imagem").src = animals[winner].img
+document.getElementById("animalTitulo").innerText = animal.titulo;
 
-document.getElementById("desc").innerText = animals[winner].desc
+document.getElementById("animalTexto").innerText = animal.texto;
+
+document.getElementById("animalImg").src = animal.img;
+
+}
+
+function refazer(){
+
+window.location.href="https://www.nomadisch.com.br/animal-de-poder.html";
+
+}
+
+mostrarResultado();
 
 </script>
 
 </body>
 </html>
+
 

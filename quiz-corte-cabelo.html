@@ -6,27 +6,40 @@
 <title>Qual corte de cabelo combina com você?</title>
 <style>
 body {
-    font-family: Arial, sans-serif;
-    margin:0;
-    background: url('imagescortes/salao.jpg') center/cover no-repeat;
-    color:#333;
+  font-family: Arial, sans-serif;
+  margin:0;
+  background: url('imagescortes/salao.jpg') center/cover no-repeat;
+  color:#333;
 }
 .quiz-box {
-    max-width:600px;
-    margin:50px auto;
-    background: rgba(255,255,255,0.95);
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-    text-align:center;
+  max-width:600px;
+  margin:50px auto;
+  background: rgba(255,255,255,0.95);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  text-align:center;
+  position:relative;
 }
-h1 { text-align:center; font-size:26px; margin-bottom:20px;}
-.progress {height:10px; background:#eee; border-radius:20px; margin-bottom:20px; overflow:hidden;}
-.progress-bar {height:10px; width:0%; background:#ff4d6d; border-radius:20px; transition:0.4s;}
-.option {background:#f3f3f3; padding:14px; margin:10px 0; border-radius:10px; cursor:pointer; transition:0.3s;}
-.option:hover {background:#ffdde1;}
-.loader { display:none; text-align:center; font-size:18px; margin-top:20px;}
-.ad-container {margin:20px 0; display:flex; justify-content:center;}
+h1 { font-size:26px; margin-bottom:20px; text-align:center; }
+.progress { height:10px; background:#eee; border-radius:20px; margin-bottom:20px; overflow:hidden; }
+.progress-bar { height:10px; width:0%; background:#ff4d6d; border-radius:20px; transition:0.4s; }
+.option { background:#f3f3f3; padding:14px; margin:10px 0; border-radius:10px; cursor:pointer; transition:0.3s; }
+.option:hover { background:#ffdde1; }
+.loader { display:none; text-align:center; font-size:18px; margin-top:20px; }
+.ad-container {margin:20px 0; display:flex; justify-content:center; flex-wrap:wrap;}
+button, .pinterest-btn {
+  padding:14px 20px;
+  margin:10px 5px;
+  font-size:16px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+button { background:#ff4d6d; color:white; }
+button:hover { background:#ff1a4d; }
+.pinterest-btn { background:#bd081c; color:white; }
+.pinterest-btn:hover { background:#8b0614; }
 </style>
 </head>
 <body>
@@ -45,13 +58,19 @@ h1 { text-align:center; font-size:26px; margin-bottom:20px;}
 <div class="loader" id="loader">Calculando resultado... ⏳</div>
 </div>
 
-<!-- ADSTERRA RODAPÉ -->
+<!-- ADSTERRA MEIO -->
 <div class="ad-container">
 <script async="async" data-cfasync="false" src="https://www.highperformanceformat.com/3b682b95b642d285fbebc498d78d27dc/invoke.js"></script>
 </div>
 
+<!-- ADSTERRA RODAPÉ -->
+<div class="ad-container">
+<script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+<div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+</div>
+
 <script>
-// Perguntas e respostas
+// Perguntas
 const perguntas = [
   { pergunta:"Como você reage a mudanças?", respostas:[
     ["Adoro mudar tudo","pixie"],
@@ -121,15 +140,15 @@ function responder(tipo){
   carregarPergunta();
 }
 
-// Loader falso
+// Loader falso com gatilho de tempo extra
 function mostrarLoader(){
   document.getElementById("pergunta").style.display="none";
   document.getElementById("respostas").style.display="none";
   document.getElementById("barra").style.width="100%";
   const loader = document.getElementById("loader");
   loader.style.display="block";
-  // Script para aumentar tempo de permanência
-  let tempoExtra = 4000 + Math.floor(Math.random()*2000);
+  // Tempo aleatório para aumentar permanência
+  let tempoExtra = 4000 + Math.floor(Math.random()*3000);
   setTimeout(finalizar, tempoExtra);
 }
 
@@ -145,4 +164,5 @@ carregarPergunta();
 </script>
 </body>
 </html>
+
 

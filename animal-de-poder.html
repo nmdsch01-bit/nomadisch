@@ -1,88 +1,131 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Qual é seu Animal de Poder?</title>
 
 <style>
 
 body{
-font-family:Arial;
-background:#f4f4f4;
-text-align:center;
 margin:0;
+font-family:Arial;
+background:url('images/estrada.jpg') center/cover no-repeat fixed;
+color:white;
+text-align:center;
 }
 
-.container{
-max-width:700px;
-margin:auto;
-background:white;
+/* camada escura */
+
+.overlay{
+background:rgba(0,0,0,0.6);
+min-height:100vh;
 padding:20px;
 }
 
+/* título */
+
 h1{
-color:#333;
+font-size:32px;
+margin-bottom:10px;
+}
+
+/* progresso */
+
+.progress-box{
+width:80%;
+margin:auto;
+background:#222;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:12px;
+width:0%;
+background:#00e1ff;
+}
+
+/* quiz */
+
+.quiz-box{
+max-width:700px;
+margin:auto;
+padding:20px;
 }
 
 .question{
 font-size:22px;
-margin-bottom:20px;
+margin:20px 0;
 }
 
 .option{
-background:#f1f1f1;
+background:#1c1c1c;
+margin:10px 0;
 padding:15px;
-margin:10px;
-border-radius:8px;
+border-radius:10px;
 cursor:pointer;
 transition:0.3s;
 }
 
 .option:hover{
-background:#ddd;
+background:#333;
 }
 
-/* ADS */
+/* anúncios laterais */
 
-.ad-left{
+.ads-left{
 position:fixed;
-left:0;
-top:100px;
-width:160px;
+left:10px;
+top:200px;
 }
 
-.ad-right{
+.ads-right{
 position:fixed;
-right:0;
-top:100px;
-width:160px;
+right:10px;
+top:200px;
 }
 
 @media(max-width:900px){
-.ad-left,.ad-right{
+
+.ads-left,.ads-right{
 display:none;
 }
+
+}
+
+.footer-ad{
+margin-top:40px;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- ADS LATERAIS -->
-<div class="ad-left">
-COLE SCRIPT ADSTERRA
+<div class="overlay">
+
+<!-- anúncio topo -->
+
+<script async="async" data-cfasync="false"
+src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js">
+</script>
+
+<div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+
+<h1>🌙 Descubra seu Animal de Poder</h1>
+
+<p>Os animais espirituais não são escolhidos…  
+Eles aparecem quando sua alma está pronta.</p>
+
+<div class="progress-box">
+<div class="progress-bar" id="progress"></div>
 </div>
 
-<div class="ad-right">
-COLE SCRIPT ADSTERRA
-</div>
-
-<div class="container">
-
-<h1>🐺 Descubra seu Animal de Poder</h1>
-
-<div id="quiz">
+<div class="quiz-box">
 
 <div class="question" id="question"></div>
 
@@ -90,122 +133,246 @@ COLE SCRIPT ADSTERRA
 
 </div>
 
+<!-- anúncios laterais -->
+
+<div class="ads-left">
+
+<script>
+atOptions = {
+'key' : '3b682b95b642d285fbebc498d78d27dc',
+'format' : 'iframe',
+'height' : 250,
+'width' : 300,
+'params' : {}
+};
+</script>
+
+<script src="https://www.highperformanceformat.com/3b682b95b642d285fbebc498d78d27dc/invoke.js"></script>
+
+</div>
+
+<div class="ads-right">
+
+<script>
+atOptions = {
+'key' : '3b682b95b642d285fbebc498d78d27dc',
+'format' : 'iframe',
+'height' : 250,
+'width' : 300,
+'params' : {}
+};
+</script>
+
+<script src="https://www.highperformanceformat.com/3b682b95b642d285fbebc498d78d27dc/invoke.js"></script>
+
+</div>
+
+<div class="footer-ad">
+
+<script>
+atOptions = {
+'key' : '3b682b95b642d285fbebc498d78d27dc',
+'format' : 'iframe',
+'height' : 250,
+'width' : 300,
+'params' : {}
+};
+</script>
+
+<script src="https://www.highperformanceformat.com/3b682b95b642d285fbebc498d78d27dc/invoke.js"></script>
+
+</div>
+
 </div>
 
 <script>
 
-const quiz = [
-
-{
-question:"Qual ambiente você prefere?",
-options:[
-{text:"Floresta",animal:"lobo"},
-{text:"Montanhas",animal:"aguia"},
-{text:"Caverna",animal:"urso"},
-{text:"Selva",animal:"tigre"},
-{text:"Noite silenciosa",animal:"coruja"}
-]
-},
-
-{
-question:"Qual qualidade te define?",
-options:[
-{text:"Lealdade",animal:"lobo"},
-{text:"Liberdade",animal:"aguia"},
-{text:"Força",animal:"urso"},
-{text:"Coragem",animal:"tigre"},
-{text:"Sabedoria",animal:"coruja"}
-]
-},
-
-{
-question:"Como você enfrenta problemas?",
-options:[
-{text:"Em equipe",animal:"lobo"},
-{text:"Com visão estratégica",animal:"aguia"},
-{text:"Com resistência",animal:"urso"},
-{text:"Atacando rápido",animal:"tigre"},
-{text:"Observando primeiro",animal:"coruja"}
-]
-},
-
-{
-question:"O que te atrai mais?",
-options:[
-{text:"Amizades fortes",animal:"lobo"},
-{text:"Explorar o mundo",animal:"aguia"},
-{text:"Proteção da família",animal:"urso"},
-{text:"Aventura",animal:"tigre"},
-{text:"Conhecimento",animal:"coruja"}
-]
-},
-
-{
-question:"Qual energia combina com você?",
-options:[
-{text:"Instinto",animal:"lobo"},
-{text:"Altura e visão",animal:"aguia"},
-{text:"Poder interior",animal:"urso"},
-{text:"Intensidade",animal:"tigre"},
-{text:"Mistério",animal:"coruja"}
-]
-}
-
-]
-
-let current = 0
-
-let score = {
-lobo:0,
+let animals = {
 aguia:0,
+lobo:0,
 urso:0,
+pantera:0,
+serpente:0,
+coruja:0,
+cavalo:0,
 tigre:0,
-coruja:0
+falcao:0,
+golfinho:0
 }
+
+const quiz=[
+
+{
+q:"O que você mais busca na vida?",
+a:[
+["ter visão clara do futuro","aguia"],
+["seguir meu instinto","lobo"],
+["força interior","urso"],
+["poder pessoal","pantera"],
+["transformação","serpente"]
+]
+},
+
+{
+q:"Como você reage a desafios?",
+a:[
+["analiso tudo primeiro","coruja"],
+["confio no instinto","lobo"],
+["enfrento com coragem","tigre"],
+["me adapto rápido","serpente"],
+["uso inteligência","falcao"]
+]
+},
+
+{
+q:"Qual ambiente te atrai?",
+a:[
+["montanhas e céu","aguia"],
+["florestas profundas","urso"],
+["noite e mistério","pantera"],
+["rios e mar","golfinho"],
+["planícies abertas","cavalo"]
+]
+},
+
+{
+q:"Como amigos te descrevem?",
+a:[
+["sábio","coruja"],
+["leal","lobo"],
+["forte","urso"],
+["intenso","tigre"],
+["livre","cavalo"]
+]
+},
+
+{
+q:"Quando precisa decidir rápido:",
+a:[
+["uso visão estratégica","aguia"],
+["sigo instinto","lobo"],
+["mantenho firmeza","urso"],
+["ajo com poder","pantera"],
+["mudo estratégia","serpente"]
+]
+},
+
+{
+q:"Sua maior qualidade:",
+a:[
+["clareza mental","aguia"],
+["intuição","lobo"],
+["resistência","urso"],
+["liderança","tigre"],
+["liberdade","cavalo"]
+]
+},
+
+{
+q:"Em um grupo você é:",
+a:[
+["observador","coruja"],
+["protetor","lobo"],
+["pilar forte","urso"],
+["dominante","tigre"],
+["independente","pantera"]
+]
+},
+
+{
+q:"O que mais te move?",
+a:[
+["conhecimento","coruja"],
+["família","lobo"],
+["superação","urso"],
+["poder","pantera"],
+["evolução","serpente"]
+]
+},
+
+{
+q:"Se estivesse na natureza:",
+a:[
+["voando alto","aguia"],
+["correndo livre","cavalo"],
+["nadando profundo","golfinho"],
+["espreitando na selva","tigre"],
+["observando em silêncio","coruja"]
+]
+},
+
+{
+q:"Seu tipo de energia:",
+a:[
+["mental","coruja"],
+["instintiva","lobo"],
+["física","urso"],
+["intensa","pantera"],
+["fluida","serpente"]
+]
+},
+
+{
+q:"O que mais valoriza?",
+a:[
+["sabedoria","coruja"],
+["lealdade","lobo"],
+["força","urso"],
+["coragem","tigre"],
+["liberdade","cavalo"]
+]
+},
+
+{
+q:"Qual palavra define sua alma?",
+a:[
+["visão","aguia"],
+["instinto","lobo"],
+["força","urso"],
+["poder","pantera"],
+["transformação","serpente"]
+]
+}
+
+]
+
+let current=0
 
 function loadQuestion(){
 
-const q = quiz[current]
+let q=quiz[current]
 
-document.getElementById("question").innerText = q.question
+document.getElementById("question").innerText="Pergunta "+(current+1)+" de "+quiz.length+" — "+q.q
 
-const optionsDiv = document.getElementById("options")
+let optionsHTML=""
 
-optionsDiv.innerHTML=""
-
-q.options.forEach(option=>{
-
-const btn = document.createElement("div")
-
-btn.className="option"
-
-btn.innerText = option.text
-
-btn.onclick = ()=>{
-
-score[option.animal]++
-
-nextQuestion()
-
-}
-
-optionsDiv.appendChild(btn)
-
+q.a.forEach(opt=>{
+optionsHTML+=`<div class="option" onclick="answer('${opt[1]}')">${opt[0]}</div>`
 })
 
+document.getElementById("options").innerHTML=optionsHTML
+
+let progress=(current/quiz.length)*100
+
+document.getElementById("progress").style.width=progress+"%"
+
 }
 
-function nextQuestion(){
+function answer(animal){
+
+animals[animal]++
 
 current++
 
-if(current < quiz.length){
+if(current<quiz.length){
 
 loadQuestion()
 
 }else{
 
-localStorage.setItem("quizResult",JSON.stringify(score))
+let winner=Object.keys(animals).reduce((a,b)=>animals[a]>animals[b]?a:b)
+
+localStorage.setItem("animalResultado",winner)
 
 window.location="resultado.html"
 
@@ -219,4 +386,3 @@ loadQuestion()
 
 </body>
 </html>
-

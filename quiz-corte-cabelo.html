@@ -1,168 +1,289 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Qual corte de cabelo combina com você?</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
 <style>
-body {
-  font-family: Arial, sans-serif;
-  margin:0;
-  background: url('imagescortes/salao.jpg') center/cover no-repeat;
-  color:#333;
+
+body{
+font-family:Poppins;
+margin:0;
+background:url("https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974&auto=format&fit=crop") center/cover fixed;
+color:#333;
 }
-.quiz-box {
-  max-width:600px;
-  margin:50px auto;
-  background: rgba(255,255,255,0.95);
-  padding:30px;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
-  text-align:center;
-  position:relative;
+
+.overlay{
+background:rgba(0,0,0,0.6);
+min-height:100vh;
+padding:30px;
+display:flex;
+flex-direction:column;
+align-items:center;
 }
-h1 { font-size:26px; margin-bottom:20px; text-align:center; }
-.progress { height:10px; background:#eee; border-radius:20px; margin-bottom:20px; overflow:hidden; }
-.progress-bar { height:10px; width:0%; background:#ff4d6d; border-radius:20px; transition:0.4s; }
-.option { background:#f3f3f3; padding:14px; margin:10px 0; border-radius:10px; cursor:pointer; transition:0.3s; }
-.option:hover { background:#ffdde1; }
-.loader { display:none; text-align:center; font-size:18px; margin-top:20px; }
-.ad-container {margin:20px 0; display:flex; justify-content:center; flex-wrap:wrap;}
-button, .pinterest-btn {
-  padding:14px 20px;
-  margin:10px 5px;
-  font-size:16px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
+
+.card{
+background:white;
+max-width:600px;
+width:100%;
+padding:30px;
+border-radius:16px;
+box-shadow:0 10px 40px rgba(0,0,0,0.2);
+text-align:center;
 }
-button { background:#ff4d6d; color:white; }
-button:hover { background:#ff1a4d; }
-.pinterest-btn { background:#bd081c; color:white; }
-.pinterest-btn:hover { background:#8b0614; }
+
+button{
+display:block;
+width:100%;
+margin:10px 0;
+padding:15px;
+border:none;
+border-radius:12px;
+font-size:16px;
+cursor:pointer;
+background:#ff4fa3;
+color:white;
+transition:0.2s;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+.progress{
+height:8px;
+background:#eee;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:20px;
+}
+
+.progress-bar{
+height:100%;
+background:#ff4fa3;
+width:0%;
+transition:0.4s;
+}
+
+.loader{
+display:none;
+text-align:center;
+font-size:20px;
+color:white;
+margin-top:40px;
+}
+
+.ad{
+margin:20px 0;
+background:#f1f1f1;
+padding:20px;
+text-align:center;
+}
+
 </style>
 </head>
+
 <body>
 
-<!-- ADSTERRA TOPO -->
-<div class="ad-container">
-<script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
-<div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+<div class="overlay">
+
+<div class="ad">ANÚNCIO TOPO</div>
+
+<div id="quiz" class="card">
+
+<h1>Descubra seu corte ideal ✨</h1>
+
+<div class="progress">
+<div class="progress-bar" id="bar"></div>
 </div>
 
-<div class="quiz-box">
-<h1>Qual corte de cabelo combina com sua personalidade?</h1>
-<div class="progress"><div class="progress-bar" id="barra"></div></div>
-<div id="pergunta"></div>
-<div id="respostas"></div>
-<div class="loader" id="loader">Calculando resultado... ⏳</div>
+<div id="question"></div>
+
+<div id="answers"></div>
+
 </div>
 
-<!-- ADSTERRA MEIO -->
-<div class="ad-container">
-<script async="async" data-cfasync="false" src="https://www.highperformanceformat.com/3b682b95b642d285fbebc498d78d27dc/invoke.js"></script>
+<div id="loader" class="loader">
+<p id="loadingText">Analisando seu estilo...</p>
 </div>
 
-<!-- ADSTERRA RODAPÉ -->
-<div class="ad-container">
-<script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
-<div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+<div id="result" class="card" style="display:none"></div>
+
+<div class="ad">ANÚNCIO RODAPÉ</div>
+
 </div>
 
 <script>
-// Perguntas
-const perguntas = [
-  { pergunta:"Como você reage a mudanças?", respostas:[
-    ["Adoro mudar tudo","pixie"],
-    ["Mudanças planejadas","chanel"],
-    ["Gosto de reinventar","repicado"],
-    ["Prefiro estabilidade","medio"],
-    ["Mudanças refletem identidade","afro"]
-  ]},
-  { pergunta:"Qual energia mais te define?", respostas:[
-    ["Corajosa","pixie"],["Elegante","chanel"],["Criativa","repicado"],["Equilibrada","medio"],["Poderosa","afro"]
-  ]},
-  { pergunta:"Seu estilo é mais...", respostas:[
-    ["Moderno","pixie"],["Clássico","chanel"],["Despojado","repicado"],["Natural","medio"],["Autêntico","afro"]
-  ]},
-  { pergunta:"Como as pessoas te veem?", respostas:[
-    ["Ousada","pixie"],["Sofisticada","chanel"],["Divertida","repicado"],["Calma","medio"],["Forte","afro"]
-  ]},
-  { pergunta:"Qual palavra melhor te descreve?", respostas:[
-    ["Liberdade","pixie"],["Elegância","chanel"],["Criatividade","repicado"],["Harmonia","medio"],["Identidade","afro"]
-  ]},
-  { pergunta:"Seu visual ideal é...", respostas:[
-    ["Prático","pixie"],["Chique","chanel"],["Leve","repicado"],["Versátil","medio"],["Natural","afro"]
-  ]},
-  { pergunta:"Seu maior ponto forte?", respostas:[
-    ["Coragem","pixie"],["Classe","chanel"],["Espontaneidade","repicado"],["Equilíbrio","medio"],["Personalidade","afro"]
-  ]},
-  { pergunta:"Você prefere...", respostas:[
-    ["Minimalismo","pixie"],["Estilo atemporal","chanel"],["Movimento","repicado"],["Naturalidade","medio"],["Orgulho cultural","afro"]
-  ]},
-  { pergunta:"Seu humor diário é...", respostas:[
-    ["Independente","pixie"],["Elegante","chanel"],["Livre","repicado"],["Tranquilo","medio"],["Empoderado","afro"]
-  ]},
-  { pergunta:"Qual visual te atrai mais?", respostas:[
-    ["Moderno","pixie"],["Clássico","chanel"],["Despojado","repicado"],["Natural","medio"],["Poderoso","afro"]
-  ]},
-  { pergunta:"Qual seu objetivo com o corte?", respostas:[
-    ["Ser ousada","pixie"],["Mostrar classe","chanel"],["Ter movimento","repicado"],["Versátil","medio"],["Expressar cultura","afro"]
-  ]},
-  { pergunta:"Como seu cabelo reflete você?", respostas:[
-    ["Independência","pixie"],["Elegância","chanel"],["Criatividade","repicado"],["Equilíbrio","medio"],["Autenticidade","afro"]
-  ]}
-];
 
-let atual = 0;
-let pontos = { pixie:0, chanel:0, repicado:0, medio:0, afro:0 };
+const loadingTexts=[
+"Analisando seu estilo...",
+"Comparando com tendências...",
+"Calculando corte ideal...",
+"Quase pronto..."
+]
 
-// Carregar pergunta
-function carregarPergunta(){
-  if(atual >= perguntas.length){
-    mostrarLoader();
-    return;
-  }
-  let q = perguntas[atual];
-  document.getElementById("pergunta").innerText = q.pergunta;
-  let respostasHTML="";
-  q.respostas.forEach(r=>{
-    respostasHTML += `<div class="option" onclick="responder('${r[1]}')">${r[0]}</div>`;
-  });
-  document.getElementById("respostas").innerHTML = respostasHTML;
-  document.getElementById("barra").style.width = ((atual/perguntas.length)*100)+"%";
+const results={
+bob:"Long Bob Moderno",
+borboleta:"Corte Borboleta",
+shaggy:"Shaggy Hair",
+chanel:"Chanel Elegante",
+camadas:"Camadas Hollywood"
 }
 
-// Responder
-function responder(tipo){
-  pontos[tipo]++;
-  atual++;
-  carregarPergunta();
+const questions=[
+{
+q:"Qual vibe combina com você?",
+a:["Elegante","Moderna","Despojada","Clássica","Glamourosa"]
+},
+{
+q:"Seu cabelo hoje é:",
+a:["Longo","Médio","Curto","Ondulado","Cacheado"]
+},
+{
+q:"Você gosta de:",
+a:["Volume","Movimento","Praticidade","Elegância","Moda"]
+},
+{
+q:"Seu estilo de roupa:",
+a:["Fashion","Casual","Romântico","Minimalista","Chique"]
+},
+{
+q:"No salão você prefere:",
+a:["Mudança radical","Só ajustar","Algo moderno","Algo clássico","Surpresa"]
+},
+{
+q:"Seu rosto é mais:",
+a:["Oval","Redondo","Quadrado","Coração","Longo"]
+},
+{
+q:"Seu cabelo é:",
+a:["Liso","Ondulado","Cacheado","Volumoso","Fino"]
+},
+{
+q:"Você gosta de franja?",
+a:["Sim","Talvez","Não","Curtinha","Longa"]
+},
+{
+q:"Quanto tempo dedica ao cabelo?",
+a:["Muito","Médio","Pouco","Quase nada","Depende"]
+},
+{
+q:"Você segue tendências?",
+a:["Sempre","Às vezes","Não","Amo moda","Depende"]
+},
+{
+q:"Celebridade que inspira?",
+a:["Zendaya","Taylor Swift","Gigi Hadid","Emma Stone","Margot Robbie"]
+},
+{
+q:"Qual palavra define seu estilo?",
+a:["Elegância","Moda","Praticidade","Beleza","Personalidade"]
+}
+]
+
+let current=0
+let answers=[]
+
+function showQuestion(){
+
+const q=questions[current]
+
+document.getElementById("question").innerHTML="<h2>"+q.q+"</h2>"
+
+const answersDiv=document.getElementById("answers")
+answersDiv.innerHTML=""
+
+q.a.forEach((a,i)=>{
+const btn=document.createElement("button")
+btn.innerText=a
+btn.onclick=()=>selectAnswer(i)
+answersDiv.appendChild(btn)
+})
+
+updateBar()
+
 }
 
-// Loader falso com gatilho de tempo extra
-function mostrarLoader(){
-  document.getElementById("pergunta").style.display="none";
-  document.getElementById("respostas").style.display="none";
-  document.getElementById("barra").style.width="100%";
-  const loader = document.getElementById("loader");
-  loader.style.display="block";
-  // Tempo aleatório para aumentar permanência
-  let tempoExtra = 4000 + Math.floor(Math.random()*3000);
-  setTimeout(finalizar, tempoExtra);
+function selectAnswer(i){
+
+answers.push(i)
+
+if(current<questions.length-1){
+
+current++
+showQuestion()
+
+}else{
+
+showLoader()
+
 }
 
-// Finalizar
-function finalizar(){
-  let vencedor = Object.keys(pontos).reduce((a,b)=>pontos[a]>pontos[b]?a:b);
-  localStorage.setItem("resultadoCabelo",vencedor);
-  window.location.href="resultado-corte.html";
 }
 
-// Começa quiz
-carregarPergunta();
+function updateBar(){
+
+let p=(current/questions.length)*100
+document.getElementById("bar").style.width=p+"%"
+
+}
+
+function showLoader(){
+
+document.getElementById("quiz").style.display="none"
+document.getElementById("loader").style.display="block"
+
+let t=0
+
+const interval=setInterval(()=>{
+document.getElementById("loadingText").innerText=loadingTexts[t%loadingTexts.length]
+t++
+},1500)
+
+setTimeout(()=>{
+
+clearInterval(interval)
+
+showResult()
+
+},4500)
+
+}
+
+function showResult(){
+
+document.getElementById("loader").style.display="none"
+
+const keys=Object.keys(results)
+
+const r=keys[Math.floor(Math.random()*keys.length)]
+
+document.getElementById("result").style.display="block"
+
+document.getElementById("result").innerHTML=
+
+"<h2>Seu corte ideal é:</h2>"+
+"<h1>"+results[r]+"</h1>"+
+
+'<button onclick="sharePinterest()">Salvar no Pinterest</button>'+
+
+'<button onclick="location.reload()">Refazer Quiz</button>'
+
+}
+
+function sharePinterest(){
+
+const url=encodeURIComponent(location.href)
+
+window.open("https://pinterest.com/pin/create/button/?url="+url)
+
+}
+
+showQuestion()
+
 </script>
+
 </body>
 </html>
-
-

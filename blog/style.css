@@ -105,5 +105,29 @@ max-height:80%;
 
 }
 
+.navigation{
 
+display:flex;
+justify-content:space-between;
+margin-top:50px;
+
+}
+
+.navigation button{
+
+padding:12px 18px;
+font-size:16px;
+border:none;
+background:black;
+color:white;
+cursor:pointer;
+border-radius:6px;
+
+}
+
+.navigation button:hover{
+
+opacity:0.85;
+
+}
 

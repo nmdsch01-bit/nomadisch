@@ -1,0 +1,76 @@
+body{
+
+font-family: Arial, Helvetica, sans-serif;
+background:#f5f5f5;
+margin:0;
+
+}
+
+header{
+
+background:white;
+padding:30px;
+text-align:center;
+border-bottom:1px solid #ddd;
+
+}
+
+h1{
+
+font-size:32px;
+
+}
+
+main{
+
+max-width:900px;
+margin:auto;
+padding:20px;
+
+}
+
+.post{
+
+background:white;
+margin-bottom:25px;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
+
+}
+
+.post img{
+
+width:100%;
+height:auto;
+
+}
+
+.post h2{
+
+padding:15px;
+font-size:22px;
+
+}
+
+.post p{
+
+padding:0 15px 20px 15px;
+color:#555;
+
+}
+
+.ad-top{
+
+text-align:center;
+margin:20px;
+
+}
+
+footer{
+
+text-align:center;
+padding:20px;
+color:#777;
+
+}

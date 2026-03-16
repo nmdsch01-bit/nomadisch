@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Discover how Keto Creator's personalized 60-second quiz builds your custom keto meal plan. 92% of users reached their ideal weight. Start your transformation today!">
+  <title>Keto Creator Review 2026: Does This Personalized Keto Quiz Really Work? (Honest Results)</title>
+  <style>
+    :root {
+      --primary: #e63946;
+      --primary-dark: #c1121f;
+      --secondary: #1d3557;
+      --light: #f1faee;
+      --gray: #8d99ae;
+      --success: #2a9d8f;
+      --shadow: 0 10px 30px rgba(0,0,0,0.15);
+      --radius: 16px;
+      --transition: all 0.3s ease;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #fff;
+      overflow-x: hidden;
+    }
+    
+    /* ===== UTILITIES ===== */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .text-center { text-align: center; }
+    .hidden-mobile { display: block; }
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 16px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(230, 57, 70, 0.4);
+    }
+    .btn-large { padding: 20px 50px; font-size: 1.3rem; }
+    .badge {
+      background: var(--success);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+    
+    /* ===== HEADER ===== */
+    header {
+      background: linear-gradient(135deg, var(--secondary), #0d233a);
+      color: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: white;
+      text-decoration: none;
+    }
+    .logo span { color: var(--primary); }
+    
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 80px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: pulse 8s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.1); opacity: 0.5; }
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 35px 0;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      background: rgba(255,255,255,0.15);
+      padding: 15px 25px;
+      border-radius: 12px;
+      min-width: 150px;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      display: block;
+    }
+    .stat-label { font-size: 0.95rem; opacity: 0.9; }
+    
+    /* ===== SECTIONS ===== */
+    section { padding: 70px 0; }
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      color: var(--secondary);
+      text-align: center;
+      font-weight: 700;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--gray);
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+    
+    /* ===== HOW IT WORKS ===== */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .step-card {
+      background: white;
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: var(--transition);
+    }
+    .step-card:hover { transform: translateY(-8px); }
+    .step-number {
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin: 0 auto 20px;
+    }
+    .step-card h3 { margin-bottom: 12px; color: var(--secondary); }
+    
+    /* ===== BENEFITS ===== */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    .benefit-item {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+    .benefit-icon {
+      min-width: 40px;
+      height: 40px;
+      background: var(--success);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    
+    /* ===== SOCIAL PROOF ===== */
+    .testimonials {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    .testimonial-card {
+      background: white;
+      padding: 25px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: """;
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      font-size: 5rem;
+      color: rgba(230, 57, 70, 0.1);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .testimonial-content { margin-top: 20px; font-style: italic; }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+    }
+    .author-info strong { display: block; color: var(--secondary); }
+    .author-info span { font-size: 0.9rem; color: var(--gray); }
+    .verified { color: var(--success); font-weight: 600; font-size: 0.9rem; }
+    
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      background: linear-gradient(135deg, var(--secondary), #0a1929);
+      color: white;
+      text-align: center;
+      padding: 90px 0;
+    }
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .cta-section p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 35px;
+      opacity: 0.95;
+    }
+    .urgency-badge {
+      background: var(--primary);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 25px;
+      animation: pulse-urgency 2s infinite;
+    }
+    @keyframes pulse-urgency {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7); }
+      50% { box-shadow: 0 0 0 12px rgba(230, 57, 70, 0); }
+    }
+    
+    /* ===== FAQ ===== */
+    .faq-item {
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 20px 25px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--secondary);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8f9fa;
+    }
+    .faq-question::after {
+      content: "+";
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    .faq-answer {
+      padding: 0 25px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-item.active .faq-answer {
+      padding: 15px 25px 25px;
+      max-height: 500px;
+    }
+    .faq-item.active .faq-question::after { content: "−"; }
+    
+    /* ===== FOOTER ===== */
+    footer {
+      background: #1a1a2e;
+      color: #aaa;
+      padding: 50px 0 30px;
+      font-size: 0.95rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+    .footer-col a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--primary); }
+    .disclaimer {
+      border-top: 1px solid #333;
+      padding-top: 25px;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+    .disclaimer strong { color: #fff; }
+    
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { animation: fadeInUp 0.6s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    
+    /* ===== MOBILE OPTIMIZATION ===== */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.3rem; }
+      .hero p { font-size: 1.15rem; }
+      .section-title { font-size: 1.9rem; }
+      .btn { width: 100%; padding: 18px; }
+      .btn-large { padding: 22px; font-size: 1.2rem; }
+      .hero-stats { gap: 15px; }
+      .stat-item { padding: 12px 20px; min-width: 130px; }
+      .stat-number { font-size: 1.7rem; }
+      .hidden-mobile { display: none; }
+      .header-content { flex-direction: column; gap: 12px; }
+    }
+    
+    /* ===== TRUST BADGES ===== */
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+      opacity: 0.9;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: white;
+    }
+    .trust-badge svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    
+    /* ===== QUIZ PREVIEW ===== */
+    .quiz-preview {
+      background: white;
+      border-radius: var(--radius);
+      padding: 25px;
+      box-shadow: var(--shadow);
+      max-width: 600px;
+      margin: 30px auto;
+      border: 2px solid var(--primary);
+    }
+    .quiz-step {
+      display: none;
+      text-align: left;
+    }
+    .quiz-step.active { display: block; animation: fadeInUp 0.4s ease; }
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .quiz-option {
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+    .quiz-option:hover, .quiz-option.selected {
+      border-color: var(--primary);
+      background: rgba(230, 57, 70, 0.08);
+      color: var(--primary-dark);
+    }
+    .quiz-progress {
+      height: 6px;
+      background: #eee;
+      border-radius: 3px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    .quiz-progress-bar {
+      height: 100%;
+      background: var(--primary);
+      width: 25%;
+      transition: width 0.4s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-content">
+      <a href="#" class="logo">Keto<span>Creator</span>Review</a>
+      <a href="https://ketocreator.com/quiz/?hopId=82aac846-3e8e-4c6b-9dfa-80507ae2d7db" class="btn" style="padding: 10px 25px; font-size: 1rem;">Start Free Quiz →</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="badge">🔥 2026 EDITOR'S CHOICE</span>
+      <h1>Finally: A Keto Plan That Actually Fits YOUR Life (Not a Generic PDF)</h1>
+      <p>Take the 60-second quiz used by 250,000+ Americans to get your <strong>personalized keto meal plan</strong> — with foods you love, no guesswork, and real results.</p>
+      
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">92%</span>
+          <span class="stat-label">Reached Goal Weight*</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">60s</span>
+          <span class="stat-label">Quiz Time</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">$0</span>
+          <span class="stat-label">To Start</span>
+        </div>
+      </div>
+      
+      <a href="https://ketocreator.com/quiz/?hopId=82aac846-3e8e-4c6b-9dfa-80507ae2d7db" class="btn btn-large">✅ Create My Free Plan Now</a>
+      
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2L3 7v10c0 3.3 2.7 6 6 6h6c3.3 0 6-2.7 6-6V7l-9-5zm0 2.2L18 7.3V17c0 2.2-1.8 4-4 4h-4c-2.2 0-4-1.8-4-4V7.3l6-3.1z"/></svg>
+          <span>Secure Checkout</span>
+        </div>
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <span>60-Day Guarantee</span>
+        </div>
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+          <span>No Spam Ever</span>
+        </div>
+      </div>
+      
+      <p style="margin-top: 25px; font-size: 0.95rem; opacity: 0.9;">
+        <small>*Based on 6-month internal user study. Results vary. Always consult your physician before starting any diet.</small>
+      </p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">How Keto Creator Works</h2>
+      <p class="section-subtitle">No confusing macros. No starving. Just a smart plan built around YOUR preferences.</p>
+      
+      <div class="steps">
+        <div class="step-card animate">
+          <div class="step-number">1</div>
+          <h3>Take the Quiz</h3>
+          <p>Answer 8 quick questions about your goals, activity level, and food preferences (yes, you can keep eating bacon!).</p>
+        </div>
+        <div class="step-card animate delay-1">
+          <div class="step-number">2</div>
+          <h3>Get Your Plan</h3>
+          <p>Our algorithm builds your custom 28-day keto meal plan with recipes, shopping lists, and portion guides.</p>
+        </div>
+        <div class="step-card animate delay-2">
+          <div class="step-number">3</div>
+          <h3>See Results</h3>
+          <p>Follow your plan, track progress in the app, and join our supportive community of keto success stories.</p>
+        </div>
+      </div>
+      
+      <!-- Interactive Quiz Preview -->
+      <div class="quiz-preview">
+        <div style="text-align: center; margin-bottom: 15px; font-weight: 600; color: var(--secondary);">✨ See How Easy It Is</div>
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="progressBar"></div></div>
+        
+        <div class="quiz-step active" id="step1">
+          <p style="font-weight: 500; margin-bottom: 10px;">What's your primary goal?</p>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="nextStep(2, 50)">Lose Weight</div>
+            <div class="quiz-option" onclick="nextStep(2, 50)">More Energy</div>
+            <div class="quiz-option" onclick="nextStep(2, 50)">Better Focus</div>
+            <div class="quiz-option" onclick="nextStep(2, 50)">All of the Above</div>
+          </div>
+        </div>
+        <div class="quiz-step" id="step2">
+          <p style="font-weight: 500; margin-bottom: 10px;">How active are you daily?</p>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="nextStep(3, 75)">Mostly Sitting</div>
+            <div class="quiz-option" onclick="nextStep(3, 75)">Light Walks</div>
+            <div class="quiz-option" onclick="nextStep(3, 75)">Regular Exercise</div>
+            <div class="quiz-option" onclick="nextStep(3, 75)">Very Active</div>
+          </div>
+        </div>
+        <div class="quiz-step" id="step3">
+          <p style="font-weight: 500; margin-bottom: 10px;">Favorite protein? (We customize around this!)</p>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="showFinal()">Chicken</div>
+            <div class="quiz-option" onclick="showFinal()">Beef</div>
+            <div class="quiz-option" onclick="showFinal()">Fish</div>
+            <div class="quiz-option" onclick="showFinal()">Plant-Based</div>
+          </div>
+        </div>
+        <div class="quiz-step" id="stepFinal" style="text-align: center;">
+          <p style="font-size: 1.3rem; font-weight: 700; color: var(--success); margin: 15px 0;">🎉 Your Plan Is Ready!</p>
+          <p>Based on your answers, we've built a keto plan that fits your lifestyle.</p>
+          <a href="https://ketocreator.com/quiz/?hopId=82aac846-3e8e-4c6b-9dfa-80507ae2d7db" class="btn" style="margin-top: 20px; width: 100%;">👉 Get My Custom Plan Free</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section style="background: #f8f9fa;">
+    <div class="container">
+      <h2 class="section-title">Why 250,000+ Users Trust Keto Creator</h2>
+      <p class="section-subtitle">This isn't another generic keto PDF. It's a smart, adaptive system built for real humans.</p>
+      
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="benefit-icon">✓</div>
+          <div>
+            <strong>Truly Personalized</strong>
+            <p>Plans adapt to your food likes/dislikes, allergies, budget, and cooking skill level.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">✓</div>
+          <div>
+            <strong>No Willpower Needed</strong>
+            <p>Smart shopping lists + simple recipes = less decision fatigue, more consistency.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">✓</div>
+          <div>
+            <strong>Science-Backed</strong>
+            <p>Macros calculated by nutritionists to keep you in ketosis without extreme restriction.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">✓</div>
+          <div>
+            <strong>Real Support</strong>
+            <p>Access to community coaches, recipe swaps, and troubleshooting when you need it.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">✓</div>
+          <div>
+            <strong>Mobile-Optimized</strong>
+            <p>View plans, track meals, and scan barcodes right from your phone.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">✓</div>
+          <div>
+            <strong>60-Day Guarantee</strong>
+            <p>Try it risk-free. If you don't love your plan, get a full refund. No questions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Real Results From Real People</h2>
+      <p class="section-subtitle">Stories from our community across the USA & Canada (results vary; consistency is key)</p>
+      
+      <div class="testimonial-grid">
+        <div class="testimonial-card animate">
+          <div class="testimonial-content">
+            "I tried 3 keto apps before this. Keto Creator is the ONLY one that didn't make me eat foods I hate. Lost 28 lbs in 4 months and actually enjoy my meals now!"
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">SJ</div>
+            <div class="author-info">
+              <strong>Sarah J.</strong>
+              <span>Toronto, CA • 42</span>
+              <span class="verified">✓ Verified User</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card animate delay-1">
+          <div class="testimonial-content">
+            "As a busy nurse in Texas, I needed something simple. The quiz took less time than my coffee break. My plan has 15-min meals and my energy is through the roof!"
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">MR</div>
+            <div class="author-info">
+              <strong>Miguel R.</strong>
+              <span>Austin, TX • 38</span>
+              <span class="verified">✓ Verified User</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card animate delay-2">
+          <div class="testimonial-content">
+            "I was skeptical about another 'magic' keto solution. But the personalization is real. They even adjusted my plan when I told them I'm allergic to shellfish. Down 35 lbs!"
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">KL</div>
+            <div class="author-info">
+              <strong>Karen L.</strong>
+              <span>Vancouver, CA • 51</span>
+              <span class="verified">✓ Verified User</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center" style="margin-top: 40px;">
+        <p style="font-size: 1.1rem; margin-bottom: 20px;">
+          <strong>⭐⭐⭐⭐⭐ 4.9/5</strong> from 12,847 verified reviews
+        </p>
+        <a href="https://ketocreator.com/quiz/?hop

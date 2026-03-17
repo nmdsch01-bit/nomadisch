@@ -17,18 +17,19 @@
             background: linear-gradient(135deg, #FFF5E6 0%, #FFE4CC 100%);
             color: #333;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Header/Hero Section */
+        /* ========== HERO SECTION - FUNDO AZUL ========== */
         .hero {
-             background: linear-gradient(135deg, #0e2a4a 10%, #e9ecef 100%, #4169E1 100%);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
+            background: linear-gradient(135deg, #0e2a4a 0%, #1a4a7a 50%, #4169E1 100%);
+            min-height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(2rem, 5vw, 4rem) 1rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .hero::before {
@@ -36,9 +37,9 @@
             position: absolute;
             width: 200%;
             height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.08)"/></svg>');
             animation: float 20s linear infinite;
+            pointer-events: none;
         }
 
         @keyframes float {
@@ -48,112 +49,122 @@
 
         .hero-container {
             max-width: 1200px;
+            width: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: clamp(2rem, 4vw, 4rem);
             align-items: center;
             position: relative;
             z-index: 1;
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 900;
             color: white;
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
         .hero-content .subtitle {
-            font-size: 1.5rem;
-            color: #FFF8DC;
-            margin-bottom: 2rem;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: #BBDEFB;
+            margin-bottom: 1.5rem;
             font-weight: 700;
         }
 
         .hero-content p {
-            font-size: 1.2rem;
-            color: white;
-            margin-bottom: 2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #E3F2FD;
+            margin-bottom: 1.5rem;
             line-height: 1.6;
         }
 
+        /* ========== IMAGEM DA CAPA - RESPONSIVA ========== */
         .book-showcase {
             position: relative;
-            transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
-            transition: transform 0.3s;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-        }
-
-        .book-showcase:hover {
-            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) scale(1.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .book-showcase img {
             width: 100%;
-            max-width: 500px;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            max-width: clamp(250px, 70vw, 400px);
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+            display: block;
         }
 
-        /* Buttons */
+        .book-showcase img:hover {
+            transform: scale(1.03);
+        }
+
+        /* ========== BOTÕES CTA ========== */
         .cta-button {
             display: inline-block;
             background: linear-gradient(135deg, #00C853 0%, #00E676 100%);
             color: white;
-            padding: 1.5rem 3rem;
+            padding: clamp(1rem, 3vw, 1.5rem) clamp(2rem, 5vw, 3rem);
             border-radius: 50px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 1.3rem;
-            box-shadow: 0 10px 30px rgba(0,200,83,0.4);
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            box-shadow: 0 8px 25px rgba(0,200,83,0.4);
             transition: all 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 3px solid white;
+            letter-spacing: 0.5px;
+            border: 2px solid white;
             animation: pulse 2s infinite;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
         }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.03); }
         }
 
         .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0,200,83,0.6);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0,200,83,0.6);
         }
 
         .cta-secondary {
             background: linear-gradient(135deg, #FF1744 0%, #FF5252 100%);
-            box-shadow: 0 10px 30px rgba(255,23,68,0.4);
+            box-shadow: 0 8px 25px rgba(255,23,68,0.4);
         }
 
         .cta-secondary:hover {
-            box-shadow: 0 15px 40px rgba(255,23,68,0.6);
+            box-shadow: 0 12px 35px rgba(255,23,68,0.6);
         }
 
-        /* Sections */
+        /* ========== SEÇÕES GERAIS ========== */
         section {
-            padding: 5rem 2rem;
+            padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 4vw, 2rem);
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 800;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             color: #FF6B00;
             position: relative;
+            padding: 0 1rem;
         }
 
         .section-title::after {
             content: '🎨';
             position: absolute;
-            right: -50px;
+            right: clamp(-30px, -2vw, -50px);
             top: 0;
             animation: bounce 1s infinite;
         }
@@ -161,47 +172,48 @@
         .section-title::before {
             content: '🖌️';
             position: absolute;
-            left: -50px;
+            left: clamp(-30px, -2vw, -50px);
             top: 0;
             animation: bounce 1s infinite;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
 
-        /* Problem/Solution */
+        /* ========== PROBLEM/SOLUTION ========== */
         .problem-solution {
             background: white;
-            border-radius: 30px;
-            padding: 4rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            margin: 3rem auto;
+            border-radius: 20px;
+            padding: clamp(2rem, 5vw, 4rem);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            margin: 2rem auto;
         }
 
         .grid-2 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .problem-box, .solution-box {
+            padding: 1.5rem;
+            border-radius: 15px;
         }
 
         .problem-box {
             background: #FFE5E5;
-            padding: 2rem;
-            border-radius: 20px;
-            border-left: 5px solid #FF1744;
+            border-left: 4px solid #FF1744;
         }
 
         .solution-box {
             background: #E5FFE5;
-            padding: 2rem;
-            border-radius: 20px;
-            border-left: 5px solid #00C853;
+            border-left: 4px solid #00C853;
         }
 
         .problem-box h3, .solution-box h3 {
-            font-size: 1.8rem;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
             margin-bottom: 1rem;
             color: #333;
         }
@@ -212,93 +224,137 @@
         }
 
         .problem-box li, .solution-box li {
-            padding: 0.5rem 0;
-            padding-left: 2rem;
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
             position: relative;
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
         }
 
-        .problem-box li::before {
-            content: '❌';
-            position: absolute;
-            left: 0;
-        }
+        .problem-box li::before { content: '❌'; position: absolute; left: 0; }
+        .solution-box li::before { content: '✅'; position: absolute; left: 0; }
 
-        .solution-box li::before {
-            content: '✅';
-            position: absolute;
-            left: 0;
-        }
-
-        /* Benefits */
+        /* ========== BENEFITS ========== */
         .benefits {
             background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
-            border-radius: 30px;
-            padding: 4rem;
+            border-radius: 20px;
+            padding: clamp(2rem, 5vw, 4rem);
         }
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .benefit-card {
             background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             transition: transform 0.3s;
-            border-top: 5px solid #FF8C00;
+            border-top: 4px solid #FF8C00;
         }
 
-        .benefit-card:hover {
-            transform: translateY(-10px);
-        }
+        .benefit-card:hover { transform: translateY(-5px); }
 
         .benefit-card h3 {
             color: #FF6B00;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .benefit-card p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            color: #555;
         }
 
         .benefit-card.teacher { border-top-color: #4CAF50; }
         .benefit-card.parent { border-top-color: #2196F3; }
         .benefit-card.caregiver { border-top-color: #9C27B0; }
 
-        /* Gallery Section */
+        /* ========== GALERIA DE ATIVIDADES - COM SUAS IMAGENS ========== */
         .gallery-section {
             background: white;
-            border-radius: 30px;
-            padding: 4rem;
+            border-radius: 20px;
+            padding: clamp(2rem, 5vw, 4rem);
             text-align: center;
         }
 
+        .gallery-intro {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* DESTAQUE PARA SUAS IMAGENS */
+        .featured-activities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .featured-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+            aspect-ratio: 4/3;
+            background: #f5f5f5;
+        }
+
+        .featured-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .featured-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .featured-card .label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            color: white;
+            padding: 1rem 0.8rem 0.8rem;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            font-weight: 700;
+        }
+
+        /* Galeria aleatória do Unsplash */
         .activity-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
         .activity-card {
             position: relative;
+            border-radius: 12px;
             overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            height: 300px;
-            background: #f0f0f0;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            aspect-ratio: 4/3;
+            background: #eee;
         }
 
         .activity-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.3s;
         }
 
         .activity-card:hover img {
@@ -310,61 +366,65 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
             color: white;
-            padding: 2rem 1rem 1rem;
-            font-weight: 700;
+            padding: 0.8rem 0.6rem 0.6rem;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            font-weight: 600;
         }
 
-        /* Testimonials */
+        /* ========== DEPOIMENTOS ========== */
         .testimonials {
             background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
-            border-radius: 30px;
-            padding: 4rem;
+            border-radius: 20px;
+            padding: clamp(2rem, 5vw, 4rem);
         }
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .testimonial-card {
             background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             position: relative;
         }
 
         .testimonial-card::before {
             content: '"';
-            font-size: 5rem;
+            font-size: 4rem;
             color: #2196F3;
-            opacity: 0.3;
+            opacity: 0.2;
             position: absolute;
-            top: -10px;
-            left: 20px;
+            top: -5px;
+            left: 15px;
+            line-height: 1;
         }
 
         .testimonial-text {
             font-style: italic;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             line-height: 1.6;
             color: #555;
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
         .author-avatar {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: linear-gradient(135deg, #FF8C00, #FF6B00);
             display: flex;
@@ -372,33 +432,35 @@
             justify-content: center;
             color: white;
             font-weight: 800;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         .author-info h4 {
             color: #333;
             font-weight: 700;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
         }
 
         .author-info p {
             color: #666;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
 
         .stars {
             color: #FFD700;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
         }
 
-        /* Final CTA */
+        /* ========== CTA FINAL ========== */
         .final-cta {
             background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
-            border-radius: 30px;
-            padding: 5rem 3rem;
+            border-radius: 20px;
+            padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem);
             text-align: center;
             color: white;
-            margin: 4rem auto;
+            margin: 3rem auto;
             position: relative;
             overflow: hidden;
         }
@@ -410,14 +472,9 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255,255,255,0.05) 10px,
-                rgba(255,255,255,0.05) 20px
-            );
+            background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.05) 10px, rgba(255,255,255,0.05) 20px);
             animation: slide 20s linear infinite;
+            pointer-events: none;
         }
 
         @keyframes slide {
@@ -426,15 +483,15 @@
         }
 
         .final-cta h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            margin-bottom: 1rem;
             position: relative;
             z-index: 1;
         }
 
         .final-cta p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            margin-bottom: 1.5rem;
             position: relative;
             z-index: 1;
         }
@@ -442,121 +499,142 @@
         .price-tag {
             background: white;
             color: #FF6B00;
-            padding: 1rem 2rem;
-            border-radius: 15px;
-            font-size: 2rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 12px;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 900;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             margin: 1rem 0;
             position: relative;
             z-index: 1;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .price-tag .old-price {
             text-decoration: line-through;
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             color: #999;
-            margin-right: 1rem;
         }
 
-        /* Urgency */
         .urgency {
             background: #FF1744;
             color: white;
-            padding: 1rem;
+            padding: 0.8rem 1.2rem;
             border-radius: 10px;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             position: relative;
             z-index: 1;
             animation: shake 2s infinite;
+            display: inline-block;
         }
 
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            2%, 6% { transform: translateX(-5px); }
-            4%, 8% { transform: translateX(5px); }
+            25% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
         }
 
-        /* Footer */
+        /* ========== FOOTER ========== */
         footer {
             background: #333;
             color: white;
             text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 5rem;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
         }
 
         footer p {
-            opacity: 0.8;
+            opacity: 0.85;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title::before,
-            .section-title::after {
-                display: none;
-            }
-
-            .book-showcase {
-                order: -1;
-                max-width: 300px;
-                margin: 0 auto;
-            }
-
-            .final-cta h2 {
-                font-size: 2rem;
-            }
-        }
-
-        /* Loading animation for images */
-        .loading {
-            animation: fadeIn 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Guarantee badge */
+        /* ========== GARANTIA ========== */
         .guarantee {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
+            justify-content: flex-start;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
             font-weight: 700;
-            color: #00C853;
-            font-size: 1.2rem;
+            color: #A5D6A7;
+            font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+            flex-wrap: wrap;
         }
 
         .guarantee-badge {
-            width: 60px;
-            height: 60px;
+            width: 45px;
+            height: 45px;
             background: #00C853;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2rem;
-            box-shadow: 0 5px 15px rgba(0,200,83,0.4);
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,200,83,0.4);
+            flex-shrink: 0;
+        }
+
+        /* ========== RESPONSIVIDADE AVANÇADA ========== */
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .hero-content {
+                text-align: left;
+            }
+            
+            .guarantee {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2.5rem;
+            }
+            
+            .hero-content {
+                order: 2;
+            }
+            
+            .book-showcase {
+                order: 1;
+            }
+            
+            .guarantee {
+                justify-content: center;
+            }
+            
+            .section-title::before,
+            .section-title::after {
+                display: none;
+            }
+            
+            .cta-button {
+                margin: 0 auto;
+            }
+            
+            .final-cta .cta-button {
+                font-size: clamp(1.1rem, 3vw, 1.4rem);
+                padding: 1.2rem 2rem;
+            }
+        }
+
+        /* Animações suaves */
+        .loading { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -579,11 +657,9 @@
                     Quero Transformar a Criatividade das Crianças →
                 </a>
             </div>
-          <div class="book-showcase">
-    <img src="https://raw.githubusercontent.com/nmdsch01-bit/nomadisch/main/img/capa-52-atividades-artes.png" 
-        alt="52 Atividades de Artes">
-</div>
-            
+            <div class="book-showcase">
+                <img src="https://raw.githubusercontent.com/nmdsch01-bit/nomadisch/main/img/capa-52-atividades-artes.png" alt="Capa do Ebook: 52 Atividades de Artes">
+            </div>
         </div>
     </section>
 
@@ -646,27 +722,44 @@
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 3rem;">
+        <div style="text-align: center; margin-top: 2.5rem;">
             <a href="https://pay.hotmart.com/Y95040902G?bid=1773748325473" class="cta-button cta-secondary">
                 Sim! Quero Começar Agora →
             </a>
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- Gallery Section - COM SUAS IMAGENS DESTACADAS -->
     <section class="gallery-section">
-        <h2 class="section-title">Veja o Que Você Vai Encontrar</h2>
-        <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">
-            Atividades que mudam a cada visita! Cada semana é uma nova descoberta artística.
+        <h2 class="section-title">Veja Exemplos das Atividades</h2>
+        <p class="gallery-intro">
+            Cada atividade é única e divertida! Confira dois exemplos do que você vai encontrar:
         </p>
         
+        <!-- SUAS IMAGENS DESTACADAS -->
+        <div class="featured-activities">
+            <div class="featured-card">
+                <img src="img/66.png" alt="Atividade: Efeito Vitral com Papel Colorido" loading="lazy">
+                <div class="label">✨ Efeito Vitral</div>
+            </div>
+            <div class="featured-card">
+                <img src="img/65.png" alt="Atividade: Colagem Criativa com Revista" loading="lazy">
+                <div class="label">📰 Arte com Revista</div>
+            </div>
+        </div>
+        
+        <p style="font-size: clamp(0.9rem, 2.5vw, 1rem); color: #666; margin-bottom: 1.5rem;">
+            E muito mais! Atividades que se renovam a cada visita:
+        </p>
+        
+        <!-- Galeria aleatória do Unsplash -->
         <div class="activity-gallery" id="activityGallery">
-            <!-- Images will be loaded dynamically via JavaScript -->
+            <!-- Imagens carregadas via JavaScript -->
         </div>
 
-        <div style="margin-top: 3rem;">
+        <div style="margin-top: 2.5rem;">
             <a href="https://pay.hotmart.com/Y95040902G?bid=1773748325473" class="cta-button">
-                Quero Acessar Todas as Atividades →
+                Quero Acessar Todas as 52 Atividades →
             </a>
         </div>
     </section>
@@ -723,8 +816,7 @@
     <!-- Final CTA -->
     <section class="final-cta">
         <h2>🎨 Não Perca Esta Oportunidade!</h2>
-        <p>Transforme a vida das crianças com arte e criatividade. 
-        <br>Oferta por tempo limitado!</p>
+        <p>Transforme a vida das crianças com arte e criatividade.<br>Oferta por tempo limitado!</p>
         
         <div class="price-tag">
             <span class="old-price">R$ 97,00</span>
@@ -735,18 +827,18 @@
             ⚡ Mais de 1.247 pessoas já garantiram o seu!
         </div>
 
-        <a href="https://pay.hotmart.com/Y95040902G?bid=1773748325473" class="cta-button" style="font-size: 1.5rem; padding: 2rem 4rem;">
+        <a href="https://pay.hotmart.com/Y95040902G?bid=1773748325473" class="cta-button" style="font-size: clamp(1.1rem, 3vw, 1.4rem); padding: 1.2rem 2.5rem;">
             QUERO GARANTIR MEU ACESSO AGORA →
         </a>
         
-        <p style="margin-top: 2rem; font-size: 1rem; opacity: 0.9;">
+        <p style="margin-top: 1.5rem; font-size: clamp(0.85rem, 2vw, 1rem); opacity: 0.95;">
             🔒 Pagamento 100% seguro • Acesso imediato • Garantia de 7 dias
         </p>
     </section>
 
     <footer>
         <p>&copy; 2024 52 Atividades de Artes. Todos os direitos reservados.</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">
+        <p style="margin-top: 0.8rem; font-size: 0.85rem;">
             Este produto não garante resultados específicos. Os resultados dependem do empenho e dedicação de cada usuário.
         </p>
     </footer>
@@ -803,7 +895,7 @@
         // Carregar ao iniciar
         document.addEventListener('DOMContentLoaded', loadRandomActivities);
 
-        // Efeito de contagem regressiva falsa para urgência
+        // Efeito de urgência dinâmica
         function updateUrgency() {
             const urgencyDiv = document.querySelector('.urgency');
             const baseCount = 1247;
@@ -814,21 +906,10 @@
         // Atualizar a cada 30 segundos
         setInterval(updateUrgency, 30000);
 
-        // Smooth scroll para CTAs
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
         // Animar elementos ao scroll
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: "0px 0px -100px 0px"
+            rootMargin: "0px 0px -50px 0px"
         };
 
         const observer = new IntersectionObserver(function(entries) {
@@ -841,10 +922,10 @@
         }, observerOptions);
 
         // Observar cards
-        document.querySelectorAll('.benefit-card, .testimonial-card, .activity-card').forEach((el) => {
+        document.querySelectorAll('.benefit-card, .testimonial-card, .activity-card, .featured-card').forEach((el) => {
             el.style.opacity = "0";
-            el.style.transform = "translateY(20px)";
-            el.style.transition = "all 0.6s ease-out";
+            el.style.transform = "translateY(15px)";
+            el.style.transition = "all 0.5s ease-out";
             observer.observe(el);
         });
     </script>

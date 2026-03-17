@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>52 Atividades de Artes - Transforme Crianças em Pequenos Artistas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFE4CC 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header/Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 50%, #FFA500 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: #FFF8DC;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .book-showcase {
+            position: relative;
+            transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+            transition: transform 0.3s;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .book-showcase:hover {
+            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) scale(1.05);
+        }
+
+        .book-showcase img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        /* Buttons */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00C853 0%, #00E676 100%);
+            color: white;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.3rem;
+            box-shadow: 0 10px 30px rgba(0,200,83,0.4);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 3px solid white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,200,83,0.6);
+        }
+
+        .cta-secondary {
+            background: linear-gradient(135deg, #FF1744 0%, #FF5252 100%);
+            box-shadow: 0 10px 30px rgba(255,23,68,0.4);
+        }
+
+        .cta-secondary:hover {
+            box-shadow: 0 15px 40px rgba(255,23,68,0.6);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #FF6B00;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '🎨';
+            position: absolute;
+            right: -50px;
+            top: 0;
+            animation: bounce 1s infinite;
+        }
+
+        .section-title::before {
+            content: '🖌️';
+            position: absolute;
+            left: -50px;
+            top: 0;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Problem/Solution */
+        .problem-solution {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin: 3rem auto;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .problem-box {
+            background: #FFE5E5;
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 5px solid #FF1744;
+        }
+
+        .solution-box {
+            background: #E5FFE5;
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 5px solid #00C853;
+        }
+
+        .problem-box h3, .solution-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .problem-box ul, .solution-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .problem-box li, .solution-box li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .problem-box li::before {
+            content: '❌';
+            position: absolute;
+            left: 0;
+        }
+
+        .solution-box li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Benefits */
+        .benefits {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-radius: 30px;
+            padding: 4rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-top: 5px solid #FF8C00;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-card h3 {
+            color: #FF6B00;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .benefit-card.teacher { border-top-color: #4CAF50; }
+        .benefit-card.parent { border-top-color: #2196F3; }
+        .benefit-card.caregiver { border-top-color: #9C27B0; }
+
+        /* Gallery Section */
+        .gallery-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+        }
+
+        .activity-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .activity-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            height: 300px;
+            background: #f0f0f0;
+        }
+
+        .activity-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .activity-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .activity-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 2rem 1rem 1rem;
+            font-weight: 700;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-radius: 30px;
+            padding: 4rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 5rem;
+            color: #2196F3;
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF8C00, #FF6B00);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .author-info h4 {
+            color: #333;
+            font-weight: 700;
+        }
+
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: #FFD700;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+            border-radius: 30px;
+            padding: 5rem 3rem;
+            text-align: center;
+            color: white;
+            margin: 4rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .final-cta h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .final-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .price-tag {
+            background: white;
+            color: #FF6B00;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            font-size: 2rem;
+            font-weight: 900;
+            display: inline-block;
+            margin: 1rem 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .price-tag .old-price {
+            text-decoration: line-through;
+            font-size: 1.2rem;
+            color: #999;
+            margin-right: 1rem;
+        }
+
+        /* Urgency */
+        .urgency {
+            background: #FF1744;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+            animation: shake 2s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            2%, 6% { transform: translateX(-5px); }
+            4%, 8% { transform: translateX(5px); }
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title::before,
+            .section-title::after {
+                display: none;
+            }
+
+            .book-showcase {
+                order: -1;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .final-cta h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading animation for images */
+        .loading {
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Guarantee badge */
+        .guarantee {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            font-weight: 700;
+            color: #00C853;
+            font-size: 1.2rem;
+        }
+
+        .guarantee-badge {
+            width: 60px;
+            height: 60px;
+            background: #00C853;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0,200,83,0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>52 Atividades de Artes Para Fazer em Casa ou na Escola</h1>
+                <p class="subtitle">Transforme cada semana em uma nova aventura criativa!</p>
+                <p>Descubra o poder transformador da arte com nosso livro completo de atividades. Perfeito para professores, pais e cuidadores que querem estimular a criatividade das crianças de forma prática e divertida.</p>
+                
+                <div class="guarantee">
+                    <div class="guarantee-badge">✓</div>
+                    <span>Garantia de 7 dias ou seu dinheiro de volta</span>
+                </div>
+
+                <a href="https://pay.hotmart.com/Y95040902G?bid=1773748325473" class="cta-button">
+                    Quero Transformar a Criatividade das Crianças →
+                </a>
+            </div>
+            <div class="book-showcase">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect fill='%23FF8C00' width='400' height='600'/%3E%3Ctext x='200' y='200' font-family='Arial' font-size='40' fill='white' text-anchor='middle'%3E52%3C/text%3E%3Ctext x='200' y='260' font-family='Arial' font-size='30' fill='white' text-anchor='middle'%3EATIVIDADES%3C/text%3E%3Ctext x='200' y='300' font-family='Arial' font-size='30' fill='white' text-anchor='middle'%3EDE ARTES%3C/text%3E%3C/svg%3E" alt="Capa do Livro 52 Atividades de Artes">
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Solution -->
+    <section class="problem-solution">
+        <div class="grid-2">
+            <div class="problem-box">
+                <h3>Você enfrenta esses problemas?</h3>
+                <ul>
+                    <li>Crianças entediadas e sem criatividade</li>
+                    <li>Falta de tempo para planejar atividades</li>
+                    <li>Materiais caros e difíceis de encontrar</li>
+                    <li>Telas dominando o tempo das crianças</li>
+                    <li>Aulas de arte monótonas e repetitivas</li>
+                </ul>
+            </div>
+            <div class="solution-box">
+                <h3>A solução está aqui!</h3>
+                <ul>
+                    <li>52 atividades prontas para usar (1 por semana)</li>
+                    <li>Materiais simples e acessíveis</li>
+                    <li>Instruções passo a passo claras</li>
+                    <li>Desenvolvimento completo da criatividade</li>
+                    <li>Momentos inesquecíveis em família</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+        <h2 class="section-title">Por Que Este Livro é Especial?</h2>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card teacher">
+                <h3>👨‍🏫 Para Professores</h3>
+                <p><strong>Atividades Diversificadas:</strong> Técnicas variadas que vão além do básico, explorando pintura, colagem, escultura e muito mais.</p>
+                <br>
+                <p><strong>Fácil Implementação:</strong> Planejamento semanal pronto, economizando horas de preparação.</p>
+                <br>
+                <p><strong>Desenvolvimento Integral:</strong> Trabalha coordenação motora fina, percepção visual e pensamento criativo.</p>
+            </div>
+
+            <div class="benefit-card parent">
+                <h3>👨‍👩‍ Para Pais e Mães</h3>
+                <p><strong>Estimula a Criatividade:</strong> Transforme tardes comuns em momentos mágicos de criação artística.</p>
+                <br>
+                <p><strong>Qualidade de Tempo:</strong> Fortaleça os laços familiares criando juntos.</p>
+                <br>
+                <p><strong>Benefícios Emocionais:</strong> Melhore a autoestima, paciência e concentração do seu filho.</p>
+            </div>
+
+            <div class="benefit-card caregiver">
+                <h3>🧒 Para Cuidadores</h3>
+                <p><strong>Entretenimento Educativo:</strong> Mantenha as crianças engajadas de forma produtiva.</p>
+                <br>
+                <p><strong>Atividades Adaptáveis:</strong> Funciona para diferentes idades e níveis de habilidade.</p>
+                <br>
+                <p><strong>Resultados Visíveis:</strong> Veja o progresso artístico semana após semana.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="https://pay.hotmart.com/Y95040902G?bid=1773748325473" class="cta-button cta-secondary">
+                Sim! Quero Começar Agora →
+            </a>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <h2 class="section-title">Veja o Que Você Vai Encontrar</h2>
+        <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">
+            Atividades que mudam a cada visita! Cada semana é uma nova descoberta artística.
+        </p>
+        
+        <div class="activity-gallery" id="activityGallery">
+            <!-- Images will be loaded dynamically via JavaScript -->
+        </div>
+
+        <div style="margin-top: 3rem;">
+            <a href="https://pay.hotmart.com/Y95040902G?bid=1773748325473" class="cta-button">
+                Quero Acessar Todas as Atividades →
+            </a>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2 class="section-title">O Que Nossos Clientes Dizem</h2>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "Sou professora de artes há 15 anos e este livro revolucionou minhas aulas! As atividades são criativas, fáceis de aplicar e as crianças ficam ansiosas toda semana pela nova atividade. Vale cada centavo!"
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MC</div>
+                    <div class="author-info">
+                        <h4>Maria Clara Silva</h4>
+                        <p>Professora de Artes - São Paulo, SP</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "Minha filha de 7 anos adorou! Finalmente conseguimos tirar ela das telas e fazer algo produtivo juntos. As atividades são simples, mas o resultado é incrível. Já fizemos 12 atividades e estamos amando!"
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AP</div>
+                    <div class="author-info">
+                        <h4>Ana Paula Mendes</h4>
+                        <p>Mãe da Sofia - Rio de Janeiro, RJ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "Trabalho como babá e sempre precisava de ideias novas. Esse livro salvou minha vida! Tenho atividades para o ano inteiro e as crianças ficam super entretidas. Recomendo demais!"
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JL</div>
+                    <div class="author-info">
+                        <h4>Juliana Lima</h4>
+                        <p>Babá Profissional - Belo Horizonte, MG</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>🎨 Não Perca Esta Oportunidade!</h2>
+        <p>Transforme a vida das crianças com arte e criatividade. 
+        <br>Oferta por tempo limitado!</p>
+        
+        <div class="price-tag">
+            <span class="old-price">R$ 97,00</span>
+            R$ 47,00
+        </div>
+        
+        <div class="urgency">
+            ⚡ Mais de 1.247 pessoas já garantiram o seu!
+        </div>
+
+        <a href="https://pay.hotmart.com/Y95040902G?bid=1773748325473" class="cta-button" style="font-size: 1.5rem; padding: 2rem 4rem;">
+            QUERO GARANTIR MEU ACESSO AGORA →
+        </a>
+        
+        <p style="margin-top: 2rem; font-size: 1rem; opacity: 0.9;">
+            🔒 Pagamento 100% seguro • Acesso imediato • Garantia de 7 dias
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 52 Atividades de Artes. Todos os direitos reservados.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">
+            Este produto não garante resultados específicos. Os resultados dependem do empenho e dedicação de cada usuário.
+        </p>
+    </footer>
+
+    <script>
+        // Array de imagens de atividades artísticas do Unsplash
+        const artActivities = [
+            'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=300&fit=crop',
+            'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&h=300&fit=crop',
+            'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=400&h=300&fit=crop',
+            'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop',
+            'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=300&fit=crop',
+            'https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=400&h=300&fit=crop'
+        ];
+
+        const activityTitles = [
+            'Pintura com Dedos',
+            'Colagem Criativa',
+            'Escultura em Argila',
+            'Aquarela Mágica',
+            'Desenho Livre',
+            'Arte com Reciclagem'
+        ];
+
+        // Função para embaralhar array
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // Carregar imagens aleatórias
+        function loadRandomActivities() {
+            const gallery = document.getElementById('activityGallery');
+            const shuffledImages = shuffleArray(artActivities);
+            const shuffledTitles = shuffleArray(activityTitles);
+            
+            gallery.innerHTML = '';
+            
+            shuffledImages.slice(0, 4).forEach((img, index) => {
+                const card = document.createElement('div');
+                card.className = 'activity-card loading';
+                card.innerHTML = `
+                    <img src="${img}" alt="${shuffledTitles[index]}" loading="lazy">
+                    <div class="activity-overlay">${shuffledTitles[index]}</div>
+                `;
+                gallery.appendChild(card);
+            });
+        }
+
+        // Carregar ao iniciar
+        document.addEventListener('DOMContentLoaded', loadRandomActivities);
+
+        // Efeito de contagem regressiva falsa para urgência
+        function updateUrgency() {
+            const urgencyDiv = document.querySelector('.urgency');
+            const baseCount = 1247;
+            const randomAdd = Math.floor(Math.random() * 50);
+            urgencyDiv.textContent = `⚡ Mais de ${baseCount + randomAdd} pessoas já garantiram o seu!`;
+        }
+
+        // Atualizar a cada 30 segundos
+        setInterval(updateUrgency, 30000);
+
+        // Smooth scroll para CTAs
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Animar elementos ao scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -100px 0px"
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        // Observar cards
+        document.querySelectorAll('.benefit-card, .testimonial-card, .activity-card').forEach((el) => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(20px)";
+            el.style.transition = "all 0.6s ease-out";
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

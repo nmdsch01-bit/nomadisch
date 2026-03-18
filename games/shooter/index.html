@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Slingshot Adventure | Nomadisch Play</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #8b5cf6; --secondary: #06b6d4; --accent: #f472b6;
+      --danger: #ef4444; --success: #10b981;
+      --dark: #0f172a; --glass: rgba(30, 41, 59, 0.9);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --ground: #4a5568; --sky1: #1e3a5f; --sky2: #0f172a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; touch-action: none; }
+    body {
+      font-family: 'Inter', sans-serif; background: linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 100%);
+      color: white; min-height: 100vh; overflow: hidden; display: flex; flex-direction: column;
+    }
+    header {
+      padding: 0.8rem 1.5rem; display: flex; align-items: center; justify-content: space-between;
+      background: var(--glass); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .back-btn {
+      display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border);
+      border-radius: 12px; color: white; text-decoration: none; font-weight: 500; transition: all 0.3s; font-size: 0.9rem;
+    }
+    .back-btn:hover { background: var(--primary); transform: translateX(-3px); }
+    .game-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; }
+    
+    /* HUD */
+    .hud {
+      display: flex; justify-content: center; gap: 2rem; padding: 1rem;
+      background: var(--glass); border-bottom: 1px solid var(--glass-border);
+    }
+    .hud-item { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; }
+    .hud-item.score { color: var(--secondary); }
+    .hud-item.level { color: var(--accent); }
+    .hud-item.ammo { color: var(--danger); }
+    
+    /* Game Canvas */
+    #gameContainer { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem; position: relative; }
+    #gameCanvas {
+      background: linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 70%, var(--ground) 70%, var(--ground) 100%);
+      border-radius: 20px; border: 2px solid var(--glass-border);
+      box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3); max-width: 100%; height: auto; display: block;
+      touch-action: none;
+    }
+    
+    /* Slingshot Guide */
+    .aim-guide {
+      position: absolute; pointer-events: none; border: 2px dashed rgba(255,255,255,0.5);
+      border-radius: 50%; display: none;
+    }
+    
+    /* Screens */
+    .screen {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      text-align: center; background: var(--glass); padding: 2rem; border-radius: 20px;
+      border: 1px solid var(--glass-border); max-width: 400px; width: 90%; z-index: 20;
+    }
+    .screen h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 1rem; }
+    .screen p { color: var(--gray); margin-bottom: 1.5rem; line-height: 1.6; }
+    .action-btn {
+      padding: 1rem 2.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none; border-radius: 50px; color: white; font-weight: 700; font-size: 1.1rem;
+      cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .action-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5); }
+    
+    /* Mobile Controls Hint */
+    .mobile-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.5); padding: 0.5rem 1rem; border-radius: 20px;
+      font-size: 0.9rem; color: var(--gray); display: none;
+    }
+    @media (hover: none) and (pointer: coarse) { .mobile-hint { display: block; } }
+    
+    /* Ad Space */
+    .game-ad {
+      width: 100%; max-width: 728px; margin: 1rem auto; padding: 0.8rem;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 16px; text-align: center;
+    }
+    .ad-label { font-size: 0.7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block; }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hud { gap: 1rem; font-size: 0.9rem; }
+      #gameCanvas { border-radius: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="../../produtos.html" class="back-btn"><i class="fas fa-arrow-left"></i> Hub</a>
+    <h1 class="game-title">🎯 Slingshot Adventure</h1>
+    <div style="width: 60px;"></div>
+  </header>
+  
+  <div class="hud">
+    <div class="hud-item score"><i class="fas fa-star"></i> <span id="score">0</span></div>
+    <div class="hud-item level"><i class="fas fa-flag"></i> Nível <span id="level">1</span></div>
+    <div class="hud-item ammo"><i class="fas fa-bullseye"></i> <span id="ammo">5</span> tiros</div>
+  </div>
+  
+  <div id="gameContainer">
+    <canvas id="gameCanvas" width="800" height="500"></canvas>
+    <div class="aim-guide" id="aimGuide"></div>
+    
+    <!-- Start Screen -->
+    <div class="screen" id="startScreen">
+      <h2>🎯 Slingshot Adventure</h2>
+      <p>Arraste para mirar, solte para atirar! Destrua todos os alvos para avançar de nível.</p>
+      <div style="margin: 1.5rem 0; text-align: left; color: var(--gray);">
+        <p><strong>💻 Desktop:</strong> Clique e arraste para mirar</p>
+        <p><strong>📱 Mobile:</strong> Toque e arraste para mirar</p>
+      </div>
+      <button class="action-btn" id="startBtn"><i class="fas fa-play"></i> Começar</button>
+    </div>
+    
+    <!-- Level Complete -->
+    <div class="screen" id="levelScreen" style="display: none;">
+      <h2>🎉 Nível Completo!</h2>
+      <p>Pontuação: <strong id="levelScore" style="color: var(--secondary);">0</strong></p>
+      <button class="action-btn" id="nextLevelBtn"><i class="fas fa-arrow-right"></i> Próximo Nível</button>
+    </div>
+    
+    <!-- Game Over -->
+    <div class="screen" id="gameOverScreen" style="display: none;">
+      <h2>💥 Fim de Jogo!</h2>
+      <p>Pontuação final:</p>
+      <div style="font-size: 3rem; font-weight: 800; color: var(--secondary); margin: 1rem 0;" id="finalScore">0</div>
+      <p id="highScoreMsg" style="color: var(--accent); font-weight: 600; display: none;">🏆 Novo Recorde!</p>
+      <button class="action-btn" id="restartBtn"><i class="fas fa-redo"></i> Jogar Novamente</button>
+    </div>
+    
+    <div class="mobile-hint">👆 Toque e arraste para mirar!</div>
+  </div>
+  
+  <div class="game-ad">
+    <span class="ad-label">Publicidade</span>
+    <script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+    <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+  </div>
+  
+  <script src="https://pl28876220.effectivegatecpm.com/30/b8/d1/30b8d1458b08c08f30d9f4f413e7a20d.js"></script>
+  
+  <script>
+    // Configurações
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const groundY = canvas.height - 60;
+    
+    // Estado do jogo
+    let gameRunning = false;
+    let score = 0;
+    let level = 1;
+    let ammo = 5;
+    let projectile = null;
+    let isAiming = false;
+    let aimStart = { x: 100, y: groundY - 40 };
+    let aimCurrent = { x: 100, y: groundY - 40 };
+    let targets = [];
+    let particles = [];
+    let highScore = localStorage.getItem('slingshot_highscore') || 0;
+    
+    // Elementos DOM
+    const scoreEl = document.getElementById('score');
+    const levelEl = document.getElementById('level');
+    const ammoEl = document.getElementById('ammo');
+    const finalScoreEl = document.getElementById('finalScore');
+    const aimGuide = document.getElementById('aimGuide');
+    
+    // Inicialização
+    function init() {
+      document.getElementById('startBtn').addEventListener('click', startGame);
+      document.getElementById('nextLevelBtn').addEventListener('click', nextLevel);
+      document.getElementById('restartBtn').addEventListener('click', startGame);
+      
+      // Eventos de mira
+      canvas.addEventListener('mousedown', startAim);
+      canvas.addEventListener('mousemove', updateAim);
+      canvas.addEventListener('mouseup', releaseProjectile);
+      
+      canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startAim(e.touches[0]); });
+      canvas.addEventListener('touchmove', (e) => { e.preventDefault(); updateAim(e.touches[0]); });
+      canvas.addEventListener('touchend', (e) => { e.preventDefault(); releaseProjectile(); });
+      
+      // Resize responsivo
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+      
+      drawScene();
+    }
+    
+    function resizeCanvas() {
+      const container = canvas.parentElement;
+      const maxWidth = Math.min(800, container.clientWidth - 32);
+      const scale = maxWidth / 800;
+      canvas.style.width = maxWidth + 'px';
+      canvas.style.height = (500 * scale) + 'px';
+    }
+    
+    function startGame() {
+      score = 0; level = 1; ammo = 5;
+      scoreEl.textContent = '0'; levelEl.textContent = '1'; ammoEl.textContent = ammo;
+      document.getElementById('startScreen').style.display = 'none';
+      document.getElementById('levelScreen').style.display = 'none';
+      document.getElementById('gameOverScreen').style.display = 'none';
+      spawnTargets();
+      gameRunning = true;
+      gameLoop();
+    }
+    
+    function spawnTargets() {
+      targets = [];
+      const count = 3 + level;
+      for (let i = 0; i < count; i++) {
+        targets.push({
+          x: 400 + Math.random() * 350,
+          y: groundY - 50 - Math.random() * 200,
+          radius: 20 + Math.random() * 15,
+          health: 1 + Math.floor(level / 2),
+          maxHealth: 1 + Math.floor(level / 2),
+          type: Math.random() > 0.7 ? 'moving' : 'static',
+          direction: Math.random() > 0.5 ? 1 : -1,
+          speed: 1 + Math.random() * 2
+        });
+      }
+    }
+    
+    function startAim(e) {
+      if (!gameRunning || !ammo || projectile) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = (e.clientX - rect.left) * (800 / rect.width);
+      const y = (e.clientY - rect.top) * (500 / rect.height);
+      
+      // Só permite mirar perto do estilingue
+      if (Math.abs(x - aimStart.x) < 80 && Math.abs(y - aimStart.y) < 80) {
+        isAiming = true;
+        aimCurrent = { x, y };
+      }
+    }
+    
+    function updateAim(e) {
+      if (!isAiming) return;
+      const rect = canvas.getBoundingClientRect();
+      let x = (e.clientX - rect.left) * (800 / rect.width);
+      let y = (e.clientY - rect.top) * (500 / rect.height);
+      
+      // Limitar área de mira
+      x = Math.max(20, Math.min(150, x));
+      y = Math.max(groundY - 150, Math.min(groundY - 20, y));
+      
+      aimCurrent = { x, y };
+      
+      // Mostrar guia de mira
+      aimGuide.style.display = 'block';
+      aimGuide.style.width = '100px';
+      aimGuide.style.height = '100px';
+      aimGuide.style.left = (aimStart.x / 800 * 100) + '%';
+      aimGuide.style.top = (aimStart.y / 500 * 100) + '%';
+    }
+    
+    function releaseProjectile() {
+      if (!isAiming) return;
+      isAiming = false;
+      aimGuide.style.display = 'none';
+      
+      // Calcular vetor de lançamento
+      const dx = aimStart.x - aimCurrent.x;
+      const dy = aimStart.y - aimCurrent.y;
+      const power = Math.min(Math.sqrt(dx*dx + dy*dy) * 0.15, 20);
+      const angle = Math.atan2(dy, dx);
+      
+      projectile = {
+        x: aimStart.x,
+        y: aimStart.y,
+        vx: Math.cos(angle) * power,
+        vy: Math.sin(angle) * power,
+        radius: 12,
+        active: true
+      };
+      
+      ammo--;
+      ammoEl.textContent = ammo;
+      
+      if (ammo <= 0 && targets.length > 0) {
+        setTimeout(endGame, 2000);
+      }
+    }
+    
+    function update() {
+      // Atualizar projétil
+      if (projectile?.active) {
+        projectile.x += projectile.vx;
+        projectile.y += projectile.vy;
+        projectile.vy += 0.3; // Gravidade
+        
+        // Colisão com chão
+        if (projectile.y > groundY - projectile.radius) {
+          projectile.active = false;
+          createParticles(projectile.x, projectile.y, '#888', 10);
+          checkAmmo();
+        }
+        
+        // Colisão com alvos
+        targets.forEach((target, index) => {
+          const dx = projectile.x - target.x;
+          const dy = projectile.y - target.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          
+          if (dist < projectile.radius + target.radius) {
+            target.health--;
+            createParticles(target.x, target.y, '#fbbf24', 8);
+            
+            if (target.health <= 0) {
+              targets.splice(index, 1);
+              score += 50 * level;
+              scoreEl.textContent = score;
+              createParticles(target.x, target.y, '#ef4444', 15);
+              
+              // Verificar nível completo
+              if (targets.length === 0) {
+                levelComplete();
+              }
+            }
+            projectile.active = false;
+            checkAmmo();
+          }
+        });
+        
+        // Remover se sair da tela
+        if (projectile.x > canvas.width + 50 || projectile.x < -50 || projectile.y > canvas.height + 50) {
+          projectile.active = false;
+          checkAmmo();
+        }
+      }
+      
+      // Atualizar alvos móveis
+      targets.forEach(target => {
+        if (target.type === 'moving') {
+          target.x += target.speed * target.direction;
+          if (target.x < 300 || target.x > 750) target.direction *= -1;
+        }
+      });
+      
+      // Atualizar partículas
+      particles = particles.filter(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life--;
+        p.vy += 0.1;
+        return p.life > 0;
+      });
+    }
+    
+    function checkAmmo() {
+      if (!projectile?.active && ammo <= 0 && targets.length > 0) {
+        setTimeout(endGame, 1000);
+      }
+    }
+    
+    function levelComplete() {
+      gameRunning = false;
+      document.getElementById('levelScore').textContent = score;
+      document.getElementById('levelScreen').style.display = 'block';
+    }
+    
+    function nextLevel() {
+      level++;
+      levelEl.textContent = level;
+      ammo = Math.min(5 + Math.floor(level / 2), 10);
+      ammoEl.textContent = ammo;
+      projectile = null;
+      document.getElementById('levelScreen').style.display = 'none';
+      spawnTargets();
+      gameRunning = true;
+      gameLoop();
+    }
+    
+    function endGame() {
+      gameRunning = false;
+      finalScoreEl.textContent = score;
+      
+      if (score > highScore) {
+        highScore = score;
+        localStorage.setItem('slingshot_highscore', highScore);
+        document.getElementById('highScoreMsg').style.display = 'block';
+      }
+      
+      document.getElementById('gameOverScreen').style.display = 'block';
+    }
+    
+    function createParticles(x, y, color, count) {
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x, y,
+          vx: (Math.random() - 0.5) * 6,
+          vy: (Math.random() - 0.5) * 6 - 2,
+          life: 30,
+          color,
+          size: Math.random() * 4 + 2
+        });
+      }
+    }
+    
+    function draw() {
+      // Limpar
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Céu com estrelas
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+      for (let i = 0; i < 40; i++) {
+        const x = (i * 37) % canvas.width;
+        const y = (i * 23) % (groundY - 100);
+        ctx.beginPath();
+        ctx.arc(x, y, Math.random() * 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      // Chão
+      ctx.fillStyle = '#374151';
+      ctx.fillRect(0, groundY, canvas.width, canvas.height - groundY);
+      ctx.fillStyle = '#22c55e';
+      ctx.fillRect(0, groundY, canvas.width, 10);
+      
+      // Estilingue
+      ctx.strokeStyle = '#8B4513';
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(80, groundY);
+      ctx.lineTo(90, groundY - 60);
+      ctx.moveTo(110, groundY);
+      ctx.lineTo(100, groundY - 60);
+      ctx.stroke();
+      
+      // Banda do estilingue
+      if (isAiming && !projectile) {
+        ctx.strokeStyle = 'rgba(255, 100, 100, 0.7)';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(90, groundY - 60);
+        ctx.lineTo(aimCurrent.x, aimCurrent.y);
+        ctx.lineTo(100, groundY - 60);
+        ctx.stroke();
+      }
+      
+      // Projétil
+      if (projectile?.active || (isAiming && !projectile)) {
+        const px = projectile?.active ? projectile.x : aimCurrent.x;
+        const py = projectile?.active ? projectile.y : aimCurrent.y;
+        
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.arc(px, py, projectile?.radius || 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#fbbf24';
+        ctx.beginPath();
+        ctx.arc(px - 3, py - 3, 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      // Alvos
+      targets.forEach(target => {
+        // Corpo do alvo
+        ctx.fillStyle = target.health > 1 ? '#f97316' : '#ef4444';
+        ctx.beginPath();
+        ctx.arc(target.x, target.y, target.radius, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Mira
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(target.x, target.y, target.radius + 5, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(target.x - target.radius - 8, target.y);
+        ctx.lineTo(target.x + target.radius + 8, target.y);
+        ctx.moveTo(target.x, target.y - target.radius - 8);
+        ctx.lineTo(target.x, target.y + target.radius + 8);
+        ctx.stroke();
+        
+        // Barra de vida
+        if (target.maxHealth > 1) {
+          ctx.fillStyle = '#374151';
+          ctx.fillRect(target.x - 20, target.y - target.radius - 15, 40, 6);
+          ctx.fillStyle = '#22c55e';
+          ctx.fillRect(target.x - 20, target.y - target.radius - 15, 40 * (target.health / target.maxHealth), 6);
+        }
+      });
+      
+      // Partículas
+      particles.forEach(p => {
+        ctx.globalAlpha = p.life / 30;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      
+      // Trajetória prevista (quando mirando)
+      if (isAiming && !projectile) {
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.setLineDash([5, 5]);
+        ctx.lineWidth = 1;
+        const dx = aimStart.x - aimCurrent.x;
+        const dy = aimStart.y - aimCurrent.y;
+        const power = Math.min(Math.sqrt(dx*dx + dy*dy) * 0.15, 20);
+        const angle = Math.atan2(dy, dx);
+        
+        let px = aimStart.x, py = aimStart.y;
+        let vx = Math.cos(angle) * power, vy = Math.sin(angle) * power;
+        
+        ctx.beginPath();
+        ctx.moveTo(px, py);
+        for (let i = 0; i < 30; i++) {
+          px += vx;
+          py += vy;
+          vy += 0.3;
+          ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+    
+    function drawScene() {
+      draw();
+      if (!gameRunning) requestAnimationFrame(drawScene);
+    }
+    
+    function gameLoop() {
+      if (!gameRunning) return;
+      update();
+      draw();
+      requestAnimationFrame(gameLoop);
+    }
+    
+    // Iniciar
+    init();
+  </script>
+  
+  <script src="https://pl28876206.effectivegatecpm.com/87/53/16/8753161e227db64bf25c79a6f4a34f05.js"></script>
+</body>
+</html>

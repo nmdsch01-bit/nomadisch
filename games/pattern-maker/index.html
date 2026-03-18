@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Pattern Maker | Nomadisch Play</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #8b5cf6; --secondary: #06b6d4; --accent: #f472b6;
+      --dark: #0f172a; --glass: rgba(30, 41, 59, 0.9);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --pattern-bg: #1e293b;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      color: white; min-height: 100vh; display: flex; flex-direction: column;
+    }
+    header {
+      padding: 0.8rem 1.5rem; display: flex; align-items: center; justify-content: space-between;
+      background: var(--glass); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .back-btn {
+      display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border);
+      border-radius: 12px; color: white; text-decoration: none; font-weight: 500; transition: all 0.3s; font-size: 0.9rem;
+    }
+    .back-btn:hover { background: var(--primary); transform: translateX(-3px); }
+    .game-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; }
+    
+    /* Controls */
+    .controls-bar {
+      display: flex; flex-wrap: wrap; gap: 0.8rem; padding: 0.8rem 1rem;
+      background: var(--glass); border-bottom: 1px solid var(--glass-border);
+      justify-content: center; align-items: center;
+    }
+    .shape-selector { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .shape-btn {
+      width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.1);
+      border: 2px solid var(--glass-border); color: white; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+      transition: all 0.2s;
+    }
+    .shape-btn:hover, .shape-btn.active {
+      border-color: var(--secondary); background: rgba(6, 182, 212, 0.2);
+      transform: scale(1.1);
+    }
+    
+    .color-palette { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .color-btn {
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid transparent;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .color-btn:hover, .color-btn.active { border-color: white; transform: scale(1.15); }
+    
+    .tool-group { display: flex; align-items: center; gap: 0.8rem; color: var(--gray); font-size: 0.9rem; }
+    
+    .action-btn {
+      padding: 0.6rem 1.2rem; background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none; border-radius: 12px; color: white; font-weight: 600; cursor: pointer;
+      transition: all 0.3s; display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem;
+    }
+    .action-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4); }
+    .action-btn.secondary { background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border); }
+    
+    /* Pattern Grid */
+    #gameContainer {
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 1rem; overflow: auto;
+    }
+    .pattern-wrapper {
+      background: var(--pattern-bg); border-radius: 20px; padding: 1.5rem;
+      border: 2px solid var(--glass-border); box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+      display: grid; gap: 8px; max-width: 100%; max-height: 70vh; overflow: auto;
+    }
+    .pattern-cell {
+      width: 40px; height: 40px; border-radius: 8px; background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border); cursor: pointer; display: flex;
+      align-items: center; justify-content: center; transition: all 0.2s;
+      font-size: 1.2rem;
+    }
+    .pattern-cell:hover { border-color: var(--secondary); transform: scale(1.05); }
+    .pattern-cell.filled { animation: popIn 0.3s ease; }
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    /* Symmetry Preview */
+    .symmetry-preview {
+      margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.03);
+      border-radius: 12px; border: 1px solid var(--glass-border); text-align: center;
+    }
+    .symmetry-preview canvas {
+      max-width: 200px; border-radius: 12px; border: 1px solid var(--glass-border);
+    }
+    
+    /* ADHD-Friendly Instructions */
+    .adhd-hint {
+      text-align: center; color: var(--gray); font-size: 0.95rem; max-width: 500px;
+      margin: 1rem auto; padding: 1rem; background: rgba(139, 92, 246, 0.1);
+      border-radius: 16px; border-left: 4px solid var(--primary);
+      line-height: 1.6;
+    }
+    .adhd-hint strong { color: var(--primary); }
+    
+    /* Pattern Types */
+    .pattern-types {
+      display: flex; gap: 0.5rem; margin: 0.5rem 0; flex-wrap: wrap; justify-content: center;
+    }
+    .pattern-type-btn {
+      padding: 0.4rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
+      border-radius: 20px; color: var(--gray); font-size: 0.85rem; cursor: pointer; transition: all 0.2s;
+    }
+    .pattern-type-btn:hover, .pattern-type-btn.active {
+      background: var(--accent); color: white; border-color: var(--accent);
+    }
+    
+    /* Ad Space */
+    .game-ad {
+      width: 100%; max-width: 728px; margin: 1rem auto; padding: 0.8rem;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 16px; text-align: center;
+    }
+    .ad-label { font-size: 0.7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block; }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+      .controls-bar { flex-direction: column; align-items: stretch; }
+      .shape-selector, .color-palette { justify-content: center; }
+      .pattern-cell { width: 32px; height: 32px; font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="../../produtos.html" class="back-btn"><i class="fas fa-arrow-left"></i> Hub</a>
+    <h1 class="game-title">🌀 Pattern Maker</h1>
+    <button class="action-btn secondary" id="saveBtn"><i class="fas fa-download"></i> Salvar</button>
+  </header>
+  
+  <div class="controls-bar">
+    <div class="shape-selector" id="shapeSelector">
+      <button class="shape-btn active" data-shape="circle">⚪</button>
+      <button class="shape-btn" data-shape="square">⬛</button>
+      <button class="shape-btn" data-shape="triangle">🔺</button>
+      <button class="shape-btn" data-shape="star">⭐</button>
+      <button class="shape-btn" data-shape="heart">💜</button>
+    </div>
+    
+    <div class="color-palette" id="colorPalette"></div>
+    
+    <div class="tool-group">
+      <i class="fas fa-magic"></i>
+      <select id="symmetryMode" style="padding:0.4rem 0.8rem; border-radius:8px; background:rgba(255,255,255,0.1); color:white; border:none;">
+        <option value="none">Sem simetria</option>
+        <option value="horizontal">Horizontal</option>
+        <option value="vertical">Vertical</option>
+        <option value="radial" selected>Radial 🌀</option>
+      </select>
+    </div>
+    
+    <button class="action-btn secondary" id="undoBtn"><i class="fas fa-undo"></i> Desfazer</button>
+    <button class="action-btn" id="clearBtn"><i class="fas fa-rotate-right"></i> Novo</button>
+  </div>
+  
+  <div class="pattern-types">
+    <button class="pattern-type-btn active" data-size="8">8x8 Calmo</button>
+    <button class="pattern-type-btn" data-size="12">12x12 Médio</button>
+    <button class="pattern-type-btn" data-size="16">16x16 Detalhado</button>
+  </div>
+  
+  <div class="symmetry-preview">
+    <small style="color:var(--gray); display:block; margin-bottom:0.5rem;">Pré-visualização</small>
+    <canvas id="previewCanvas" width="200" height="200"></canvas>
+  </div>
+  
+  <div id="gameContainer">
+    <div class="pattern-wrapper" id="patternGrid"></div>
+  </div>
+  
+  <div class="adhd-hint">
+    <strong>🧘 Ritmo e repetição:</strong> Crie padrões que se repetem. O movimento previsível ajuda a acalmar a mente. Não precisa ser perfeito — só siga o fluxo. 💜
+  </div>
+  
+  <div class="game-ad">
+    <span class="ad-label">Publicidade</span>
+    <script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+    <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+  </div>
+  
+  <script src="https://pl28876220.effectivegatecpm.com/30/b8/d1/30b8d1458b08c08f30d9f4f413e7a20d.js"></script>
+  
+  <script>
+    // Cores suaves para TDAH
+    const colors = ['#6366f1','#8b5cf6','#a78bfa','#06b6d4','#22d3ee','#10b981','#34d399','#f472b6','#f9a8d4'];
+    const shapes = {
+      circle: '⚪', square: '⬛', triangle: '🔺', star: '⭐', heart: '💜'
+    };
+    
+    let currentColor = '#6366f1';
+    let currentShape = 'circle';
+    let symmetryMode = 'radial';
+    let gridSize = 8;
+    let pattern = [];
+    let history = [];
+    
+    const patternGrid = document.getElementById('patternGrid');
+    const previewCanvas = document.getElementById('previewCanvas');
+    const previewCtx = previewCanvas.getContext('2d');
+    
+    // Paleta de cores
+    const colorPalette = document.getElementById('colorPalette');
+    colors.forEach(color => {
+      const btn = document.createElement('button');
+      btn.className = 'color-btn' + (color === currentColor ? ' active' : '');
+      btn.style.background = color;
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentColor = color;
+      });
+      colorPalette.appendChild(btn);
+    });
+    
+    // Seleção de formas
+    document.querySelectorAll('.shape-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.shape-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentShape = this.dataset.shape;
+      });
+    });
+    
+    // Modo de simetria
+    document.getElementById('symmetryMode').addEventListener('change', (e) => {
+      symmetryMode = e.target.value;
+      updatePreview();
+    });
+    
+    // Tamanho da grade
+    document.querySelectorAll('.pattern-type-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.pattern-type-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        gridSize = parseInt(this.dataset.size);
+        createGrid();
+      });
+    });
+    
+    // Criar grade de padrões
+    function createGrid() {
+      patternGrid.innerHTML = '';
+      patternGrid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+      pattern = Array(gridSize).fill().map(() => Array(gridSize).fill(null));
+      
+      for (let row = 0; row < gridSize; row++) {
+        for (let col = 0; col < gridSize; col++) {
+          const cell = document.createElement('div');
+          cell.className = 'pattern-cell';
+          cell.dataset.row = row;
+          cell.dataset.col = col;
+          
+          cell.addEventListener('click', () => toggleCell(row, col));
+          cell.addEventListener('touchstart', (e) => { e.preventDefault(); toggleCell(row, col); });
+          
+          patternGrid.appendChild(cell);
+        }
+      }
+      
+      updatePreview();
+      saveState();
+    }
+    
+    function toggleCell(row, col) {
+      // Aplicar simetria
+      const cellsToToggle = getSymmetricCells(row, col);
+      
+      cellsToToggle.forEach(({r, c}) => {
+        const cell = document.querySelector(`.pattern-cell[data-row="${r}"][data-col="${c}"]`);
+        
+        if (pattern[r][c]?.color === currentColor && pattern[r][c]?.shape === currentShape) {
+          // Remover
+          pattern[r][c] = null;
+          cell.innerHTML = '';
+          cell.style.background = '';
+        } else {
+          // Adicionar
+          pattern[r][c] = { color: currentColor, shape: currentShape };
+          cell.innerHTML = shapes[currentShape];
+          cell.style.color = currentColor;
+          cell.style.background = currentColor + '20';
+          cell.classList.add('filled');
+          setTimeout(() => cell.classList.remove('filled'), 300);
+        }
+      });
+      
+      updatePreview();
+      saveState();
+    }
+    
+    function getSymmetricCells(row, col) {
+      const cells = [{ row, col }];
+      const center = gridSize / 2;
+      
+      if (symmetryMode === 'horizontal') {
+        cells.push({ row: gridSize - 1 - row, col });
+      } else if (symmetryMode === 'vertical') {
+        cells.push({ row, col: gridSize - 1 - col });
+      } else if (symmetryMode === 'radial') {
+        // Simetria radial (4 direções)
+        cells.push(
+          { row: gridSize - 1 - row, col },
+          { row, col: gridSize - 1 - col },
+          { row: gridSize - 1 - row, col: gridSize - 1 - col }
+        );
+      }
+      
+      // Remover duplicatas
+      return [...new Set(cells.map(c => JSON.stringify(c)))].map(c => JSON.parse(c));
+    }
+    
+    function updatePreview() {
+      previewCtx.fillStyle = '#1e293b';
+      previewCtx.fillRect(0, 0, 200, 200);
+      
+      const cellSize = 200 / gridSize;
+      
+      for (let row = 0; row < gridSize; row++) {
+        for (let col = 0; col < gridSize; col++) {
+          const cell = pattern[row][col];
+          if (cell) {
+            previewCtx.fillStyle = cell.color;
+            const x = col * cellSize;
+            const y = row * cellSize;
+            
+            if (cell.shape === 'circle') {
+              previewCtx.beginPath();
+              previewCtx.arc(x + cellSize/2, y + cellSize/2, cellSize/2 - 2, 0, Math.PI * 2);
+              previewCtx.fill();
+            } else if (cell.shape === 'square') {
+              previewCtx.fillRect(x + 2, y + 2, cellSize - 4, cellSize - 4);
+            } else {
+              // Emoji para outras formas
+              previewCtx.font = `${cellSize - 4}px Arial`;
+              previewCtx.textAlign = 'center';
+              previewCtx.textBaseline = 'middle';
+              previewCtx.fillText(shapes[cell.shape], x + cellSize/2, y + cellSize/2);
+            }
+          }
+        }
+      }
+    }
+    
+    function saveState() {
+      history.push(JSON.stringify(pattern));
+      if (history.length > 20) history.shift();
+    }
+    
+    function undo() {
+      if (history.length > 1) {
+        history.pop();
+        pattern = JSON.parse(history[history.length - 1]);
+        renderPattern();
+        updatePreview();
+      }
+    }
+    
+    function renderPattern() {
+      for (let row = 0; row < gridSize; row++) {
+        for (let col = 0; col < gridSize; col++) {
+          const cell = document.querySelector(`.pattern-cell[data-row="${row}"][data-col="${col}"]`);
+          const data = pattern[row][col];
+          
+          if (data) {
+            cell.innerHTML = shapes[data.shape];
+            cell.style.color = data.color;
+            cell.style.background = data.color + '20';
+          } else {
+            cell.innerHTML = '';
+            cell.style.background = '';
+          }
+        }
+      }
+    }
+    
+    // Actions
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      if (confirm('Começar um novo padrão?')) {
+        createGrid();
+      }
+    });
+    
+    document.getElementById('undoBtn').addEventListener('click', undo);
+    
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      // Exportar preview como imagem
+      const link = document.createElement('a');
+      link.download = `pattern-${Date.now()}.png`;
+      link.href = previewCanvas.toDataURL('image/png');
+      link.click();
+    });
+    
+    // Keyboard shortcut
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'z') { e.preventDefault(); undo(); }
+    });
+    
+    // Iniciar
+    createGrid();
+  </script>
+  
+  <script src="https://pl28876206.effectivegatecpm.com/87/53/16/8753161e227db64bf25c79a6f4a34f05.js"></script>
+</body>
+</html>

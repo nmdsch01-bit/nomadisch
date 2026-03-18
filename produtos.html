@@ -98,43 +98,40 @@
     }
 
     .logo span { color: var(--secondary); -webkit-text-fill-color: var(--secondary); }
+<!-- ========== HEADER COM FORMSPREE INTEGRADO ========== -->
+<header>
+  <div class="header-content">
+    
+    <!-- Logo + Blog Button (Esquerda) -->
+    <div class="header-left">
+      <a href="index.html" class="logo">Nomadisch <span>Hub</span></a>
+      <a href="blog.html" class="blog-btn">
+        <i class="fas fa-newspaper"></i> Blog
+      </a>
+    </div>
 
-    /* Newsletter Box no Header */
-    .newsletter-box {
-      display: flex;
-      gap: 0.5rem;
-      background: rgba(255,255,255,0.05);
-      padding: 0.5rem;
-      border-radius: 50px;
-      border: 1px solid var(--glass-border);
-    }
+    <!-- Formspree Newsletter (Centro-Esquerda) -->
+    <form action="https://formspree.io/f/xyknlbjq" method="POST" class="newsletter-form">
+      <input type="email" name="email" placeholder="📧 Seu email para novidades" required>
+      <button type="submit">
+        <i class="fas fa-paper-plane"></i> Assinar
+      </button>
+    </form>
 
-    .newsletter-box input {
-      padding: 0.6rem 1rem;
-      background: transparent;
-      border: none;
-      color: white;
-      width: 250px;
-      outline: none;
-    }
+    <!-- Ações (Direita) -->
+    <div class="header-actions">
+      <button class="header-btn" title="Notificações">
+        <i class="fas fa-bell"></i>
+      </button>
+    </div>
 
-    .newsletter-box input::placeholder { color: var(--gray); }
-
-    .newsletter-box button {
-      padding: 0.6rem 1.2rem;
-      background: var(--success);
-      border: none;
-      border-radius: 50px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .newsletter-box button:hover {
-      background: #059669;
-      transform: scale(1.05);
-    }
+  </div>
+  
+  <!-- Mensagem de sucesso do Formspree (oculta por padrão) -->
+  <div id="formspree-success" class="formspree-success">
+    ✅ Obrigado! Em breve você receberá nossas novidades!
+  </div>
+</header>
 
     /* Navigation */
     nav {
@@ -431,7 +428,7 @@
     <div class="header-content">
       <a href="index.html" class="logo">Nomadisch <span>Hub</span></a>
       
-      <div class="newsletter-box">
+      <div class="newsletter-box"> 
         <input type="email" placeholder="📧 Receba novidades por email" id="headerEmail">
         <button onclick="captureLead('headerEmail')">Inscrever</button>
       </div>

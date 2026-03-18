@@ -1,183 +1,664 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Recommended Products | Nomadisch</title>
-
-  <meta name="description" content="Products and guides designed to help you build skills, save money, and create real projects at home.">
-
-  <!-- FORCE UPDATE v2 -->
+  <title>Nomadisch Hub | Produtos Recomendados</title>
+  <meta name="description" content="Descubra produtos digitais e guias cuidadosamente selecionados para transformar sua vida.">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #10b981;
+      --accent: #f59e0b;
+      --dark: #1e293b;
+      --gray: #64748b;
+      --light: #f8fafc;
+      --white: #ffffff;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+      --radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #ffffff;
-      margin: 0;
-      padding: 20px;
-      color: #333;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #fafafa 50%, #fef3c7 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
     }
 
-    .container {
-      max-width: 1100px;
+    /* ========== HEADER ========== */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--white);
+      padding: clamp(1.5rem, 4vw, 3rem) 1rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: pulse 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+    }
+
+    .header-content {
+      max-width: 800px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    h1 {
+    .logo {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--accent); }
+
+    header p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      opacity: 0.95;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ========== SEARCH BAR ========== */
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 1rem 1.5rem 1rem 3rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      background: var(--white);
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition);
+    }
+
+    .search-box:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+      font-size: 1.2rem;
+    }
+
+    /* ========== FILTERS ========== */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      background: var(--white);
+      border: 2px solid var(--primary);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--primary);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ========== AD BANNERS - DISCRETOS ========== */
+    .ad-banner {
+      max-width: 900px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
       text-align: center;
-      margin-bottom: 10px;
     }
 
-    .subtitle {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 18px;
-      color: #555;
+    .ad-label {
+      font-size: 0.7rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
     }
 
-    .grid {
+    /* ========== PRODUCTS GRID ========== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
 
-    .card {
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      background-color: #fafafa;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* ========== PRODUCT CARD - IMAGENS INTEIRAS ========== */
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
     }
 
-    .card img {
-      max-width: 160px;
-      height: auto;
-      border-radius: 8px;
-      margin: 15px auto;
-      display: block;
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: var(--transition);
     }
 
-    .card h3 {
-      font-size: 20px;
-      margin: 15px 0 10px;
+    .product-card:hover::before {
+      opacity: 1;
     }
 
-    .card p {
-      font-size: 15px;
-      color: #555;
+    .card-image {
+      position: relative;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      overflow: hidden;
     }
 
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 26px;
-      background-color: #95bf47; /* SHOPIFY GREEN */
-      color: #ffffff;
+    .card-image img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: contain; /* ✅ IMAGEM INTEIRA SEM CORTAR */
+      border-radius: 12px;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .card-image img {
+      transform: scale(1.05);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .card-content {
+      padding: 1.2rem 1.5rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-category {
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .card-description {
+      font-size: 0.95rem;
+      color: var(--gray);
+      margin-bottom: 1.2rem;
+      flex-grow: 1;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
       text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      width: 100%;
+      text-align: center;
     }
 
-    .btn:hover {
-      opacity: 0.9;
+    .card-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .card-cta.secondary {
+      background: linear-gradient(135deg, var(--secondary) 0%, #059669 100%);
+    }
+
+    .card-cta.secondary:hover {
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    /* ========== NO RESULTS ========== */
+    .no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--gray);
+      display: none;
+    }
+
+    .no-results.show {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.2rem;
+      }
+      
+      .filters {
+        gap: 0.4rem;
+      }
+      
+      .filter-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .card-image {
+        min-height: 180px;
+      }
+    }
+
+    /* ========== ANIMAÇÕES DE ENTRADA ========== */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .product-card {
+      animation: slideUp 0.5s ease forwards;
+      animation-delay: calc(var(--i) * 0.1s);
+      opacity: 0;
+    }
+
+    .product-card.loaded {
+      opacity: 1;
     }
   </style>
-  
- <!-- POPUNDER -->
-<script src="https://pl28876206.effectivegatecpm.com/87/53/16/8753161e227db64bf25c79a6f4a34f05.js"></script>
-  
 </head>
-
-<!-- Native Banner -->
-  <script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
-<div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
-  
- <!-- Social Bar -->
-  <script src="https://pl28876220.effectivegatecpm.com/30/b8/d1/30b8d1458b08c08f30d9f4f413e7a20d.js"></script>
 <body>
 
-  <div class="container">
-
-    <h1>Recommended Products</h1>
-    <p class="subtitle">
-      Digital products and guides we truly recommend.
-    </p>
-
-    <div class="grid">
-
-      <!-- TED'S WOODWORKING -->
-      <div class="card">
-        <img src="assets/WOOD2.jpg" alt="Ted's Woodworking">
-        <h3>Ted's Woodworking</h3>
-        <p>Step-by-step woodworking plans to build real projects.</p>
-        <a href="/teds-woodworking.html" class="btn">View Review</a>
-      </div>
-
-      <!-- APPANAIL -->
-      <div class="card">
-        <img src="assets/apa_aff_1.jpg" alt="AppaNail">
-        <h3>AppaNail</h3>
-        <p>Daily nail care support for healthier-looking nails.</p>
-        <a href="/appanail.html" class="btn">View Review</a>
-      </div>
-
-  <!-- animal-de-poder -->
-      <div class="card">
-        <img src="aguia.jpg" alt="animal-de-poder">
-        <h3>animal-de-poder</h3>
-        <p>Descubra Seu Animal de Poder</p>
-        <a href="/animal-de-poder.html" class="btn">View Review</a>
-      </div>
-
-<!-- cortes-curtos-2026 -->
-      <div class="card">
-        <img src="corte6.jpg" alt="cortes-curtos-2026/">
-        <h3>cortes-curtos-2026</h3>
-        <p>VEJA CORTES DE CABELO TENDENCIA 2026</p>
-        <a href="/cortes-curtos-2026/" class="btn">View Review</a>
-      </div>
-
-      <!-- blog-misterio -->
-      <div class="card">
-        <img src=".jpg" alt="blog-misterio.index.html/">
-        <h3>Mistérios Revelados</h3>
-        <p>MISTERIOS REVELADOS</p>
-        <a href="/blog-misterio.index.html/" class="btn">View Review</a>
-      </div>
-
-       <!-- blog/ -->
-      <div class="card">
-        <img src=".jpg" alt="blog/">
-        <h3>Blog</h3>
-        <p>BLOG</p>
-        <a href="/blog/" class="btn">Reviews</a>
-      </div>
-
- <!-- arteterapia -->
-      <div class="card">
-        <img src=".jpg" alt="arteterapia.index.html">
-        <h3>ArteTERAPIA</h3>
-        <p>ARTEterapia</p>
-        <a href="arteterapia.index.html" class="btn">View</a>
-      </div>
-
- <!-- 52 atividades de artes -->
-      <div class="card">
-        <img src=".jpg" alt="https://www.nomadisch.com.br/52-atividades-artes.html">
-        <h3>52 ATIVIDADES DE ARTES</h3>
-        <p>52 ATIVIDADES DE ARTES</p>
-        <a href="52-atividades-artes.html" class="btn">View</a>
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <h1 class="logo">Nomadisch<span>Hub</span></h1>
+      <p>Produtos digitais e guias selecionados para transformar sua vida, desenvolver habilidades e criar projetos reais.</p>
+      
+      <!-- Search -->
+      <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-box" id="searchInput" placeholder="Buscar produtos, categorias...">
       </div>
       
+      <!-- Filters -->
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="arte">🎨 Arte</button>
+        <button class="filter-btn" data-filter="saude">💚 Saúde</button>
+        <button class="filter-btn" data-filter="diy">🔨 DIY</button>
+        <button class="filter-btn" data-filter="estilo">✂️ Estilo</button>
+        <button class="filter-btn" data-filter="espiritual">✨ Espiritual</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ad Banner Top (Discreto) -->
+  <div class="ad-banner">
+    <div class="ad-label">Patrocinado</div>
+    <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    
+    <!-- Products Grid -->
+    <div class="products-grid" id="productsGrid">
+      
+      <!-- CARD 1: 52 Atividades de Artes -->
+      <article class="product-card" style="--i:1" data-category="arte">
+        <div class="card-image">
+          <img src="img/capa-52-atividades-artes.png" alt="52 Atividades de Artes" onerror="this.src='https://via.placeholder.com/300x200/6366f1/ffffff?text=Arte+para+Crianças'">
+          <span class="card-badge">Novo</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category">🎨 Arte & Criatividade</span>
+          <h3 class="card-title">52 Atividades de Artes</h3>
+          <p class="card-description">Um ano inteiro de atividades criativas para fazer em casa ou na escola. Perfeito para pais e professores.</p>
+          <a href="52-atividades-artes.html" class="card-cta">Ver Produto →</a>
+        </div>
+      </article>
+
+      <!-- CARD 2: Arte Terapia -->
+      <article class="product-card" style="--i:2" data-category="arte">
+        <div class="card-image">
+          <img src="img/arteterapia-thumb.jpg" alt="Arte Terapia" onerror="this.src='https://via.placeholder.com/300x200/10b981/ffffff?text=Arte+Terapia'">
+        </div>
+        <div class="card-content">
+          <span class="card-category">🎨 Arte & Bem-estar</span>
+          <h3 class="card-title">Arte Terapia</h3>
+          <p class="card-description">Técnicas de arte para reduzir ansiedade, aumentar a autoestima e encontrar equilíbrio emocional.</p>
+          <a href="arteterapia.index.html" class="card-cta secondary">Explorar →</a>
+        </div>
+      </article>
+
+      <!-- CARD 3: Ted's Woodworking -->
+      <article class="product-card" style="--i:3" data-category="diy">
+        <div class="card-image">
+          <img src="assets/WOOD2.jpg" alt="Ted's Woodworking" onerror="this.src='https://via.placeholder.com/300x200/f59e0b/ffffff?text=Woodworking'">
+          <span class="card-badge">Popular</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category">🔨 Projetos DIY</span>
+          <h3 class="card-title">Ted's Woodworking</h3>
+          <p class="card-description">16.000 planos de marcenaria passo a passo. Do iniciante ao avançado, construa móveis reais.</p>
+          <a href="teds-woodworking.html" class="card-cta">Ver Planos →</a>
+        </div>
+      </article>
+
+      <!-- CARD 4: AppaNail -->
+      <article class="product-card" style="--i:4" data-category="saude">
+        <div class="card-image">
+          <img src="assets/apa_aff_1.jpg" alt="AppaNail" onerror="this.src='https://via.placeholder.com/300x200/ec4899/ffffff?text=Nail+Care'">
+        </div>
+        <div class="card-content">
+          <span class="card-category">💚 Saúde & Beleza</span>
+          <h3 class="card-title">AppaNail</h3>
+          <p class="card-description">Solução natural para cuidados diários com as unhas. Resultados visíveis em poucas semanas.</p>
+          <a href="appanail.html" class="card-cta secondary">Saiba Mais →</a>
+        </div>
+      </article>
+
+      <!-- CARD 5: Animal de Poder -->
+      <article class="product-card" style="--i:5" data-category="espiritual">
+        <div class="card-image">
+          <img src="aguia.jpg" alt="Animal de Poder" onerror="this.src='https://via.placeholder.com/300x200/8b5cf6/ffffff?text=Animal+de+Poder'">
+        </div>
+        <div class="card-content">
+          <span class="card-category">✨ Autoconhecimento</span>
+          <h3 class="card-title">Descubra Seu Animal de Poder</h3>
+          <p class="card-description">Guia prático para conectar-se com sua essência e descobrir o animal que guia seu caminho.</p>
+          <a href="animal-de-poder.html" class="card-cta">Iniciar Jornada →</a>
+        </div>
+      </article>
+
+      <!-- CARD 6: Cortes Curtos 2026 -->
+      <article class="product-card" style="--i:6" data-category="estilo">
+        <div class="card-image">
+          <img src="corte6.jpg" alt="Cortes Curtos 2026" onerror="this.src='https://via.placeholder.com/300x200/f43f5e/ffffff?text=Hair+Trends'">
+          <span class="card-badge">Tendência</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category">✂️ Estilo & Moda</span>
+          <h3 class="card-title">Cortes Curtos 2026</h3>
+          <p class="card-description">As tendências de cortes de cabelo que vão dominar 2026. Inspirações e dicas para seu novo visual.</p>
+          <a href="cortes-curtos-2026/" class="card-cta secondary">Ver Tendências →</a>
+        </div>
+      </article>
+
+      <!-- CARD 7: Blog Mistérios -->
+      <article class="product-card" style="--i:7" data-category="espiritual">
+        <div class="card-image">
+          <img src="img/misterios-thumb.jpg" alt="Mistérios Revelados" onerror="this.src='https://via.placeholder.com/300x200/64748b/ffffff?text=Mistérios'">
+        </div>
+        <div class="card-content">
+          <span class="card-category">✨ Curiosidades</span>
+          <h3 class="card-title">Mistérios Revelados</h3>
+          <p class="card-description">Histórias fascinantes, segredos históricos e fenômenos inexplicáveis explorados com profundidade.</p>
+          <a href="blog-misterio.index.html/" class="card-cta">Explorar Mistérios →</a>
+        </div>
+      </article>
+
+      <!-- CARD 8: Blog Principal -->
+      <article class="product-card" style="--i:8" data-category="all">
+        <div class="card-image">
+          <img src="img/blog-thumb.jpg" alt="Blog Nomadisch" onerror="this.src='https://via.placeholder.com/300x200/3b82f6/ffffff?text=Blog'">
+        </div>
+        <div class="card-content">
+          <span class="card-category">📚 Conteúdo Gratuito</span>
+          <h3 class="card-title">Blog Nomadisch</h3>
+          <p class="card-description">Artigos, dicas e guias gratuitos sobre produtividade, criatividade e desenvolvimento pessoal.</p>
+          <a href="blog/" class="card-cta secondary">Ler Artigos →</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- No Results Message -->
+    <div class="no-results" id="noResults">
+      <h3>😕 Nenhum produto encontrado</h3>
+      <p>Tente buscar por outro termo ou selecione uma categoria diferente.</p>
     </div>
 
   </div>
 
+  <!-- Ad Banner Bottom (Discreto) -->
+  <div class="ad-banner">
+    <div class="ad-label">Publicidade</div>
+    <div id="container-bottom-ad"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Nomadisch. Todos os direitos reservados.<br>
+    <small>Links podem conter afiliados. Sempre avalie antes de comprar.</small></p>
+  </footer>
+
+  <!-- Scripts de Anúncios (mantidos) -->
+  <script src="https://pl28876206.effectivegatecpm.com/87/53/16/8753161e227db64bf25c79a6f4a34f05.js"></script>
+  <script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+  <script src="https://pl28876220.effectivegatecpm.com/30/b8/d1/30b8d1458b08c08f30d9f4f413e7a20d.js"></script>
+
+  <!-- JavaScript Funcional -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // ========== ANIMAÇÃO DE ENTRADA DOS CARDS ==========
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('loaded');
+        }, 200 + (index * 100));
+      });
+
+      // ========== BUSCA EM TEMPO REAL ==========
+      const searchInput = document.getElementById('searchInput');
+      const productsGrid = document.getElementById('productsGrid');
+      const noResults = document.getElementById('noResults');
+      const allCards = document.querySelectorAll('.product-card');
+
+      searchInput.addEventListener('input', function(e) {
+        const term = e.target.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        allCards.forEach(card => {
+          const title = card.querySelector('.card-title').textContent.toLowerCase();
+          const desc = card.querySelector('.card-description').textContent.toLowerCase();
+          const category = card.dataset.category;
+          
+          const matches = title.includes(term) || desc.includes(term) || category.includes(term);
+          
+          if (matches && card.style.display !== 'none') {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Mostrar mensagem se não houver resultados
+        if (visibleCount === 0 && term !== '') {
+          noResults.classList.add('show');
+        } else {
+          noResults.classList.remove('show');
+        }
+      });
+
+      // ========== FILTROS POR CATEGORIA ==========
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Atualizar botões ativos
+          filterBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          const filter = this.dataset.filter;
+          let visibleCount = 0;
+
+          allCards.forEach(card => {
+            const category = card.dataset.category;
+            
+            if (filter === 'all' || category === filter || category === 'all') {
+              card.style.display = 'flex';
+              visibleCount++;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          // Resetar busca ao filtrar
+          searchInput.value = '';
+          
+          // Mensagem de nenhum resultado
+          if (visibleCount === 0) {
+            noResults.classList.add('show');
+          } else {
+            noResults.classList.remove('show');
+          }
+        });
+      });
+
+      // ========== LAZY LOAD PARA IMAGENS (opcional) ==========
+      if ('loading' in HTMLImageElement.prototype) {
+        document.querySelectorAll('.card-image img').forEach(img => {
+          img.setAttribute('loading', 'lazy');
+        });
+      }
+
+      // ========== EFEITO DE HOVER SUAVE NOS LINKS ==========
+      document.querySelectorAll('.card-cta').forEach(link => {
+        link.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-3px)';
+        });
+        link.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+
+    });
+  </script>
 </body>
 </html>

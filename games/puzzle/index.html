@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Gem Match | Nomadisch Play</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --secondary: #06b6d4;
+      --accent: #f472b6;
+      --gem1: #ef4444; --gem2: #f97316; --gem3: #eab308;
+      --gem4: #22c55e; --gem5: #06b6d4; --gem6: #8b5cf6;
+      --dark: #0f172a; --glass: rgba(30, 41, 59, 0.9);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; touch-action: none; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      color: white; min-height: 100vh; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    header {
+      padding: 0.8rem 1.5rem; display: flex; align-items: center; justify-content: space-between;
+      background: var(--glass); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border); position: sticky; top: 0; z-index: 100;
+    }
+    .back-btn {
+      display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border);
+      border-radius: 12px; color: white; text-decoration: none; font-weight: 500;
+      transition: all 0.3s; font-size: 0.9rem;
+    }
+    .back-btn:hover { background: var(--primary); transform: translateX(-3px); }
+    .game-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; }
+    
+    /* HUD */
+    .hud {
+      display: flex; justify-content: center; gap: 2rem; padding: 1rem;
+      background: var(--glass); border-bottom: 1px solid var(--glass-border);
+    }
+    .hud-item {
+      display: flex; align-items: center; gap: 0.5rem; font-weight: 600;
+    }
+    .hud-item.score { color: var(--secondary); }
+    .hud-item.moves { color: var(--accent); }
+    .hud-item.level { color: var(--gem4); }
+    
+    /* Game Board */
+    #gameContainer {
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem;
+    }
+    #gameBoard {
+      display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px;
+      background: var(--glass); padding: 1rem; border-radius: 20px;
+      border: 2px solid var(--glass-border); box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+      max-width: 400px; width: 100%; aspect-ratio: 1;
+    }
+    .gem {
+      aspect-ratio: 1; border-radius: 12px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; transition: all 0.2s; position: relative;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      border: 2px solid transparent; user-select: none;
+    }
+    .gem:hover { transform: scale(1.1); z-index: 10; }
+    .gem.selected { border-color: white; box-shadow: 0 0 20px rgba(255,255,255,0.5); transform: scale(1.15); }
+    .gem.matched { animation: pop 0.3s ease forwards; }
+    @keyframes pop {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.8; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+    .gem[data-type="1"] { color: var(--gem1); }
+    .gem[data-type="2"] { color: var(--gem2); }
+    .gem[data-type="3"] { color: var(--gem3); }
+    .gem[data-type="4"] { color: var(--gem4); }
+    .gem[data-type="5"] { color: var(--gem5); }
+    .gem[data-type="6"] { color: var(--gem6); }
+    
+    /* Combo Display */
+    #comboDisplay {
+      position: absolute; font-size: 2rem; font-weight: 800; color: var(--accent);
+      text-shadow: 0 0 20px rgba(244, 114, 182, 0.8); pointer-events: none;
+      animation: floatUp 1s ease-out forwards; opacity: 0;
+    }
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-50px) scale(1.5); }
+    }
+    
+    /* Start/End Screens */
+    .screen {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      text-align: center; background: var(--glass); padding: 2rem; border-radius: 20px;
+      border: 1px solid var(--glass-border); max-width: 400px; width: 90%; z-index: 20;
+    }
+    .screen h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 1rem; }
+    .screen p { color: var(--gray); margin-bottom: 1.5rem; line-height: 1.6; }
+    .action-btn {
+      padding: 1rem 2.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none; border-radius: 50px; color: white; font-weight: 700; font-size: 1.1rem;
+      cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .action-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5); }
+    
+    /* Ad Space */
+    .game-ad {
+      width: 100%; max-width: 728px; margin: 1rem auto; padding: 0.8rem;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 16px; text-align: center;
+    }
+    .ad-label { font-size: 0.7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block; }
+    
+    /* Responsive */
+    @media (max-width: 500px) {
+      #gameBoard { gap: 2px; padding: 0.5rem; }
+      .gem { font-size: 1.4rem; border-radius: 8px; }
+      .hud { gap: 1rem; padding: 0.8rem; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="../../produtos.html" class="back-btn"><i class="fas fa-arrow-left"></i> Hub</a>
+    <h1 class="game-title">🧩 Gem Match</h1>
+    <div style="width: 60px;"></div>
+  </header>
+  
+  <div class="hud">
+    <div class="hud-item score"><i class="fas fa-star"></i> <span id="score">0</span></div>
+    <div class="hud-item moves"><i class="fas fa-arrows-alt"></i> <span id="moves">30</span></div>
+    <div class="hud-item level"><i class="fas fa-crown"></i> Nível <span id="level">1</span></div>
+  </div>
+  
+  <div id="gameContainer">
+    <div id="gameBoard"></div>
+    
+    <!-- Start Screen -->
+    <div class="screen" id="startScreen">
+      <h2>🧩 Gem Match</h2>
+      <p>Combine 3 ou mais gemas iguais para marcar pontos! Cuidado com os movimentos limitados.</p>
+      <button class="action-btn" id="startBtn"><i class="fas fa-play"></i> Começar</button>
+    </div>
+    
+    <!-- Game Over Screen -->
+    <div class="screen" id="gameOverScreen" style="display: none;">
+      <h2>🎮 Fim de Jogo!</h2>
+      <p>Pontuação final:</p>
+      <div style="font-size: 3rem; font-weight: 800; color: var(--secondary); margin: 1rem 0;" id="finalScore">0</div>
+      <p class="highscore-msg" id="newHighScore" style="color: var(--accent); font-weight: 600; display: none;">🎉 Novo Recorde!</p>
+      <button class="action-btn" id="restartBtn"><i class="fas fa-redo"></i> Jogar Novamente</button>
+    </div>
+  </div>
+  
+  <div class="game-ad">
+    <span class="ad-label">Publicidade</span>
+    <script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+    <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+  </div>
+  
+  <script src="https://pl28876220.effectivegatecpm.com/30/b8/d1/30b8d1458b08c08f30d9f4f413e7a20d.js"></script>
+  
+  <script>
+    // Configurações
+    const BOARD_SIZE = 8;
+    const GEM_TYPES = 6;
+    const INITIAL_MOVES = 30;
+    
+    let board = [];
+    let selectedGem = null;
+    let score = 0;
+    let moves = INITIAL_MOVES;
+    let level = 1;
+    let gameActive = false;
+    let isAnimating = false;
+    
+    const gameBoard = document.getElementById('gameBoard');
+    const scoreEl = document.getElementById('score');
+    const movesEl = document.getElementById('moves');
+    const levelEl = document.getElementById('level');
+    const finalScoreEl = document.getElementById('finalScore');
+    
+    // Inicialização
+    function init() {
+      document.getElementById('startBtn').addEventListener('click', startGame);
+      document.getElementById('restartBtn').addEventListener('click', startGame);
+      loadHighScore();
+    }
+    
+    function startGame() {
+      score = 0; moves = INITIAL_MOVES; level = 1;
+      scoreEl.textContent = '0'; movesEl.textContent = moves; levelEl.textContent = level;
+      document.getElementById('startScreen').style.display = 'none';
+      document.getElementById('gameOverScreen').style.display = 'none';
+      createBoard();
+      renderBoard();
+      gameActive = true;
+    }
+    
+    function createBoard() {
+      board = [];
+      for (let row = 0; row < BOARD_SIZE; row++) {
+        board[row] = [];
+        for (let col = 0; col < BOARD_SIZE; col++) {
+          board[row][col] = { type: randomGemType(), matched: false };
+        }
+      }
+      // Garantir que não há matches iniciais
+      while (findMatches().length > 0) {
+        for (let row = 0; row < BOARD_SIZE; row++) {
+          for (let col = 0; col < BOARD_SIZE; col++) {
+            board[row][col].type = randomGemType();
+          }
+        }
+      }
+    }
+    
+    function randomGemType() {
+      return Math.floor(Math.random() * GEM_TYPES) + 1;
+    }
+    
+    function renderBoard() {
+      gameBoard.innerHTML = '';
+      for (let row = 0; row < BOARD_SIZE; row++) {
+        for (let col = 0; col < BOARD_SIZE; col++) {
+          const gem = document.createElement('div');
+          gem.className = 'gem';
+          gem.dataset.type = board[row][col].type;
+          gem.dataset.row = row;
+          gem.dataset.col = col;
+          gem.innerHTML = getGemEmoji(board[row][col].type);
+          gem.addEventListener('click', () => handleGemClick(row, col));
+          gem.addEventListener('touchstart', (e) => { e.preventDefault(); handleGemClick(row, col); });
+          gameBoard.appendChild(gem);
+        }
+      }
+    }
+    
+    function getGemEmoji(type) {
+      const emojis = ['💎', '🔶', '🔷', '💚', '💙', '💜'];
+      return emojis[type - 1] || '💎';
+    }
+    
+    function handleGemClick(row, col) {
+      if (!gameActive || isAnimating || board[row][col].matched) return;
+      
+      const gem = document.querySelector(`.gem[data-row="${row}"][data-col="${col}"]`);
+      
+      if (!selectedGem) {
+        selectedGem = { row, col };
+        gem.classList.add('selected');
+      } else {
+        const prevGem = document.querySelector(`.gem[data-row="${selectedGem.row}"][data-col="${selectedGem.col}"]`);
+        prevGem.classList.remove('selected');
+        
+        if (isAdjacent(selectedGem, { row, col })) {
+          swapGems(selectedGem.row, selectedGem.col, row, col);
+        }
+        selectedGem = null;
+      }
+    }
+    
+    function isAdjacent(gem1, gem2) {
+      const rowDiff = Math.abs(gem1.row - gem2.row);
+      const colDiff = Math.abs(gem1.col - gem2.col);
+      return (rowDiff === 1 && colDiff === 0) || (rowDiff === 0 && colDiff === 1);
+    }
+    
+    async function swapGems(row1, col1, row2, col2) {
+      isAnimating = true;
+      
+      // Swap no array
+      [board[row1][col1], board[row2][col2]] = [board[row2][col2], board[row1][col1]];
+      renderBoard();
+      
+      await sleep(200);
+      
+      const matches = findMatches();
+      if (matches.length > 0) {
+        moves--;
+        movesEl.textContent = moves;
+        await processMatches(matches);
+        if (moves <= 0) endGame();
+      } else {
+        // Swap back se não houver match
+        [board[row1][col1], board[row2][col2]] = [board[row2][col2], board[row1][col1]];
+        renderBoard();
+      }
+      
+      isAnimating = false;
+    }
+    
+    function findMatches() {
+      const matches = [];
+      
+      // Horizontal
+      for (let row = 0; row < BOARD_SIZE; row++) {
+        for (let col = 0; col < BOARD_SIZE - 2; col++) {
+          const type = board[row][col].type;
+          if (type && board[row][col+1].type === type && board[row][col+2].type === type) {
+            matches.push({ row, col }, { row, col: col+1 }, { row, col: col+2 });
+          }
+        }
+      }
+      
+      // Vertical
+      for (let col = 0; col < BOARD_SIZE; col++) {
+        for (let row = 0; row < BOARD_SIZE - 2; row++) {
+          const type = board[row][col].type;
+          if (type && board[row+1][col].type === type && board[row+2][col].type === type) {
+            matches.push({ row, col }, { row: row+1, col }, { row: row+2, col });
+          }
+        }
+      }
+      
+      return [...new Set(matches.map(m => JSON.stringify(m)))].map(m => JSON.parse(m));
+    }
+    
+    async function processMatches(matches) {
+      // Marcar como matched
+      matches.forEach(({ row, col }) => {
+        board[row][col].matched = true;
+        const gem = document.querySelector(`.gem[data-row="${row}"][data-col="${col}"]`);
+        if (gem) gem.classList.add('matched');
+      });
+      
+      // Combo display
+      if (matches.length > 3) {
+        showCombo(matches.length);
+      }
+      
+      // Pontuação
+      score += matches.length * 10 * level;
+      scoreEl.textContent = score;
+      
+      await sleep(300);
+      
+      // Remover e cair
+      removeMatched();
+      await dropGems();
+      fillEmpty();
+      renderBoard();
+      
+      await sleep(200);
+      
+      // Verificar combos em cadeia
+      const newMatches = findMatches();
+      if (newMatches.length > 0) {
+        level++;
+        levelEl.textContent = level;
+        await processMatches(newMatches);
+      }
+    }
+    
+    function showCombo(count) {
+      const combo = document.createElement('div');
+      combo.id = 'comboDisplay';
+      combo.textContent = `${count}x COMBO!`;
+      combo.style.left = '50%';
+      combo.style.top = '40%';
+      document.getElementById('gameContainer').appendChild(combo);
+      setTimeout(() => combo.remove(), 1000);
+    }
+    
+    function removeMatched() {
+      for (let row = 0; row < BOARD_SIZE; row++) {
+        for (let col = 0; col < BOARD_SIZE; col++) {
+          if (board[row][col].matched) {
+            board[row][col] = null;
+          }
+        }
+      }
+    }
+    
+    async function dropGems() {
+      for (let col = 0; col < BOARD_SIZE; col++) {
+        let emptyRow = BOARD_SIZE - 1;
+        for (let row = BOARD_SIZE - 1; row >= 0; row--) {
+          if (board[row][col] !== null) {
+            if (row !== emptyRow) {
+              board[emptyRow][col] = board[row][col];
+              board[row][col] = null;
+            }
+            emptyRow--;
+          }
+        }
+      }
+    }
+    
+    function fillEmpty() {
+      for (let row = 0; row < BOARD_SIZE; row++) {
+        for (let col = 0; col < BOARD_SIZE; col++) {
+          if (board[row][col] === null) {
+            board[row][col] = { type: randomGemType(), matched: false };
+          }
+        }
+      }
+    }
+    
+    function endGame() {
+      gameActive = false;
+      finalScoreEl.textContent = score;
+      
+      // Verificar recorde
+      const highScore = localStorage.getItem('gemmatch_highscore') || 0;
+      if (score > highScore) {
+        localStorage.setItem('gemmatch_highscore', score);
+        document.getElementById('newHighScore').style.display = 'block';
+      }
+      
+      document.getElementById('gameOverScreen').style.display = 'block';
+    }
+    
+    function loadHighScore() {
+      const highScore = localStorage.getItem('gemmatch_highscore') || 0;
+      // Pode exibir em algum lugar se quiser
+    }
+    
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    // Iniciar
+    init();
+  </script>
+  
+  <script src="https://pl28876206.effectivegatecpm.com/87/53/16/8753161e227db64bf25c79a6f4a34f05.js"></script>
+</body>
+</html>

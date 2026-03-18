@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nomadisch Play | Produtos Digitais Premium</title>
-  <meta name="description" content="Descubra produtos digitais que transformam vidas. Downloads ilimitados, acesso imediato.">
+  <title>Nomadisch Hub | Jogos, Produtos e Ofertas</title>
   
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google AdSense (SE TIVER APROVAÇÃO) -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+     crossorigin="anonymous"></script> -->
   
-  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
     :root {
       --primary: #8b5cf6;
-      --primary-light: #a78bfa;
       --secondary: #06b6d4;
       --accent: #f472b6;
       --success: #10b981;
@@ -23,13 +22,9 @@
       --dark: #0f172a;
       --dark-light: #1e293b;
       --gray: #94a3b8;
-      --light: #f1f5f9;
       --white: #ffffff;
-      --glass: rgba(30, 41, 59, 0.7);
+      --glass: rgba(30, 41, 59, 0.85);
       --glass-border: rgba(255, 255, 255, 0.1);
-      --glow-primary: 0 0 40px rgba(139, 92, 246, 0.5);
-      --glow-secondary: 0 0 40px rgba(6, 182, 212, 0.5);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,10 +35,9 @@
       color: var(--white);
       line-height: 1.6;
       min-height: 100vh;
-      overflow-x: hidden;
     }
 
-    /* Animated Background */
+    /* Background animado */
     .bg-animation {
       position: fixed;
       top: 0;
@@ -62,32 +56,9 @@
       animation: float 20s infinite ease-in-out;
     }
 
-    .orb-1 {
-      width: 400px;
-      height: 400px;
-      background: var(--primary);
-      top: -100px;
-      left: -100px;
-      animation-delay: 0s;
-    }
-
-    .orb-2 {
-      width: 300px;
-      height: 300px;
-      background: var(--secondary);
-      top: 50%;
-      right: -50px;
-      animation-delay: 5s;
-    }
-
-    .orb-3 {
-      width: 350px;
-      height: 350px;
-      background: var(--accent);
-      bottom: -100px;
-      left: 30%;
-      animation-delay: 10s;
-    }
+    .orb-1 { width: 400px; height: 400px; background: var(--primary); top: -100px; left: -100px; }
+    .orb-2 { width: 300px; height: 300px; background: var(--secondary); top: 50%; right: -50px; }
+    .orb-3 { width: 350px; height: 350px; background: var(--accent); bottom: -100px; left: 30%; }
 
     @keyframes float {
       0%, 100% { transform: translate(0, 0) scale(1); }
@@ -95,177 +66,146 @@
       66% { transform: translate(-20px, 30px) scale(0.9); }
     }
 
-    /* ========== HEADER ========== */
+    /* Header */
     header {
       background: var(--glass);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--glass-border);
+      padding: 1rem 2rem;
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     }
 
-    .header-top {
+    .header-content {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 1rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 2rem;
+      flex-wrap: wrap;
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .logo:hover {
-      transform: scale(1.05);
-    }
-
-    .logo-icon {
-      width: 45px;
-      height: 45px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      box-shadow: var(--glow-primary);
-    }
-
-    .logo-text {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.8rem;
       font-weight: 700;
-      background: linear-gradient(135deg, var(--white), var(--primary-light));
+      background: linear-gradient(135deg, var(--white), var(--primary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
+      text-decoration: none;
     }
 
-    .logo-text span {
-      color: var(--secondary);
-      -webkit-text-fill-color: var(--secondary);
-    }
+    .logo span { color: var(--secondary); -webkit-text-fill-color: var(--secondary); }
 
-    /* Search Bar - Play Store Style */
-    .search-container {
-      flex: 1;
-      max-width: 600px;
-      position: relative;
-    }
-
-    .search-box {
-      width: 100%;
-      padding: 0.9rem 1.2rem 0.9rem 3rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--glass-border);
-      border-radius: 50px;
-      color: var(--white);
-      font-size: 1rem;
-      transition: var(--transition);
-      backdrop-filter: blur(10px);
-    }
-
-    .search-box:focus {
-      outline: none;
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
-    }
-
-    .search-box::placeholder {
-      color: var(--gray);
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 1.2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--gray);
-      font-size: 1.1rem;
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .header-btn {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--glass-border);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: var(--transition);
-      font-size: 1.2rem;
-    }
-
-    .header-btn:hover {
-      background: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: var(--glow-primary);
-    }
-
-    /* Navigation Tabs */
-    .nav-tabs {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem 1rem;
+    /* Newsletter Box no Header */
+    .newsletter-box {
       display: flex;
       gap: 0.5rem;
+      background: rgba(255,255,255,0.05);
+      padding: 0.5rem;
+      border-radius: 50px;
+      border: 1px solid var(--glass-border);
+    }
+
+    .newsletter-box input {
+      padding: 0.6rem 1rem;
+      background: transparent;
+      border: none;
+      color: white;
+      width: 250px;
+      outline: none;
+    }
+
+    .newsletter-box input::placeholder { color: var(--gray); }
+
+    .newsletter-box button {
+      padding: 0.6rem 1.2rem;
+      background: var(--success);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .newsletter-box button:hover {
+      background: #059669;
+      transform: scale(1.05);
+    }
+
+    /* Navigation */
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      gap: 1rem;
       overflow-x: auto;
       scrollbar-width: none;
     }
 
-    .nav-tabs::-webkit-scrollbar {
-      display: none;
-    }
+    nav::-webkit-scrollbar { display: none; }
 
-    .nav-tab {
+    .nav-btn {
       padding: 0.6rem 1.5rem;
       background: transparent;
-      border: none;
+      border: 2px solid var(--glass-border);
+      border-radius: 50px;
       color: var(--gray);
-      font-size: 0.95rem;
       font-weight: 500;
       cursor: pointer;
-      border-radius: 20px;
-      transition: var(--transition);
+      transition: all 0.3s;
       white-space: nowrap;
-      font-family: 'Inter', sans-serif;
     }
 
-    .nav-tab:hover {
-      color: var(--white);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .nav-tab.active {
+    .nav-btn:hover, .nav-btn.active {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--white);
-      box-shadow: var(--glow-primary);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
     }
 
-    /* ========== MAIN CONTENT ========== */
+    /* Container */
     .container {
       max-width: 1400px;
       margin: 0 auto;
       padding: 2rem;
+    }
+
+    /* Ad Spaces */
+    .ad-banner {
+      margin: 2rem 0;
+      padding: 1rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      text-align: center;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ad-label {
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      background: var(--warning);
+      color: var(--dark);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .ad-container {
+      position: relative;
+      width: 100%;
+      max-width: 728px;
+      margin: 0 auto;
     }
 
     /* Section Headers */
@@ -273,8 +213,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1.5rem;
-      margin-top: 3rem;
+      margin: 3rem 0 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--glass-border);
     }
 
     .section-title {
@@ -286,68 +227,31 @@
       gap: 0.75rem;
     }
 
-    .section-title i {
-      color: var(--secondary);
-      font-size: 1.5rem;
-    }
+    .section-title i { color: var(--secondary); }
 
-    .see-all {
-      color: var(--primary-light);
-      text-decoration: none;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: var(--transition);
-    }
-
-    .see-all:hover {
-      color: var(--white);
-      gap: 0.8rem;
-    }
-
-    /* Products Grid - Play Store Style */
+    /* Products Grid */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
     }
 
-    /* Product Card - Futuristic */
+    /* Product Card */
     .product-card {
       background: var(--glass);
       backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
       border-radius: 20px;
       overflow: hidden;
-      transition: var(--transition);
-      position: relative;
+      transition: all 0.3s;
       cursor: pointer;
-      animation: slideUp 0.5s ease forwards;
-      opacity: 0;
-    }
-
-    .product-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
-      opacity: 0;
-      transition: var(--transition);
-      pointer-events: none;
+      position: relative;
     }
 
     .product-card:hover {
-      transform: translateY(-8px) scale(1.02);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
       border-color: var(--primary);
-      box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3), var(--glow-primary);
-    }
-
-    .product-card:hover::before {
-      opacity: 1;
     }
 
     .card-image {
@@ -358,7 +262,6 @@
       align-items: center;
       justify-content: center;
       min-height: 220px;
-      overflow: hidden;
     }
 
     .card-image img {
@@ -366,12 +269,11 @@
       max-height: 180px;
       object-fit: contain;
       border-radius: 12px;
-      transition: transform 0.4s ease;
-      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+      transition: transform 0.4s;
     }
 
     .product-card:hover .card-image img {
-      transform: scale(1.08) rotate(2deg);
+      transform: scale(1.08);
     }
 
     .card-badge {
@@ -384,26 +286,14 @@
       font-weight: 700;
       padding: 0.3rem 0.8rem;
       border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4);
-      z-index: 2;
     }
 
-    .card-badge.editor {
-      background: linear-gradient(135deg, var(--success), #059669);
-      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
-    }
-
-    .card-badge.trending {
-      background: linear-gradient(135deg, var(--warning), #d97706);
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-    }
+    .card-badge.game { background: linear-gradient(135deg, var(--secondary), #0891b2); }
+    .card-badge.product { background: linear-gradient(135deg, var(--success), #059669); }
+    .card-badge.affiliate { background: linear-gradient(135deg, var(--warning), #d97706); }
 
     .card-content {
       padding: 1.2rem 1.5rem 1.5rem;
-      position: relative;
-      z-index: 1;
     }
 
     .card-category {
@@ -413,9 +303,6 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
     }
 
     .card-title {
@@ -423,27 +310,22 @@
       font-size: 1.3rem;
       font-weight: 700;
       margin-bottom: 0.6rem;
-      color: var(--white);
-      line-height: 1.3;
     }
 
     .card-description {
       font-size: 0.9rem;
       color: var(--gray);
       margin-bottom: 1rem;
-      line-height: 1.5;
     }
 
-    /* Stats Row - Views & Rating */
     .card-stats {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 1rem;
       padding: 0.8rem;
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255,255,255,0.03);
       border-radius: 12px;
-      border: 1px solid var(--glass-border);
     }
 
     .stat-item {
@@ -454,44 +336,11 @@
       color: var(--gray);
     }
 
-    .stat-item i {
-      color: var(--primary-light);
-      font-size: 1rem;
-    }
-
     .stat-value {
       font-weight: 600;
       color: var(--white);
-      font-family: 'Space Grotesk', sans-serif;
     }
 
-    .stat-value.hot {
-      color: var(--accent);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
-
-    .rating {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .rating-stars {
-      color: var(--warning);
-      font-size: 0.9rem;
-    }
-
-    .rating-value {
-      font-weight: 700;
-      color: var(--white);
-    }
-
-    /* CTA Button */
     .card-cta {
       display: flex;
       align-items: center;
@@ -503,88 +352,20 @@
       text-decoration: none;
       border-radius: 12px;
       font-weight: 600;
-      font-size: 0.95rem;
-      transition: var(--transition);
-      border: none;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card-cta::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s;
-    }
-
-    .card-cta:hover::before {
-      left: 100%;
+      transition: all 0.3s;
     }
 
     .card-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.5);
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
     }
 
     .card-cta.secondary {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.1);
       border: 1px solid var(--glass-border);
     }
 
-    .card-cta.secondary:hover {
-      background: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
-    }
-
-    /* Live Counter Animation */
-    .live-indicator {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.75rem;
-      color: var(--success);
-      font-weight: 600;
-    }
-
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--success);
-      border-radius: 50%;
-      animation: blink 1.5s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-
-    /* ========== AD BANNERS ========== */
-    .ad-banner {
-      margin: 2rem 0;
-      padding: 1.5rem;
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-    }
-
-    .ad-label {
-      font-size: 0.7rem;
-      color: var(--gray);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 0.8rem;
-      opacity: 0.7;
-    }
-
-    /* ========== FOOTER ========== */
+    /* Footer */
     footer {
       background: var(--glass);
       backdrop-filter: blur(20px);
@@ -592,11 +373,6 @@
       margin-top: 5rem;
       padding: 3rem 2rem 2rem;
       text-align: center;
-    }
-
-    .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
     }
 
     .footer-links {
@@ -610,731 +386,418 @@
     .footer-links a {
       color: var(--gray);
       text-decoration: none;
-      transition: var(--transition);
-      font-weight: 500;
+      transition: all 0.3s;
     }
 
-    .footer-links a:hover {
-      color: var(--primary-light);
-    }
+    .footer-links a:hover { color: var(--primary); }
 
-    .footer-copy {
-      color: var(--gray);
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-
-    /* ========== ANIMATIONS ========== */
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .product-card.loaded {
-      opacity: 1;
-    }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 968px) {
-      .header-top {
-        flex-wrap: wrap;
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
       }
 
-      .search-container {
-        order: 3;
-        max-width: 100%;
-        flex-basis: 100%;
+      .newsletter-box {
+        flex-direction: column;
+        width: 100%;
       }
 
-      .products-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 1.2rem;
-      }
-
-      .section-title {
-        font-size: 1.5rem;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        padding: 1rem;
+      .newsletter-box input {
+        width: 100%;
       }
 
       .products-grid {
         grid-template-columns: 1fr;
       }
 
-      .nav-tabs {
-        padding: 0 1rem 1rem;
+      .section-title {
+        font-size: 1.5rem;
       }
-
-      .logo-text {
-        font-size: 1.4rem;
-      }
-
-      .header-actions {
-        gap: 0.5rem;
-      }
-
-      .header-btn {
-        width: 40px;
-        height: 40px;
-      }
-    }
-
-    /* Loading Skeleton */
-    .skeleton {
-      background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
-      background-size: 200% 100%;
-      animation: loading 1.5s infinite;
-    }
-
-    @keyframes loading {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    /* No Results */
-    .no-results {
-      text-align: center;
-      padding: 5rem 2rem;
-      color: var(--gray);
-      display: none;
-    }
-
-    .no-results.show {
-      display: block;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .no-results i {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      opacity: 0.5;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-  <!-- Animated Background -->
+  <!-- Background Animation -->
   <div class="bg-animation">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
   </div>
 
-  <!-- Header -->
+  <!-- Header com Newsletter -->
   <header>
-    <div class="header-top">
-      <a href="/" class="logo">
-        <div class="logo-icon">🎮</div>
-        <div class="logo-text">Nomadisch <span>Play</span></div>
-      </a>
+    <div class="header-content">
+      <a href="index.html" class="logo">Nomadisch <span>Hub</span></a>
       
-      <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" class="search-box" id="searchInput" placeholder="Buscar produtos, categorias...">
-      </div>
-      
-      <div class="header-actions">
-        <button class="header-btn" title="Notificações">
-          <i class="fas fa-bell"></i>
-        </button>
-        <button class="header-btn" title="Perfil">
-          <i class="fas fa-user"></i>
-        </button>
+      <div class="newsletter-box">
+        <input type="email" placeholder="📧 Receba novidades por email" id="headerEmail">
+        <button onclick="captureLead('headerEmail')">Inscrever</button>
       </div>
     </div>
-    
-    <!-- Navigation Tabs -->
-    <nav class="nav-tabs">
-      <button class="nav-tab active" data-filter="all">🔥 Em Alta</button>
-      <button class="nav-tab" data-filter="arte">🎨 Arte</button>
-      <button class="nav-tab" data-filter="saude">💚 Saúde</button>
-      <button class="nav-tab" data-filter="diy">🔨 DIY</button>
-      <button class="nav-tab" data-filter="estilo">✂️ Estilo</button>
-      <button class="nav-tab" data-filter="espiritual">✨ Espiritual</button>
-      <button class="nav-tab" data-filter="gratis">🆓 Grátis</button>
-    </nav>
   </header>
 
-  <!-- Main Content -->
+  <!-- Navigation Tabs -->
+  <nav>
+    <button class="nav-btn active" onclick="filterCategory('all')">🔥 Tudo</button>
+    <button class="nav-btn" onclick="filterCategory('jogos')">🎮 Jogos</button>
+    <button class="nav-btn" onclick="filterCategory('arte')">🎨 Arte-Terapia</button>
+    <button class="nav-btn" onclick="filterCategory('produtos')">🛒 Produtos</button>
+    <button class="nav-btn" onclick="filterCategory('afiliados')">🤝 Afiliados</button>
+    <button class="nav-btn" onclick="filterCategory('gratis')">🆓 Grátis</button>
+  </nav>
+
   <div class="container">
-    
-    <!-- Featured Section -->
-    <div class="section-header">
-      <h2 class="section-title">
-        <i class="fas fa-star"></i>
-        Destacados da Semana
-      </h2>
-      <a href="#" class="see-all">Ver todos <i class="fas fa-arrow-right"></i></a>
+
+    <!-- AD BANNER TOP (728x90 ou responsivo) -->
+    <div class="ad-banner">
+      <div class="ad-label">Publicidade</div>
+      <div class="ad-container">
+        <!-- Adsterra Native Banner -->
+        <script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
+        <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
+      </div>
     </div>
 
-    <!-- Products Grid -->
-    <div class="products-grid" id="productsGrid">
+    <!-- SEÇÃO: JOGOS -->
+    <div class="section-header" data-category="jogos">
+      <h2 class="section-title"><i class="fas fa-gamepad"></i> Jogos Interativos</h2>
+      <a href="#" class="see-all">Ver todos →</a>
+    </div>
+
+    <div class="products-grid">
       
-      <!-- CARD 1: 52 Atividades de Artes -->
-      <article class="product-card" style="--i:1" data-category="arte" data-views="12847">
+      <!-- JOGO 1: Mandala Zen -->
+      <article class="product-card" data-category="jogos arte gratis">
         <div class="card-image">
-          <img src="img/capa-52-atividades-artes.png" alt="52 Atividades de Artes" onerror="this.src='https://via.placeholder.com/300x200/8b5cf6/ffffff?text=Arte+para+Crianças'">
-          <span class="card-badge editor">Editor's Choice</span>
+          <img src="https://via.placeholder.com/300x200/8b5cf6/ffffff?text=Mandala+Zen" alt="Mandala Zen">
+          <span class="card-badge game">Jogo</span>
         </div>
         <div class="card-content">
-          <span class="card-category"><i class="fas fa-palette"></i> Arte & Criatividade</span>
+          <span class="card-category">🎨 Arte-Terapia</span>
+          <h3 class="card-title">Mandala Zen</h3>
+          <p class="card-description">Pinte mandalas relaxantes e reduza a ansiedade.</p>
+          
+          <div class="card-stats">
+            <div class="stat-item">
+              <i class="fas fa-users"></i>
+              <span class="stat-value">8.4k</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-star"></i>
+              <span class="stat-value">4.9</span>
+            </div>
+          </div>
+          
+          <a href="games/arte-terapia/" class="card-cta">
+            <i class="fas fa-play"></i> Jogar Grátis
+          </a>
+        </div>
+      </article>
+
+      <!-- JOGO 2: Memory Match -->
+      <article class="product-card" data-category="jogos gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/06b6d4/ffffff?text=Memory+Match" alt="Memory Match">
+          <span class="card-badge game">Popular</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category">🧠 Cognição</span>
+          <h3 class="card-title">Memory Match</h3>
+          <p class="card-description">Treine sua memória com este jogo desafiador.</p>
+          
+          <div class="card-stats">
+            <div class="stat-item">
+              <i class="fas fa-users"></i>
+              <span class="stat-value">12.5k</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-star"></i>
+              <span class="stat-value">4.7</span>
+            </div>
+          </div>
+          
+          <a href="games/cognicao/" class="card-cta">
+            <i class="fas fa-play"></i> Jogar Agora
+          </a>
+        </div>
+      </article>
+
+      <!-- JOGO 3: Escolha seu Desastre -->
+      <article class="product-card" data-category="jogos gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/ef4444/ffffff?text=Humor+Negro" alt="Escolha seu Desastre">
+          <span class="card-badge game">18+</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category">😈 Humor</span>
+          <h3 class="card-title">Escolha seu Desastre</h3>
+          <p class="card-description">Aventura interativa com finais hilários (e caóticos).</p>
+          
+          <div class="card-stats">
+            <div class="stat-item">
+              <i class="fas fa-users"></i>
+              <span class="stat-value">19.2k</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-star"></i>
+              <span class="stat-value">4.8</span>
+            </div>
+          </div>
+          
+          <a href="games/humor-negro/" class="card-cta secondary">
+            <i class="fas fa-play"></i> Aceitar o Caos
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- AD BANNER MEIO -->
+    <div class="ad-banner">
+      <div class="ad-label">Patrocinado</div>
+      <div class="ad-container">
+        <!-- Social Bar Adsterra -->
+        <script src="https://pl28876220.effectivegatecpm.com/30/b8/d1/30b8d1458b08c08f30d9f4f413e7a20d.js"></script>
+      </div>
+    </div>
+
+    <!-- SEÇÃO: PRODUTOS DIGITAIS -->
+    <div class="section-header" data-category="produtos">
+      <h2 class="section-title"><i class="fas fa-shopping-bag"></i> Produtos Digitais</h2>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- PRODUTO 1: 52 Atividades de Artes -->
+      <article class="product-card" data-category="produtos arte">
+        <div class="card-image">
+          <img src="img/capa-52-atividades-artes.png" alt="52 Atividades de Artes" 
+               onerror="this.src='https://via.placeholder.com/300x200/f59e0b/ffffff?text=52+Atividades'">
+          <span class="card-badge product">Mais Vendido</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category">🎨 Arte & Educação</span>
           <h3 class="card-title">52 Atividades de Artes</h3>
-          <p class="card-description">Um ano inteiro de atividades criativas para fazer em casa ou na escola.</p>
+          <p class="card-description">Um ano inteiro de atividades criativas para crianças.</p>
           
           <div class="card-stats">
             <div class="stat-item">
               <i class="fas fa-eye"></i>
-              <span class="stat-value hot" id="views-1">12.8k</span>
-              <span class="live-indicator">
-                <span class="live-dot"></span>
-                ao vivo
-              </span>
+              <span class="stat-value">28.9k</span>
             </div>
-            <div class="rating">
-              <span class="rating-stars">★★★★★</span>
-              <span class="rating-value">4.9</span>
+            <div class="stat-item">
+              <i class="fas fa-star"></i>
+              <span class="stat-value">4.9</span>
             </div>
           </div>
           
-          <a href="52-atividades-artes.html" class="card-cta">
-            <i class="fas fa-download"></i>
-            Acessar Agora
+          <a href="https://pay.hotmart.com/Y95040902G?bid=1773748325473" class="card-cta" target="_blank">
+            <i class="fas fa-shopping-cart"></i> Comprar - R$47
           </a>
         </div>
       </article>
 
-      <!-- CARD 2: Ted's Woodworking -->
-      <article class="product-card" style="--i:2" data-category="diy" data-views="28934">
+      <!-- PRODUTO 2: Arte Terapia -->
+      <article class="product-card" data-category="produtos arte">
         <div class="card-image">
-          <img src="assets/WOOD2.jpg" alt="Ted's Woodworking" onerror="this.src='https://via.placeholder.com/300x200/f59e0b/ffffff?text=Woodworking'">
-          <span class="card-badge trending">#1 em DIY</span>
+          <img src="https://via.placeholder.com/300x200/10b981/ffffff?text=Arte+Terapia" alt="Arte Terapia">
+          <span class="card-badge product">Novo</span>
         </div>
         <div class="card-content">
-          <span class="card-category"><i class="fas fa-hammer"></i> Projetos DIY</span>
-          <h3 class="card-title">Ted's Woodworking</h3>
-          <p class="card-description">16.000 planos de marcenaria passo a passo. Do iniciante ao avançado.</p>
+          <span class="card-category">🧘 Bem-estar</span>
+          <h3 class="card-title">Curso de Arte-Terapia</h3>
+          <p class="card-description">Técnicas profissionais para reduzir ansiedade e estresse.</p>
           
           <div class="card-stats">
             <div class="stat-item">
               <i class="fas fa-eye"></i>
-              <span class="stat-value hot" id="views-2">28.9k</span>
-              <span class="live-indicator">
-                <span class="live-dot"></span>
-                ao vivo
-              </span>
+              <span class="stat-value">15.3k</span>
             </div>
-            <div class="rating">
-              <span class="rating-stars">★★★★★</span>
-              <span class="rating-value">4.8</span>
-            </div>
-          </div>
-          
-          <a href="teds-woodworking.html" class="card-cta">
-            <i class="fas fa-download"></i>
-            Ver Planos
-          </a>
-        </div>
-      </article>
-
-      <!-- CARD 3: AppaNail -->
-      <article class="product-card" style="--i:3" data-category="saude" data-views="15623">
-        <div class="card-image">
-          <img src="assets/apa_aff_1.jpg" alt="AppaNail" onerror="this.src='https://via.placeholder.com/300x200/ec4899/ffffff?text=Nail+Care'">
-        </div>
-        <div class="card-content">
-          <span class="card-category"><i class="fas fa-heart"></i> Saúde & Beleza</span>
-          <h3 class="card-title">AppaNail</h3>
-          <p class="card-description">Solução natural para cuidados diários com as unhas.</p>
-          
-          <div class="card-stats">
             <div class="stat-item">
-              <i class="fas fa-eye"></i>
-              <span class="stat-value" id="views-3">15.6k</span>
-              <span class="live-indicator">
-                <span class="live-dot"></span>
-                ao vivo
-              </span>
-            </div>
-            <div class="rating">
-              <span class="rating-stars">★★★★☆</span>
-              <span class="rating-value">4.6</span>
-            </div>
-          </div>
-          
-          <a href="appanail.html" class="card-cta secondary">
-            <i class="fas fa-info-circle"></i>
-            Saiba Mais
-          </a>
-        </div>
-      </article>
-
-      <!-- CARD 4: Arte Terapia -->
-      <article class="product-card" style="--i:4" data-category="arte" data-views="9847">
-        <div class="card-image">
-          <img src="img/arteterapia-thumb.jpg" alt="Arte Terapia" onerror="this.src='https://via.placeholder.com/300x200/10b981/ffffff?text=Arte+Terapia'">
-          <span class="card-badge">Novo</span>
-        </div>
-        <div class="card-content">
-          <span class="card-category"><i class="fas fa-brain"></i> Bem-estar</span>
-          <h3 class="card-title">Arte Terapia</h3>
-          <p class="card-description">Técnicas de arte para reduzir ansiedade e aumentar a autoestima.</p>
-          
-          <div class="card-stats">
-            <div class="stat-item">
-              <i class="fas fa-eye"></i>
-              <span class="stat-value" id="views-4">9.8k</span>
-              <span class="live-indicator">
-                <span class="live-dot"></span>
-                ao vivo
-              </span>
-            </div>
-            <div class="rating">
-              <span class="rating-stars">★★★★★</span>
-              <span class="rating-value">4.9</span>
+              <i class="fas fa-star"></i>
+              <span class="stat-value">4.8</span>
             </div>
           </div>
           
           <a href="arteterapia.index.html" class="card-cta">
-            <i class="fas fa-download"></i>
-            Explorar
+            <i class="fas fa-info-circle"></i> Saiba Mais
           </a>
         </div>
       </article>
 
-      <!-- CARD 5: Animal de Poder -->
-      <article class="product-card" style="--i:5" data-category="espiritual" data-views="18234">
+    </div>
+
+    <!-- SEÇÃO: AFILIADOS -->
+    <div class="section-header" data-category="afiliados">
+      <h2 class="section-title"><i class="fas fa-handshake"></i> Ofertas Especiais</h2>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- AFILIADO 1: Amazon -->
+      <article class="product-card" data-category="afiliados">
         <div class="card-image">
-          <img src="aguia.jpg" alt="Animal de Poder" onerror="this.src='https://via.placeholder.com/300x200/8b5cf6/ffffff?text=Animal+de+Poder'">
+          <img src="https://via.placeholder.com/300x200/FF9900/ffffff?text=Amazon+Kit+Arte" alt="Kit de Arte Amazon">
+          <span class="card-badge affiliate">Amazon</span>
         </div>
         <div class="card-content">
-          <span class="card-category"><i class="fas fa-dove"></i> Autoconhecimento</span>
-          <h3 class="card-title">Descubra Seu Animal de Poder</h3>
-          <p class="card-description">Guia prático para conectar-se com sua essência espiritual.</p>
+          <span class="card-category">🛒 Materiais de Arte</span>
+          <h3 class="card-title">Kit Completo de Pintura</h3>
+          <p class="card-description">Tudo que você precisa para começar a pintar. Frete grátis!</p>
           
           <div class="card-stats">
             <div class="stat-item">
-              <i class="fas fa-eye"></i>
-              <span class="stat-value hot" id="views-5">18.2k</span>
-              <span class="live-indicator">
-                <span class="live-dot"></span>
-                ao vivo
-              </span>
-            </div>
-            <div class="rating">
-              <span class="rating-stars">★★★★★</span>
-              <span class="rating-value">4.7</span>
+              <i class="fas fa-tag"></i>
+              <span class="stat-value">R$89,90</span>
             </div>
           </div>
           
-          <a href="animal-de-poder.html" class="card-cta">
-            <i class="fas fa-download"></i>
-            Iniciar Jornada
+          <a href="https://amzn.to/SEU-LINK-AQUI" class="card-cta secondary" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Ver na Amazon
           </a>
         </div>
       </article>
 
-      <!-- CARD 6: Cortes Curtos 2026 -->
-      <article class="product-card" style="--i:6" data-category="estilo" data-views="22156">
+      <!-- AFILIADO 2: Shopee -->
+      <article class="product-card" data-category="afiliados">
         <div class="card-image">
-          <img src="corte6.jpg" alt="Cortes Curtos 2026" onerror="this.src='https://via.placeholder.com/300x200/f43f5e/ffffff?text=Hair+Trends'">
-          <span class="card-badge trending">Tendência 2026</span>
+          <img src="https://via.placeholder.com/300x200/EE4D2D/ffffff?text=Shopee+Ofertas" alt="Shopee Ofertas">
+          <span class="card-badge affiliate">Shopee</span>
         </div>
         <div class="card-content">
-          <span class="card-category"><i class="fas fa-cut"></i> Estilo & Moda</span>
-          <h3 class="card-title">Cortes Curtos 2026</h3>
-          <p class="card-description">As tendências de cortes de cabelo que vão dominar 2026.</p>
+          <span class="card-category">🎁 Materiais Criativos</span>
+          <h3 class="card-title">Papel Colorido Premium</h3>
+          <p class="card-description">100 folhas de papel colorido para artesanato. Super oferta!</p>
           
           <div class="card-stats">
             <div class="stat-item">
-              <i class="fas fa-eye"></i>
-              <span class="stat-value hot" id="views-6">22.1k</span>
-              <span class="live-indicator">
-                <span class="live-dot"></span>
-                ao vivo
-              </span>
-            </div>
-            <div class="rating">
-              <span class="rating-stars">★★★★☆</span>
-              <span class="rating-value">4.5</span>
+              <i class="fas fa-tag"></i>
+              <span class="stat-value">R$24,90</span>
             </div>
           </div>
           
-          <a href="cortes-curtos-2026/" class="card-cta secondary">
-            <i class="fas fa-eye"></i>
-            Ver Tendências
+          <a href="https://shope.ee/SEU-LINK-AQUI" class="card-cta secondary" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Ver na Shopee
           </a>
         </div>
       </article>
 
-      <!-- CARD 7: Blog Mistérios -->
-      <article class="product-card" style="--i:7" data-category="espiritual" data-views="11423">
-        <div class="card-image">
-          <img src="img/misterios-thumb.jpg" alt="Mistérios Revelados" onerror="this.src='https://via.placeholder.com/300x200/64748b/ffffff?text=Mistérios'">
-        </div>
-        <div class="card-content">
-          <span class="card-category"><i class="fas fa-ghost"></i> Curiosidades</span>
-          <h3 class="card-title">Mistérios Revelados</h3>
-          <p class="card-description">Histórias fascinantes e fenômenos inexplicáveis.</p>
-          
-          <div class="card-stats">
-            <div class="stat-item">
-              <i class="fas fa-eye"></i>
-              <span class="stat-value" id="views-7">11.4k</span>
-              <span class="live-indicator">
-                <span class="live-dot"></span>
-                ao vivo
-              </span>
-            </div>
-            <div class="rating">
-              <span class="rating-stars">★★★★★</span>
-              <span class="rating-value">4.8</span>
-            </div>
-          </div>
-          
-          <a href="blog-misterio.index.html/" class="card-cta">
-            <i class="fas fa-download"></i>
-            Explorar Mistérios
-          </a>
-        </div>
-      </article>
-
-      <!-- CARD 8: Blog Principal -->
-      <article class="product-card" style="--i:8" data-category="gratis" data-views="34567">
-        <div class="card-image">
-          <img src="img/blog-thumb.jpg" alt="Blog Nomadisch" onerror="this.src='https://via.placeholder.com/300x200/3b82f6/ffffff?text=Blog'">
-          <span class="card-badge editor">100% Grátis</span>
-        </div>
-        <div class="card-content">
-          <span class="card-category"><i class="fas fa-newspaper"></i> Conteúdo Gratuito</span>
-          <h3 class="card-title">Blog Nomadisch</h3>
-          <p class="card-description">Artigos, dicas e guias gratuitos sobre produtividade e criatividade.</p>
-          
-          <div class="card-stats">
-            <div class="stat-item">
-              <i class="fas fa-eye"></i>
-              <span class="stat-value hot" id="views-8">34.5k</span>
-              <span class="live-indicator">
-                <span class="live-dot"></span>
-                ao vivo
-              </span>
-            </div>
-            <div class="rating">
-              <span class="rating-stars">★★★★★</span>
-              <span class="rating-value">4.9</span>
-            </div>
-          </div>
-          
-          <a href="blog/" class="card-cta secondary">
-            <i class="fas fa-arrow-right"></i>
-            Ler Artigos
-          </a>
-        </div>
-      </article>
-
-<!-- === COPIE E COLE AQUI OS 3 CARDS DOS JOGOS === -->
-
-<!-- CARD: Mandala Zen -->
-<article class="product-card" data-category="jogos" data-views="8432">
-  <div class="card-image">
-    <img src="img/66.png" alt="Mandala Zen" 
-         onerror="this.src='https://via.placeholder.com/300x200/8b5cf6/ffffff?text=Mandala+Zen'">
-    <span class="card-badge editor">Relaxante</span>
-  </div>
-  <div class="card-content">
-    <span class="card-category"><i class="fas fa-palette"></i> Arte-Terapia</span>
-    <h3 class="card-title">Mandala Zen</h3>
-    <p class="card-description">Pinte mandalas para reduzir ansiedade e expressar emoções.</p>
-    
-    <div class="card-stats">
-      <div class="stat-item">
-        <i class="fas fa-users"></i>
-        <span class="stat-value" id="views-mandala">8.4k</span>
-        <span class="live-indicator"><span class="live-dot"></span> jogando</span>
-      </div>
-      <div class="rating">
-        <span class="rating-stars">★★★★★</span>
-        <span class="rating-value">4.9</span>
-      </div>
-    </div>
-    
-    <a href="games/arte-terapia/" class="card-cta">
-      <i class="fas fa-play"></i> Jogar Agora
-    </a>
-  </div>
-</article>
-
-<!-- CARD: Memory Match -->
-<article class="product-card" data-category="jogos" data-views="12567">
-  <div class="card-image">
-    <img src="img/65.png" alt="Memory Match"
-         onerror="this.src='https://via.placeholder.com/300x200/06b6d4/ffffff?text=Memory+Match'">
-    <span class="card-badge trending">#1 em Cognição</span>
-  </div>
-  <div class="card-content">
-    <span class="card-category"><i class="fas fa-brain"></i> Treino Mental</span>
-    <h3 class="card-title">Memory Match</h3>
-    <p class="card-description">Encontre pares e treine sua memória de forma divertida.</p>
-    
-    <div class="card-stats">
-      <div class="stat-item">
-        <i class="fas fa-users"></i>
-        <span class="stat-value hot" id="views-memory">12.5k</span>
-        <span class="live-indicator"><span class="live-dot"></span> jogando</span>
-      </div>
-      <div class="rating">
-        <span class="rating-stars">★★★★☆</span>
-        <span class="rating-value">4.7</span>
-      </div>
-    </div>
-    
-    <a href="games/cognicao/" class="card-cta">
-      <i class="fas fa-play"></i> Desafiar Minha Mente
-    </a>
-  </div>
-</article>
-
-<!-- CARD: Escolha seu Desastre -->
-<article class="product-card" data-category="jogos" data-views="19234">
-  <div class="card-image">
-    <img src="https://via.placeholder.com/300x200/ef4444/ffffff?text=Humor+Negro" alt="Escolha seu Desastre">
-    <span class="card-badge">18+ 😈</span>
-  </div>
-  <div class="card-content">
-    <span class="card-category"><i class="fas fa-laugh"></i> Humor Negro</span>
-    <h3 class="card-title">Escolha seu Desastre</h3>
-    <p class="card-description">Aventura interativa onde toda escolha leva ao caos. Divirta-se!</p>
-    
-    <div class="card-stats">
-      <div class="stat-item">
-        <i class="fas fa-users"></i>
-        <span class="stat-value hot" id="views-desastre">19.2k</span>
-        <span class="live-indicator"><span class="live-dot"></span> jogando</span>
-      </div>
-      <div class="rating">
-        <span class="rating-stars">★★★★★</span>
-        <span class="rating-value">4.8</span>
-      </div>
-    </div>
-    
-    <a href="games/humor-negro/" class="card-cta secondary">
-      <i class="fas fa-play"></i> Aceitar o Caos
-    </a>
-  </div>
-</article>
-      
-    </div>
-
-    <!-- No Results -->
-    <div class="no-results" id="noResults">
-      <i class="fas fa-search"></i>
-      <h3>Nenhum produto encontrado</h3>
-      <p>Tente buscar por outro termo ou selecione uma categoria diferente.</p>
-    </div>
-
-    <!-- Ad Banner -->
-    <div class="ad-banner">
-      <div class="ad-label">Publicidade</div>
-      <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
     </div>
 
   </div>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="#">Sobre</a>
-        <a href="#">Privacidade</a>
-        <a href="#">Termos</a>
-        <a href="#">Contato</a>
-        <a href="#">Afiliados</a>
-      </div>
-      <p class="footer-copy">
-        &copy; 2024 Nomadisch Play. Todos os direitos reservados.<br>
-        <small style="opacity: 0.7; margin-top: 0.5rem; display: block;">
-          Links podem conter afiliados. Sempre avalie antes de comprar.
-        </small>
-      </p>
+    <div class="footer-links">
+      <a href="#">Sobre</a>
+      <a href="#">Privacidade</a>
+      <a href="#">Termos</a>
+      <a href="#">Contato</a>
+      <a href="#">Afiliados</a>
+      <a href="#">Trabalhe Conosco</a>
     </div>
+    <p style="color: var(--gray); font-size: 0.9rem;">
+      &copy; 2024 Nomadisch. Todos os direitos reservados.<br>
+      <small>Links de afiliados podem gerar comissão sem custo extra para você.</small>
+    </p>
   </footer>
 
-  <!-- Scripts de Anúncios -->
-  <script src="https://pl28876206.effectivegatecpm.com/87/53/16/8753161e227db64bf25c79a6f4a34f05.js"></script>
-  <script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
-  <script src="https://pl28876220.effectivegatecpm.com/30/b8/d1/30b8d1458b08c08f30d9f4f413e7a20d.js"></script>
-
-  <!-- JavaScript -->
+  <!-- Scripts -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    // Captura de Leads
+    function captureLead(inputId) {
+      const email = document.getElementById(inputId).value;
+      if (!email || !email.includes('@')) {
+        alert('Por favor, digite um email válido!');
+        return;
+      }
       
-      // ========== ANIMAÇÃO DE ENTRADA ==========
+      // Salva no localStorage
+      let leads = JSON.parse(localStorage.getItem('nomadisch_leads') || '[]');
+      leads.push({ 
+        email: email, 
+        date: new Date().toISOString(),
+        source: 'produtos.html'
+      });
+      localStorage.setItem('nomadisch_leads', JSON.stringify(leads));
+      
+      alert('✅ Obrigado! Você receberá novidades em breve!');
+      document.getElementById(inputId).value = '';
+      
+      // Aqui integra com:
+      // - Mailchimp API
+      // - Google Sheets
+      // - ConvertKit
+      console.log('Lead capturado:', email);
+    }
+
+    // Filtro por Categoria
+    function filterCategory(category) {
+      // Atualiza botões ativos
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase().includes(category) || 
+            (category === 'all' && btn.textContent.includes('Tudo'))) {
+          btn.classList.add('active');
+        }
+      });
+
+      // Filtra cards
       const cards = document.querySelectorAll('.product-card');
-      cards.forEach((card, index) => {
-        setTimeout(() => {
-          card.classList.add('loaded');
-        }, 100 + (index * 100));
-      });
-
-      // ========== CONTADORES DE VISUALIZAÇÕES EM TEMPO REAL ==========
-      function updateViewCounts() {
-        cards.forEach((card, index) => {
-          const viewsElement = document.getElementById(`views-${index + 1}`);
-          const baseViews = parseInt(card.dataset.views) || 10000;
-          
-          // Simula visualizações aumentando aleatoriamente
-          const randomIncrease = Math.floor(Math.random() * 50);
-          const currentViews = baseViews + randomIncrease;
-          
-          // Formata número (ex: 12847 -> 12.8k)
-          const formattedViews = currentViews >= 1000 
-            ? (currentViews / 1000).toFixed(1) + 'k'
-            : currentViews.toString();
-          
-          if (viewsElement) {
-            viewsElement.textContent = formattedViews;
-            
-            // Efeito de "hot" para produtos com muitas views
-            if (currentViews > 20000) {
-              viewsElement.classList.add('hot');
-            }
-          }
-        });
-      }
-
-      // Atualiza a cada 5 segundos
-      updateViewCounts();
-      setInterval(updateViewCounts, 5000);
-
-      // ========== BUSCA EM TEMPO REAL ==========
-      const searchInput = document.getElementById('searchInput');
-      const noResults = document.getElementById('noResults');
-
-      searchInput.addEventListener('input', function(e) {
-        const term = e.target.value.toLowerCase().trim();
-        let visibleCount = 0;
-
-        cards.forEach(card => {
-          const title = card.querySelector('.card-title').textContent.toLowerCase();
-          const desc = card.querySelector('.card-description').textContent.toLowerCase();
-          const category = card.dataset.category;
-          
-          const matches = title.includes(term) || desc.includes(term) || category.includes(term);
-          
-          if (matches) {
-            card.style.display = 'block';
-            setTimeout(() => {
-              card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
-            }, 100);
-            visibleCount++;
-          } else {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-              card.style.display = 'none';
-            }, 300);
-          }
-        });
-
-        if (visibleCount === 0 && term !== '') {
-          noResults.classList.add('show');
+      cards.forEach(card => {
+        const cardCategory = card.dataset.category;
+        if (category === 'all' || cardCategory.includes(category)) {
+          card.style.display = 'block';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 100);
         } else {
-          noResults.classList.remove('show');
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 300);
         }
       });
+    }
 
-      // ========== FILTROS POR CATEGORIA ==========
-      const filterBtns = document.querySelectorAll('.nav-tab');
-      
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-          
-          const filter = this.dataset.filter;
-          let visibleCount = 0;
-
-          cards.forEach(card => {
-            const category = card.dataset.category;
-            
-            if (filter === 'all' || category === filter) {
-              card.style.display = 'block';
-              setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-              }, 100);
-              visibleCount++;
-            } else {
-              card.style.opacity = '0';
-              card.style.transform = 'translateY(20px)';
-              setTimeout(() => {
-                card.style.display = 'none';
-              }, 300);
-            }
-          });
-
-          searchInput.value = '';
-          
-          if (visibleCount === 0) {
-            noResults.classList.add('show');
-          } else {
-            noResults.classList.remove('show');
-          }
-        });
-      });
-
-      // ========== LAZY LOAD ==========
-      if ('loading' in HTMLImageElement.prototype) {
-        document.querySelectorAll('.card-image img').forEach(img => {
-          img.setAttribute('loading', 'lazy');
-        });
-      }
-
-      // ========== TRACKING DE CLIQUES (Analytics) ==========
-      document.querySelectorAll('.card-cta').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          const card = this.closest('.product-card');
-          const title = card.querySelector('.card-title').textContent;
-          
-          // Simula envio de analytics
-          console.log(` Clique registrado: ${title}`);
-          
-          // Aqui você pode integrar com Google Analytics, Facebook Pixel, etc.
-          // gtag('event', 'click_product', { product_name: title });
-        });
-      });
-
-      // ========== EFEITO DE SCROLL SUAVE ==========
-      let lastScroll = 0;
-      window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        const header = document.querySelector('header');
+    // Tracking de Cliques (Analytics)
+    document.querySelectorAll('a[href]').forEach(link => {
+      link.addEventListener('click', function() {
+        const href = this.href;
+        const text = this.textContent.trim();
         
-        if (currentScroll > 100) {
-          header.style.boxShadow = '0 4px 30px rgba(139, 92, 246, 0.3)';
-        } else {
-          header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
-        }
+        // Track eventos
+        console.log('Clique registrado:', {
+          url: href,
+          text: text,
+          timestamp: new Date().toISOString()
+        });
         
-        lastScroll = currentScroll;
+        // Aqui integra com Google Analytics:
+        // gtag('event', 'click', { event_category: 'link', event_label: text });
       });
-
     });
+
+    // Contador de Visualizações (simulado)
+    function updateViewCounts() {
+      const statValues = document.querySelectorAll('.stat-value');
+      statValues.forEach(stat => {
+        if (stat.textContent.includes('k')) {
+          const base = parseFloat(stat.textContent);
+          const random = (Math.random() * 0.1).toFixed(1);
+          stat.textContent = (base + parseFloat(random)).toFixed(1) + 'k';
+        }
+      });
+    }
+
+    setInterval(updateViewCounts, 10000); // Atualiza a cada 10s
   </script>
+
+  <!-- Popunder Ad -->
+  <script src="https://pl28876206.effectivegatecpm.com/87/53/16/8753161e227db64bf25c79a6f4a34f05.js"></script>
 </body>
 </html>

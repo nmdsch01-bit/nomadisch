@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nomadisch Play | Jogos, Produtos e Ofertas</title>
-  
-  <!-- Google AdSense (SE TIVER APROVAÇÃO) -->
-  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-     crossorigin="anonymous"></script> -->
+  <meta name="description" content="Jogos de arte-terapia, produtos digitais e ofertas exclusivas para transformar sua vida.">
   
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,12 +16,14 @@
       --accent: #f472b6;
       --success: #10b981;
       --warning: #f59e0b;
+      --danger: #ef4444;
       --dark: #0f172a;
       --dark-light: #1e293b;
       --gray: #94a3b8;
       --white: #ffffff;
       --glass: rgba(30, 41, 59, 0.85);
       --glass-border: rgba(255, 255, 255, 0.1);
+      --glow-primary: 0 0 40px rgba(139, 92, 246, 0.4);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,17 +34,17 @@
       color: var(--white);
       line-height: 1.6;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     /* Background animado */
     .bg-animation {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: -1;
       overflow: hidden;
+      pointer-events: none;
     }
 
     .bg-animation .orb {
@@ -66,39 +65,170 @@
       66% { transform: translate(-20px, 30px) scale(0.9); }
     }
 
-    /* Header */
+    /* ========== HEADER ========== */
     header {
       background: var(--glass);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--glass-border);
-      padding: 1rem 2rem;
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     }
 
     .header-content {
       max-width: 1400px;
       margin: 0 auto;
+      padding: 0.8rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 2rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
     .logo {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 700;
       background: linear-gradient(135deg, var(--white), var(--primary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
     }
 
-    .logo span { color: var(--secondary); -webkit-text-fill-color: var(--secondary); }
+    .logo span {
+      color: var(--secondary);
+      -webkit-text-fill-color: var(--secondary);
+    }
 
+    .blog-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, var(--warning), #d97706);
+      color: var(--dark);
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+
+    .blog-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+      color: var(--dark);
+    }
+
+    /* Newsletter Form - Formspree */
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.4rem 0.8rem;
+      border-radius: 50px;
+      border: 1px solid var(--glass-border);
+      flex: 1;
+      max-width: 450px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      background: transparent;
+      border: none;
+      color: var(--white);
+      font-size: 0.95rem;
+      outline: none;
+      min-width: 150px;
+    }
+
+    .newsletter-form input::placeholder {
+      color: var(--gray);
+    }
+
+    .newsletter-form button {
+      padding: 0.6rem 1.3rem;
+      background: linear-gradient(135deg, var(--success), #059669);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Success Message */
+    .formspree-success {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0.5rem 2rem;
+      background: linear-gradient(135deg, var(--success), #059669);
+      color: white;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-align: center;
+      display: none;
+      animation: slideDown 0.3s ease;
+    }
+
+    .formspree-success.show {
+      display: block;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .header-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+    }
+
+    .header-btn:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--glow-primary);
+    }
 
     /* Navigation */
     nav {
@@ -151,6 +281,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
 
     .ad-label {
@@ -193,6 +324,18 @@
 
     .section-title i { color: var(--secondary); }
 
+    .see-all {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: gap 0.3s;
+    }
+
+    .see-all:hover { gap: 0.8rem; }
+
     /* Products Grid */
     .products-grid {
       display: grid;
@@ -210,6 +353,8 @@
       transition: all 0.3s;
       cursor: pointer;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
     .product-card:hover {
@@ -258,6 +403,9 @@
 
     .card-content {
       padding: 1.2rem 1.5rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .card-category {
@@ -274,12 +422,14 @@
       font-size: 1.3rem;
       font-weight: 700;
       margin-bottom: 0.6rem;
+      color: var(--white);
     }
 
     .card-description {
       font-size: 0.9rem;
       color: var(--gray);
       margin-bottom: 1rem;
+      flex-grow: 1;
     }
 
     .card-stats {
@@ -317,6 +467,7 @@
       border-radius: 12px;
       font-weight: 600;
       transition: all 0.3s;
+      margin-top: auto;
     }
 
     .card-cta:hover {
@@ -356,28 +507,63 @@
     .footer-links a:hover { color: var(--primary); }
 
     /* Responsive */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .header-content {
         flex-direction: column;
-        text-align: center;
+        padding: 0.8rem 1rem;
+        gap: 1rem;
       }
+      
+      .header-left {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .newsletter-form {
+        width: 100%;
+        max-width: 100%;
+        order: 3;
+      }
+      
+      .header-actions {
+        order: 2;
+      }
+      
+      nav {
+        padding: 0.8rem 1rem;
+      }
+      
+      .container {
+        padding: 1rem;
+      }
+    }
 
-      .newsletter-box {
+    @media (max-width: 480px) {
+      .logo { font-size: 1.3rem; }
+      .blog-btn { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
+      
+      .newsletter-form {
         flex-direction: column;
-        width: 100%;
+        border-radius: 16px;
+        padding: 0.6rem;
       }
+      
+      .newsletter-form input { width: 100%; }
+      .newsletter-form button { width: 100%; justify-content: center; }
+      
+      .products-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 1.5rem; }
+      .card-title { font-size: 1.2rem; }
+    }
 
-      .newsletter-box input {
-        width: 100%;
-      }
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-title {
-        font-size: 1.5rem;
-      }
+    .product-card {
+      animation: fadeIn 0.4s ease forwards;
     }
   </style>
 </head>
@@ -390,15 +576,38 @@
     <div class="orb orb-3"></div>
   </div>
 
-  <!-- Header com Newsletter -->
+  <!-- ========== HEADER COM FORMSPREE + BLOG ========== -->
   <header>
     <div class="header-content">
-      <a href="index.html" class="logo">Nomadisch <span>Play</span></a>
       
-      <div class="newsletter-box"> 
-        <input type="email" placeholder="📧 Receba novidades por email" id="headerEmail">
-        <button onclick="captureLead('headerEmail')">Inscrever</button>
+      <!-- Logo + Blog Button (Esquerda) -->
+      <div class="header-left">
+        <a href="index.html" class="logo">Nomadisch <span>Play</span></a>
+        <a href="blog.html" class="blog-btn">
+          <i class="fas fa-newspaper"></i> Blog
+        </a>
       </div>
+
+      <!-- Formspree Newsletter (Centro) -->
+      <form action="https://formspree.io/f/xyknlbjq" method="POST" class="newsletter-form">
+        <input type="email" name="email" placeholder="📧 Seu email para novidades" required>
+        <button type="submit">
+          <i class="fas fa-paper-plane"></i> Assinar
+        </button>
+      </form>
+
+      <!-- Ações (Direita) -->
+      <div class="header-actions">
+        <button class="header-btn" title="Notificações">
+          <i class="fas fa-bell"></i>
+        </button>
+      </div>
+
+    </div>
+    
+    <!-- Mensagem de sucesso do Formspree -->
+    <div id="formspree-success" class="formspree-success">
+      ✅ Obrigado! Em breve você receberá nossas novidades!
     </div>
   </header>
   
@@ -414,195 +623,181 @@
 
   <div class="container">
 
-    <!-- AD BANNER TOP (728x90 ou responsivo) -->
+    <!-- AD BANNER TOP -->
     <div class="ad-banner">
       <div class="ad-label">Publicidade</div>
       <div class="ad-container">
-        
-        <!-- Adsterra Banner 160x300 -->
- <script src="https://pl28876220.profitablecpmratenetwork.com/30/b8/d1/30b8d1458b08c08f30d9f4f413e7a20d.js"></script>
-</script>
-<script src="https://www.highperformanceformat.com/977bd9c66aa87346321290ab413c768c/invoke.js"></script>
-
+        <!-- Adsterra Native Banner -->
+        <script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
         <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
       </div>
     </div>
 
-    <!-- SEÇÃO: JOGOS -->
-    <div class="section-header" data-category="jogos">
-      <h2 class="section-title"><i class="fas fa-gamepad"></i> Jogos Interativos</h2>
+    <!-- ============================================
+         SEÇÃO: ARTE-TERAPIA (ADHD-FRIENDLY)
+         ============================================ -->
+    <div class="section-header" data-category="arte">
+      <h2 class="section-title"><i class="fas fa-palette"></i> Arte-Terapia para TDAH</h2>
       <a href="#" class="see-all">Ver todos →</a>
     </div>
 
     <div class="products-grid">
       
-      <!-- JOGO 1: Mandala Zen -->
+      <!-- CARD: Mandala Zen -->
       <article class="product-card" data-category="jogos arte gratis">
         <div class="card-image">
-          <img src="https://www.nomadisch.com.br/games/arte-terapia/" alt="Mandala Zen">
-          <span class="card-badge game">Jogo</span>
+          <img src="https://via.placeholder.com/300x200/8b5cf6/ffffff?text=Mandala+Zen" alt="Mandala Zen">
+          <span class="card-badge game">🧘 Relaxante</span>
         </div>
         <div class="card-content">
-          <span class="card-category">🎨 Arte-Terapia</span>
+          <span class="card-category"><i class="fas fa-palette"></i> Arte-Terapia</span>
           <h3 class="card-title">Mandala Zen</h3>
-          <p class="card-description">Pinte mandalas relaxantes e reduza a ansiedade.</p>
-          
+          <p class="card-description">Pinte mandalas para reduzir ansiedade e expressar emoções.</p>
           <div class="card-stats">
-            <div class="stat-item">
-              <i class="fas fa-users"></i>
-              <span class="stat-value">8.4k</span>
-            </div>
-            <div class="stat-item">
-              <i class="fas fa-star"></i>
-              <span class="stat-value">4.9</span>
-            </div>
+            <div class="stat-item"><i class="fas fa-users"></i> <span class="stat-value">8.4k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.9</span></div>
           </div>
-          
-          <a href="games/arte-terapia/" class="card-cta">
-            <i class="fas fa-play"></i> Jogar Grátis
-          </a>
+          <a href="games/arte-terapia/" class="card-cta"><i class="fas fa-play"></i> Jogar</a>
         </div>
       </article>
 
-      <!-- JOGO 2: Memory Match -->
-      <article class="product-card" data-category="jogos gratis">
+      <!-- CARD: Coloring Book -->
+      <article class="product-card" data-category="jogos arte gratis">
         <div class="card-image">
-          <img src="https://via.placeholder.com/300x200/06b6d4/ffffff?text=Memory+Match" alt="Memory Match">
-          <span class="card-badge game">Popular</span>
+          <img src="https://via.placeholder.com/300x200/f472b6/ffffff?text=Coloring+Book" alt="Coloring Book">
+          <span class="card-badge game">🎨 Criativo</span>
         </div>
         <div class="card-content">
-          <span class="card-category">🧠 Cognição</span>
-          <h3 class="card-title">Memory Match</h3>
-          <p class="card-description">Treine sua memória com este jogo desafiador.</p>
-          
+          <span class="card-category"><i class="fas fa-paint-brush"></i> Arte-Terapia</span>
+          <h3 class="card-title">Coloring Book</h3>
+          <p class="card-description">Desenhos prontos para colorir. Escolha sua arte favorita!</p>
           <div class="card-stats">
-            <div class="stat-item">
-              <i class="fas fa-users"></i>
-              <span class="stat-value">12.5k</span>
-            </div>
-            <div class="stat-item">
-              <i class="fas fa-star"></i>
-              <span class="stat-value">4.7</span>
-            </div>
+            <div class="stat-item"><i class="fas fa-users"></i> <span class="stat-value">12.3k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.8</span></div>
           </div>
-          
-          <a href="games/cognicao/" class="card-cta">
-            <i class="fas fa-play"></i> Jogar Agora
-          </a>
+          <a href="games/arte-terapia/coloring-book.html" class="card-cta"><i class="fas fa-play"></i> Colorir</a>
         </div>
       </article>
 
-      <!-- JOGO 3: Escolha seu Desastre -->
-      <article class="product-card" data-category="jogos gratis">
+      <!-- CARD: Flow Painter -->
+      <article class="product-card" data-category="jogos arte gratis">
         <div class="card-image">
-          <img src="https://via.placeholder.com/300x200/ef4444/ffffff?text=Humor+Negro" alt="Escolha seu Desastre">
-          <span class="card-badge game">18+</span>
+          <img src="https://via.placeholder.com/300x200/06b6d4/ffffff?text=Flow+Painter" alt="Flow Painter">
+          <span class="card-badge game editor">✨ Sem Regras</span>
         </div>
         <div class="card-content">
-          <span class="card-category">😈 Humor</span>
-          <h3 class="card-title">Escolha seu Desastre</h3>
-          <p class="card-description">Aventura interativa com finais hilários (e caóticos).</p>
-          
+          <span class="card-category"><i class="fas fa-tint"></i> Arte-Terapia</span>
+          <h3 class="card-title">Flow Painter</h3>
+          <p class="card-description">Pintura livre com efeito de tinta fluindo. Sem pressão, só sinta!</p>
           <div class="card-stats">
-            <div class="stat-item">
-              <i class="fas fa-users"></i>
-              <span class="stat-value">19.2k</span>
-            </div>
-            <div class="stat-item">
-              <i class="fas fa-star"></i>
-              <span class="stat-value">4.8</span>
-            </div>
+            <div class="stat-item"><i class="fas fa-users"></i> <span class="stat-value">9.7k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.9</span></div>
           </div>
-          
-          <a href="games/humor-negro/" class="card-cta secondary">
-            <i class="fas fa-play"></i> Aceitar o Caos
-          </a>
+          <a href="games/flow-painter/" class="card-cta"><i class="fas fa-play"></i> Pintar</a>
         </div>
       </article>
 
-    <!-- JOGO 4: Nomadisch Runner -->
-<article class="product-card" data-category="jogos gratis">
-  <div class="card-image">
-    <img src="https://via.placeholder.com/300x200/10b981/ffffff?text=Runner+Game" alt="Nomadisch Runner">
-    <span class="card-badge game">🔥 Viciante</span>
-  </div>
-  <div class="card-content">
-    <span class="card-category">🎮 Ação Infinita</span>
-    <h3 class="card-title">Nomadisch Runner</h3>
-    <p class="card-description">Desvie, pule e bata seu recorde neste jogo viciante!</p>
-    
-    <div class="card-stats">
-      <div class="stat-item">
-        <i class="fas fa-trophy"></i>
-        <span class="stat-value" id="runner-highscore">--</span>
-      </div>
-      <div class="stat-item">
-        <i class="fas fa-star"></i>
-        <span class="stat-value">4.8</span>
-      </div>
-    </div>
-    
-    <a href="games/runner/" class="card-cta">
-      <i class="fas fa-play"></i> Jogar Agora
-    </a>
-  </div>
-</article>
+      <!-- CARD: Pixel Art Studio -->
+      <article class="product-card" data-category="jogos arte gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/a78bfa/ffffff?text=Pixel+Art" alt="Pixel Art Studio">
+          <span class="card-badge game">👾 Retrô</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-border-all"></i> Arte-Terapia</span>
+          <h3 class="card-title">Pixel Art Studio</h3>
+          <p class="card-description">Crie arte com grade de pixels. Perfeito para foco e concentração!</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-users"></i> <span class="stat-value">15.2k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.7</span></div>
+          </div>
+          <a href="games/pixel-art/" class="card-cta"><i class="fas fa-play"></i> Criar</a>
+        </div>
+      </article>
 
-<!--JOGO 5: Gem Match -->
-<article class="product-card" data-category="jogos gratis">
-  <div class="card-image">
-    <img src="https://via.placeholder.com/300x200/8b5cf6/ffffff?text=Gem+Match" alt="Gem Match">
-    <span class="card-badge game">🧩 Match-3</span>
-  </div>
-  <div class="card-content">
-    <span class="card-category">🎮 Puzzle Relaxante</span>
-    <h3 class="card-title">Gem Match</h3>
-    <p class="card-description">Combine gemas coloridas e bata combos explosivos!</p>
-    <div class="card-stats">
-      <div class="stat-item"><i class="fas fa-trophy"></i> <span class="stat-value">--</span></div>
-      <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.7</span></div>
-    </div>
-    <a href="games/puzzle/" class="card-cta"><i class="fas fa-play"></i> Jogar</a>
-  </div>
-</article>
+      <!-- CARD: Pattern Maker -->
+      <article class="product-card" data-category="jogos arte gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/22c55e/ffffff?text=Pattern+Maker" alt="Pattern Maker">
+          <span class="card-badge game">🌀 Meditativo</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-shapes"></i> Arte-Terapia</span>
+          <h3 class="card-title">Pattern Maker</h3>
+          <p class="card-description">Crie padrões simétricos. Ritmo e repetição para acalmar a mente!</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-users"></i> <span class="stat-value">7.8k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.8</span></div>
+          </div>
+          <a href="games/pattern-maker/" class="card-cta"><i class="fas fa-play"></i> Criar Padrões</a>
+        </div>
+      </article>
 
-<!-- JOGO 6: Slingshot Adventure -->
-<article class="product-card" data-category="jogos gratis">
-  <div class="card-image">
-    <img src="https://via.placeholder.com/300x200/ef4444/ffffff?text=Slingshot" alt="Slingshot Adventure">
-    <span class="card-badge game">🎯 Ação</span>
-  </div>
-  <div class="card-content">
-    <span class="card-category">🚀 Física Divertida</span>
-    <h3 class="card-title">Slingshot Adventure</h3>
-    <p class="card-description">Mire, ajuste a força e destrua os alvos!</p>
-    <div class="card-stats">
-      <div class="stat-item"><i class="fas fa-trophy"></i> <span class="stat-value">--</span></div>
-      <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.6</span></div>
-    </div>
-    <a href="games/shooter/" class="card-cta"><i class="fas fa-play"></i> Atirar</a>
-  </div>
-</article>
+      <!-- CARD: Color Sort -->
+      <article class="product-card" data-category="jogos arte gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/f97316/ffffff?text=Color+Sort" alt="Color Sort">
+          <span class="card-badge game">🌈 Satisfatório</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-flask"></i> Arte-Terapia</span>
+          <h3 class="card-title">Color Sort</h3>
+          <p class="card-description">Organize as cores nos tubos. Sem tempo, só o prazer de organizar!</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-users"></i> <span class="stat-value">18.5k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.9</span></div>
+          </div>
+          <a href="games/color-sort/" class="card-cta"><i class="fas fa-play"></i> Organizar</a>
+        </div>
+      </article>
 
-<!-- JOGO 7: Quiz Master -->
-<article class="product-card" data-category="jogos gratis">
-  <div class="card-image">
-    <img src="https://via.placeholder.com/300x200/10b981/ffffff?text=Quiz+Master" alt="Quiz Master">
-    <span class="card-badge game">🧠 Desafio</span>
-  </div>
-  <div class="card-content">
-    <span class="card-category">❓ Conhecimento</span>
-    <h3 class="card-title">Quiz Master</h3>
-    <p class="card-description">Teste seu conhecimento e entre no ranking!</p>
-    <div class="card-stats">
-      <div class="stat-item"><i class="fas fa-trophy"></i> <span class="stat-value">--</span></div>
-      <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.8</span></div>
     </div>
-    <a href="games/quiz/" class="card-cta"><i class="fas fa-play"></i> Começar</a>
-  </div>
-</article>
 
-      
+    <!-- ============================================
+         SEÇÃO: RELAXAMENTO
+         ============================================ -->
+    <div class="section-header" data-category="jogos">
+      <h2 class="section-title"><i class="fas fa-spa"></i> Relaxamento & Mindfulness</h2>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- CARD: Breathing Exercise -->
+      <article class="product-card" data-category="jogos gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/10b981/ffffff?text=Breathing" alt="Respiração Guiada">
+          <span class="card-badge game">🧘 Calma</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-lungs"></i> Relaxamento</span>
+          <h3 class="card-title">Respiração Guiada</h3>
+          <p class="card-description">Técnica 4-7-8 para reduzir ansiedade e induzir ao sono.</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-users"></i> <span class="stat-value">11.2k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.9</span></div>
+          </div>
+          <a href="games/relaxamento/breathing.html" class="card-cta"><i class="fas fa-play"></i> Respirar</a>
+        </div>
+      </article>
+
+      <!-- CARD: Zen Garden -->
+      <article class="product-card" data-category="jogos gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/d4a574/ffffff?text=Zen+Garden" alt="Zen Garden">
+          <span class="card-badge game">🎋 Japonês</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-tree"></i> Relaxamento</span>
+          <h3 class="card-title">Zen Garden</h3>
+          <p class="card-description">Crie padrões na areia. Posicione pedras e relaxe.</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-users"></i> <span class="stat-value">6.9k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.8</span></div>
+          </div>
+          <a href="games/relaxamento/zen-garden.html" class="card-cta"><i class="fas fa-play"></i> Criar Jardim</a>
+        </div>
+      </article>
+
     </div>
 
     <!-- AD BANNER MEIO -->
@@ -614,7 +809,148 @@
       </div>
     </div>
 
-    <!-- SEÇÃO: PRODUTOS DIGITAIS -->
+    <!-- ============================================
+         SEÇÃO: JOGOS DE AÇÃO & PUZZLE
+         ============================================ -->
+    <div class="section-header" data-category="jogos">
+      <h2 class="section-title"><i class="fas fa-gamepad"></i> Jogos Divertidos</h2>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- CARD: Nomadisch Runner -->
+      <article class="product-card" data-category="jogos gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/10b981/ffffff?text=Runner+Game" alt="Nomadisch Runner">
+          <span class="card-badge game trending">🔥 Viciante</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-running"></i> Ação Infinita</span>
+          <h3 class="card-title">Nomadisch Runner</h3>
+          <p class="card-description">Desvie, pule e bata seu recorde neste jogo viciante!</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-trophy"></i> <span class="stat-value">--</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.8</span></div>
+          </div>
+          <a href="games/runner/" class="card-cta"><i class="fas fa-play"></i> Correr</a>
+        </div>
+      </article>
+
+      <!-- CARD: Slingshot Adventure -->
+      <article class="product-card" data-category="jogos gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/ef4444/ffffff?text=Slingshot" alt="Slingshot Adventure">
+          <span class="card-badge game">🎯 Física</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-bullseye"></i> Ação</span>
+          <h3 class="card-title">Slingshot Adventure</h3>
+          <p class="card-description">Mire, ajuste a força e destrua os alvos!</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-trophy"></i> <span class="stat-value">--</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.6</span></div>
+          </div>
+          <a href="games/shooter/" class="card-cta"><i class="fas fa-play"></i> Atirar</a>
+        </div>
+      </article>
+
+      <!-- CARD: Rhythm Tap -->
+      <article class="product-card" data-category="jogos gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/ec4899/ffffff?text=Rhythm+Tap" alt="Rhythm Tap">
+          <span class="card-badge game">🎵 Musical</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-music"></i> Ritmo</span>
+          <h3 class="card-title">Rhythm Tap</h3>
+          <p class="card-description">Toque no ritmo! Comece no modo calmo, sem pressão.</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-trophy"></i> <span class="stat-value">--</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.7</span></div>
+          </div>
+          <a href="games/rhythm/" class="card-cta"><i class="fas fa-play"></i> Tocar</a>
+        </div>
+      </article>
+
+      <!-- CARD: Memory Match -->
+      <article class="product-card" data-category="jogos gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/06b6d4/ffffff?text=Memory+Match" alt="Memory Match">
+          <span class="card-badge game">🧠 Popular</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-brain"></i> Cognição</span>
+          <h3 class="card-title">Memory Match</h3>
+          <p class="card-description">Encontre pares e treine sua memória de forma divertida.</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-users"></i> <span class="stat-value">12.5k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.7</span></div>
+          </div>
+          <a href="games/cognicao/" class="card-cta"><i class="fas fa-play"></i> Jogar</a>
+        </div>
+      </article>
+
+      <!-- CARD: Gem Match -->
+      <article class="product-card" data-category="jogos gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/8b5cf6/ffffff?text=Gem+Match" alt="Gem Match">
+          <span class="card-badge game">🧩 Match-3</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-gem"></i> Puzzle</span>
+          <h3 class="card-title">Gem Match</h3>
+          <p class="card-description">Combine gemas coloridas e bata combos explosivos!</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-trophy"></i> <span class="stat-value">--</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.7</span></div>
+          </div>
+          <a href="games/puzzle/" class="card-cta"><i class="fas fa-play"></i> Combinar</a>
+        </div>
+      </article>
+
+      <!-- CARD: Quiz Master -->
+      <article class="product-card" data-category="jogos gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/10b981/ffffff?text=Quiz+Master" alt="Quiz Master">
+          <span class="card-badge game">🧠 Desafio</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-question-circle"></i> Quiz</span>
+          <h3 class="card-title">Quiz Master</h3>
+          <p class="card-description">Teste seu conhecimento e entre no ranking!</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-trophy"></i> <span class="stat-value">--</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.8</span></div>
+          </div>
+          <a href="games/quiz/" class="card-cta"><i class="fas fa-play"></i> Começar</a>
+        </div>
+      </article>
+
+      <!-- CARD: Escolha seu Desastre -->
+      <article class="product-card" data-category="jogos gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/ef4444/ffffff?text=Humor+Negro" alt="Escolha seu Desastre">
+          <span class="card-badge game">18+ 😈</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-laugh"></i> Humor</span>
+          <h3 class="card-title">Escolha seu Desastre</h3>
+          <p class="card-description">Aventura interativa com finais hilários (e caóticos).</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-users"></i> <span class="stat-value">19.2k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.8</span></div>
+          </div>
+          <a href="games/humor-negro/" class="card-cta secondary">
+            <i class="fas fa-play"></i> Aceitar o Caos
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ============================================
+         SEÇÃO: PRODUTOS DIGITAIS (VENDAS)
+         ============================================ -->
     <div class="section-header" data-category="produtos">
       <h2 class="section-title"><i class="fas fa-shopping-bag"></i> Produtos Digitais</h2>
     </div>
@@ -626,24 +962,16 @@
         <div class="card-image">
           <img src="img/capa-52-atividades-artes.png" alt="52 Atividades de Artes" 
                onerror="this.src='https://via.placeholder.com/300x200/f59e0b/ffffff?text=52+Atividades'">
-          <span class="card-badge product">Mais Vendido</span>
+          <span class="card-badge product">🔥 Mais Vendido</span>
         </div>
         <div class="card-content">
-          <span class="card-category">🎨 Arte & Educação</span>
+          <span class="card-category"><i class="fas fa-book"></i> Produto Digital</span>
           <h3 class="card-title">52 Atividades de Artes</h3>
           <p class="card-description">Um ano inteiro de atividades criativas para crianças.</p>
-          
           <div class="card-stats">
-            <div class="stat-item">
-              <i class="fas fa-eye"></i>
-              <span class="stat-value">28.9k</span>
-            </div>
-            <div class="stat-item">
-              <i class="fas fa-star"></i>
-              <span class="stat-value">4.9</span>
-            </div>
+            <div class="stat-item"><i class="fas fa-eye"></i> <span class="stat-value">28.9k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.9</span></div>
           </div>
-          
           <a href="https://pay.hotmart.com/Y95040902G?bid=1773748325473" class="card-cta" target="_blank">
             <i class="fas fa-shopping-cart"></i> Comprar - R$47
           </a>
@@ -654,24 +982,16 @@
       <article class="product-card" data-category="produtos arte">
         <div class="card-image">
           <img src="https://via.placeholder.com/300x200/10b981/ffffff?text=Arte+Terapia" alt="Arte Terapia">
-          <span class="card-badge product">Novo</span>
+          <span class="card-badge product">✨ Novo</span>
         </div>
         <div class="card-content">
-          <span class="card-category">🧘 Bem-estar</span>
+          <span class="card-category"><i class="fas fa-heart"></i> Bem-estar</span>
           <h3 class="card-title">Curso de Arte-Terapia</h3>
           <p class="card-description">Técnicas profissionais para reduzir ansiedade e estresse.</p>
-          
           <div class="card-stats">
-            <div class="stat-item">
-              <i class="fas fa-eye"></i>
-              <span class="stat-value">15.3k</span>
-            </div>
-            <div class="stat-item">
-              <i class="fas fa-star"></i>
-              <span class="stat-value">4.8</span>
-            </div>
+            <div class="stat-item"><i class="fas fa-eye"></i> <span class="stat-value">15.3k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.8</span></div>
           </div>
-          
           <a href="arteterapia.index.html" class="card-cta">
             <i class="fas fa-info-circle"></i> Saiba Mais
           </a>
@@ -680,12 +1000,54 @@
 
     </div>
 
-    <!-- SEÇÃO: AFILIADOS -->
+    <!-- ============================================
+         SEÇÃO: AFILIADOS & BLOG
+         ============================================ -->
     <div class="section-header" data-category="afiliados">
-      <h2 class="section-title"><i class="fas fa-handshake"></i> Ofertas Especiais</h2>
+      <h2 class="section-title"><i class="fas fa-handshake"></i> Conteúdo & Ofertas</h2>
     </div>
 
     <div class="products-grid">
+
+      <!-- CARD: Blog Mistérios -->
+      <article class="product-card" data-category="gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/64748b/ffffff?text=Misterios" alt="Mistérios Revelados">
+          <span class="card-badge">📖 Leitura</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-ghost"></i> Curiosidades</span>
+          <h3 class="card-title">Mistérios Revelados</h3>
+          <p class="card-description">Histórias fascinantes e fenômenos inexplicáveis.</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-eye"></i> <span class="stat-value">11.4k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.8</span></div>
+          </div>
+          <a href="blog-misterio.index.html/" class="card-cta">
+            <i class="fas fa-book"></i> Ler
+          </a>
+        </div>
+      </article>
+
+      <!-- CARD: Blog Principal -->
+      <article class="product-card" data-category="gratis">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300x200/3b82f6/ffffff?text=Blog" alt="Blog Nomadisch">
+          <span class="card-badge editor">🆓 100% Grátis</span>
+        </div>
+        <div class="card-content">
+          <span class="card-category"><i class="fas fa-newspaper"></i> Conteúdo Gratuito</span>
+          <h3 class="card-title">Blog Nomadisch</h3>
+          <p class="card-description">Artigos, dicas e guias gratuitos sobre produtividade.</p>
+          <div class="card-stats">
+            <div class="stat-item"><i class="fas fa-eye"></i> <span class="stat-value">34.5k</span></div>
+            <div class="stat-item"><i class="fas fa-star"></i> <span class="stat-value">4.9</span></div>
+          </div>
+          <a href="blog/" class="card-cta secondary">
+            <i class="fas fa-arrow-right"></i> Ler Artigos
+          </a>
+        </div>
+      </article>
 
       <!-- AFILIADO 1: Amazon -->
       <article class="product-card" data-category="afiliados">
@@ -697,14 +1059,9 @@
           <span class="card-category">🛒 Materiais de Arte</span>
           <h3 class="card-title">Kit Completo de Pintura</h3>
           <p class="card-description">Tudo que você precisa para começar a pintar. Frete grátis!</p>
-          
           <div class="card-stats">
-            <div class="stat-item">
-              <i class="fas fa-tag"></i>
-              <span class="stat-value">R$89,90</span>
-            </div>
+            <div class="stat-item"><i class="fas fa-tag"></i> <span class="stat-value">R$89,90</span></div>
           </div>
-          
           <a href="https://amzn.to/SEU-LINK-AQUI" class="card-cta secondary" target="_blank">
             <i class="fas fa-external-link-alt"></i> Ver na Amazon
           </a>
@@ -721,14 +1078,9 @@
           <span class="card-category">🎁 Materiais Criativos</span>
           <h3 class="card-title">Papel Colorido Premium</h3>
           <p class="card-description">100 folhas de papel colorido para artesanato. Super oferta!</p>
-          
           <div class="card-stats">
-            <div class="stat-item">
-              <i class="fas fa-tag"></i>
-              <span class="stat-value">R$24,90</span>
-            </div>
+            <div class="stat-item"><i class="fas fa-tag"></i> <span class="stat-value">R$24,90</span></div>
           </div>
-          
           <a href="https://shope.ee/SEU-LINK-AQUI" class="card-cta secondary" target="_blank">
             <i class="fas fa-external-link-alt"></i> Ver na Shopee
           </a>
@@ -757,34 +1109,18 @@
 
   <!-- Scripts -->
   <script>
-    // Captura de Leads
-    function captureLead(inputId) {
-      const email = document.getElementById(inputId).value;
-      if (!email || !email.includes('@')) {
-        alert('Por favor, digite um email válido!');
-        return;
-      }
-      
-      // Salva no localStorage
-      let leads = JSON.parse(localStorage.getItem('nomadisch_leads') || '[]');
-      leads.push({ 
-        email: email, 
-        date: new Date().toISOString(),
-        source: 'produtos.html'
-      });
-      localStorage.setItem('nomadisch_leads', JSON.stringify(leads));
-      
-      alert('✅ Obrigado! Você receberá novidades em breve!');
-      document.getElementById(inputId).value = '';
-      
-      // Aqui integra com:
-      // - Mailchimp API
-      // - Google Sheets
-      // - ConvertKit
-      console.log('Lead capturado:', email);
-    }
+    // ========== FORMSPREE SUCCESS MESSAGE ==========
+    document.querySelector('.newsletter-form')?.addEventListener('submit', function() {
+      const successMsg = document.getElementById('formspree-success');
+      setTimeout(() => {
+        successMsg?.classList.add('show');
+        setTimeout(() => {
+          successMsg?.classList.remove('show');
+        }, 5000);
+      }, 2000);
+    });
 
-    // Filtro por Categoria
+    // ========== FILTRO POR CATEGORIA ==========
     function filterCategory(category) {
       // Atualiza botões ativos
       document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -800,7 +1136,7 @@
       cards.forEach(card => {
         const cardCategory = card.dataset.category;
         if (category === 'all' || cardCategory.includes(category)) {
-          card.style.display = 'block';
+          card.style.display = 'flex';
           setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
@@ -815,25 +1151,18 @@
       });
     }
 
-    // Tracking de Cliques (Analytics)
+    // ========== TRACKING DE CLIQUES ==========
     document.querySelectorAll('a[href]').forEach(link => {
       link.addEventListener('click', function() {
-        const href = this.href;
-        const text = this.textContent.trim();
-        
-        // Track eventos
         console.log('Clique registrado:', {
-          url: href,
-          text: text,
+          url: this.href,
+          text: this.textContent.trim(),
           timestamp: new Date().toISOString()
         });
-        
-        // Aqui integra com Google Analytics:
-        // gtag('event', 'click', { event_category: 'link', event_label: text });
       });
     });
 
-    // Contador de Visualizações (simulado)
+    // ========== CONTADOR DE VISUALIZAÇÕES (simulado) ==========
     function updateViewCounts() {
       const statValues = document.querySelectorAll('.stat-value');
       statValues.forEach(stat => {
@@ -845,7 +1174,18 @@
       });
     }
 
-    setInterval(updateViewCounts, 10000); // Atualiza a cada 10s
+    setInterval(updateViewCounts, 10000);
+
+    // ========== ANIMAÇÃO DE ENTRADA DOS CARDS ==========
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 100 + (index * 50));
+      });
+    });
   </script>
 
   <!-- Popunder Ad -->

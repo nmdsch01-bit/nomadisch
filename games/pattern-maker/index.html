@@ -2,209 +2,674 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
   <title>Pattern Maker | Nomadisch Play</title>
+  <meta name="description" content="Crie padrões simétricos relaxantes. Ritmo, repetição e cores suaves para acalmar a mente.">
+  
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     :root {
-      --primary: #8b5cf6; --secondary: #06b6d4; --accent: #f472b6;
-      --dark: #0f172a; --glass: rgba(30, 41, 59, 0.9);
+      --primary: #8b5cf6;
+      --secondary: #06b6d4;
+      --accent: #f472b6;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #0f172a;
+      --dark-light: #1e293b;
+      --gray: #94a3b8;
+      --white: #ffffff;
+      --glass: rgba(30, 41, 59, 0.9);
       --glass-border: rgba(255, 255, 255, 0.1);
       --pattern-bg: #1e293b;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; touch-action: none; }
+
     body {
-      font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-      color: white; min-height: 100vh; display: flex; flex-direction: column;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
     }
+
+    /* ========== HEADER ========== */
     header {
-      padding: 0.8rem 1.5rem; display: flex; align-items: center; justify-content: space-between;
-      background: var(--glass); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
-      position: sticky; top: 0; z-index: 100;
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
+
     .back-btn {
-      display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem;
-      background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border);
-      border-radius: 12px; color: white; text-decoration: none; font-weight: 500; transition: all 0.3s; font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      cursor: pointer;
+      user-select: none;
     }
-    .back-btn:hover { background: var(--primary); transform: translateX(-3px); }
-    .game-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; }
-    
-    /* Controls */
+
+    .back-btn:hover {
+      background: var(--primary);
+      transform: translateX(-3px);
+    }
+
+    .game-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .save-btn {
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(135deg, var(--success), #059669);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      user-select: none;
+    }
+
+    .save-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    /* ========== CONTROLS BAR ========== */
     .controls-bar {
-      display: flex; flex-wrap: wrap; gap: 0.8rem; padding: 0.8rem 1rem;
-      background: var(--glass); border-bottom: 1px solid var(--glass-border);
-      justify-content: center; align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      padding: 0.8rem 1rem;
+      background: var(--glass);
+      border-bottom: 1px solid var(--glass-border);
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      top: 60px;
+      z-index: 90;
     }
-    .shape-selector { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    /* Shape Selector */
+    .shape-selector {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     .shape-btn {
-      width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.1);
-      border: 2px solid var(--glass-border); color: white; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid var(--glass-border);
+      cursor: pointer;
       transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      user-select: none;
     }
+
     .shape-btn:hover, .shape-btn.active {
-      border-color: var(--secondary); background: rgba(6, 182, 212, 0.2);
+      border-color: var(--secondary);
+      background: rgba(6, 182, 212, 0.2);
       transform: scale(1.1);
     }
-    
-    .color-palette { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+    /* Color Palette */
+    .color-palette {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     .color-btn {
-      width: 32px; height: 32px; border-radius: 50%; border: 2px solid transparent;
-      cursor: pointer; transition: all 0.2s;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      user-select: none;
     }
-    .color-btn:hover, .color-btn.active { border-color: white; transform: scale(1.15); }
-    
-    .tool-group { display: flex; align-items: center; gap: 0.8rem; color: var(--gray); font-size: 0.9rem; }
-    
+
+    .color-btn:hover, .color-btn.active {
+      border-color: white;
+      transform: scale(1.15);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Tools */
+    .tool-group {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    .tool-group select {
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Actions */
+    .action-buttons {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     .action-btn {
-      padding: 0.6rem 1.2rem; background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border: none; border-radius: 12px; color: white; font-weight: 600; cursor: pointer;
-      transition: all 0.3s; display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      user-select: none;
     }
-    .action-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4); }
-    .action-btn.secondary { background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border); }
-    
-    /* Pattern Grid */
+
+    .action-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(135deg, var(--success), #059669);
+      border: none;
+    }
+
+    .action-btn.primary:hover {
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    /* ========== PATTERN GRID - PROTECTED ========== */
     #gameContainer {
-      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 1rem; overflow: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      position: relative;
     }
+
     .pattern-wrapper {
-      background: var(--pattern-bg); border-radius: 20px; padding: 1.5rem;
-      border: 2px solid var(--glass-border); box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
-      display: grid; gap: 8px; max-width: 100%; max-height: 70vh; overflow: auto;
+      background: var(--pattern-bg);
+      border-radius: 20px;
+      padding: 1.5rem;
+      border: 2px solid var(--glass-border);
+      box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+      display: grid;
+      gap: 8px;
+      max-width: 100%;
+      max-height: 60vh;
+      overflow: auto;
+      touch-action: none;
     }
+
+    /* PROTECTION: Cells com atributo para bloquear ads */
     .pattern-cell {
-      width: 40px; height: 40px; border-radius: 8px; background: rgba(255,255,255,0.05);
-      border: 1px solid var(--glass-border); cursor: pointer; display: flex;
-      align-items: center; justify-content: center; transition: all 0.2s;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
       font-size: 1.2rem;
+      user-select: none;
+      /* Impede seleção de texto e hijacking */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
     }
-    .pattern-cell:hover { border-color: var(--secondary); transform: scale(1.05); }
-    .pattern-cell.filled { animation: popIn 0.3s ease; }
+
+    .pattern-cell:hover {
+      border-color: var(--secondary);
+      transform: scale(1.05);
+    }
+
+    .pattern-cell.filled {
+      animation: popIn 0.3s ease;
+    }
+
     @keyframes popIn {
       0% { transform: scale(0.8); opacity: 0.5; }
       100% { transform: scale(1); opacity: 1; }
     }
-    
+
     /* Symmetry Preview */
     .symmetry-preview {
-      margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.03);
-      border-radius: 12px; border: 1px solid var(--glass-border); text-align: center;
+      margin: 1rem 0;
+      padding: 1rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
+      text-align: center;
     }
+
     .symmetry-preview canvas {
-      max-width: 200px; border-radius: 12px; border: 1px solid var(--glass-border);
+      max-width: 200px;
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
     }
-    
+
     /* ADHD-Friendly Instructions */
     .adhd-hint {
-      text-align: center; color: var(--gray); font-size: 0.95rem; max-width: 500px;
-      margin: 1rem auto; padding: 1rem; background: rgba(139, 92, 246, 0.1);
-      border-radius: 16px; border-left: 4px solid var(--primary);
+      text-align: center;
+      color: var(--gray);
+      font-size: 0.95rem;
+      max-width: 500px;
+      margin: 1rem auto;
+      padding: 1rem;
+      background: rgba(139, 92, 246, 0.1);
+      border-radius: 16px;
+      border-left: 4px solid var(--primary);
       line-height: 1.6;
     }
+
     .adhd-hint strong { color: var(--primary); }
-    
+
     /* Pattern Types */
     .pattern-types {
-      display: flex; gap: 0.5rem; margin: 0.5rem 0; flex-wrap: wrap; justify-content: center;
+      display: flex;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+      flex-wrap: wrap;
+      justify-content: center;
     }
+
     .pattern-type-btn {
-      padding: 0.4rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
-      border-radius: 20px; color: var(--gray); font-size: 0.85rem; cursor: pointer; transition: all 0.2s;
+      padding: 0.4rem 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      color: var(--gray);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
     }
+
     .pattern-type-btn:hover, .pattern-type-btn.active {
-      background: var(--accent); color: white; border-color: var(--accent);
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
     }
-    
-    /* Ad Space */
+
+    /* ========== AD SPACE - ISOLATED ========== */
     .game-ad {
-      width: 100%; max-width: 728px; margin: 1rem auto; padding: 0.8rem;
-      background: var(--glass); border: 1px solid var(--glass-border);
-      border-radius: 16px; text-align: center;
+      width: 100%;
+      max-width: 600px;
+      margin: 1rem auto;
+      padding: 1rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
     }
-    .ad-label { font-size: 0.7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block; }
-    
-    /* Responsive */
+
+    .ad-label {
+      font-size: 0.7rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    /* ========== SAVE MODAL ========== */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal.show {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2rem;
+      max-width: 450px;
+      width: 100%;
+      text-align: center;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--success);
+    }
+
+    .modal-content p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .modal-preview {
+      width: 100%;
+      max-height: 350px;
+      border-radius: 16px;
+      margin-bottom: 1.5rem;
+      border: 2px solid var(--glass-border);
+      background: var(--pattern-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-preview canvas {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: 12px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .modal-btn {
+      padding: 0.9rem 1.8rem;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .modal-btn.primary {
+      background: linear-gradient(135deg, var(--success), #059669);
+      color: white;
+    }
+    .modal-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+    }
+    .modal-btn.secondary {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid var(--glass-border);
+    }
+    .modal-btn.secondary:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 600px) {
-      .controls-bar { flex-direction: column; align-items: stretch; }
-      .shape-selector, .color-palette { justify-content: center; }
+      header { padding: 0.6rem 1rem; flex-wrap: wrap; gap: 0.6rem; }
+      .game-title { font-size: 1.1rem; }
+      .controls-bar { padding: 0.6rem 0.8rem; gap: 0.5rem; top: 55px; }
+      .shape-btn { width: 40px; height: 40px; font-size: 1.1rem; }
+      .color-btn { width: 28px; height: 28px; }
+      .action-btn { padding: 0.5rem 0.9rem; font-size: 0.8rem; }
       .pattern-cell { width: 32px; height: 32px; font-size: 1rem; }
+      .pattern-wrapper { padding: 1rem; max-height: 50vh; }
+      .adhd-hint { font-size: 0.9rem; padding: 0.8rem; }
     }
+
+    .hidden { display: none !important; }
   </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
-    <a href="../../produtos.html" class="back-btn"><i class="fas fa-arrow-left"></i> Hub</a>
+    <a href="../../../produtos.html" class="back-btn" data-interactive="true">
+      <i class="fas fa-arrow-left"></i> Hub
+    </a>
     <h1 class="game-title">🌀 Pattern Maker</h1>
-    <button class="action-btn secondary" id="saveBtn"><i class="fas fa-download"></i> Salvar</button>
+    <button class="save-btn" id="saveBtn" data-interactive="true">
+      <i class="fas fa-download"></i> Salvar
+    </button>
   </header>
-  
+
+  <!-- Controls Bar -->
   <div class="controls-bar">
+    
+    <!-- Shape Selector -->
     <div class="shape-selector" id="shapeSelector">
-      <button class="shape-btn active" data-shape="circle">⚪</button>
-      <button class="shape-btn" data-shape="square">⬛</button>
-      <button class="shape-btn" data-shape="triangle">🔺</button>
-      <button class="shape-btn" data-shape="star">⭐</button>
-      <button class="shape-btn" data-shape="heart">💜</button>
+      <button class="shape-btn active" data-shape="circle" data-interactive="true" title="Círculo">⚪</button>
+      <button class="shape-btn" data-shape="square" data-interactive="true" title="Quadrado">⬛</button>
+      <button class="shape-btn" data-shape="triangle" data-interactive="true" title="Triângulo">🔺</button>
+      <button class="shape-btn" data-shape="star" data-interactive="true" title="Estrela">⭐</button>
+      <button class="shape-btn" data-shape="heart" data-interactive="true" title="Coração">💜</button>
     </div>
-    
-    <div class="color-palette" id="colorPalette"></div>
-    
+
+    <!-- Color Palette -->
+    <div class="color-palette" id="colorPalette">
+      <!-- Colors added by JS -->
+    </div>
+
+    <!-- Symmetry Mode -->
     <div class="tool-group">
       <i class="fas fa-magic"></i>
-      <select id="symmetryMode" style="padding:0.4rem 0.8rem; border-radius:8px; background:rgba(255,255,255,0.1); color:white; border:none;">
+      <select id="symmetryMode" data-interactive="true">
         <option value="none">Sem simetria</option>
-        <option value="horizontal">Horizontal</option>
-        <option value="vertical">Vertical</option>
+        <option value="horizontal">Horizontal ↔️</option>
+        <option value="vertical">Vertical ↕️</option>
         <option value="radial" selected>Radial 🌀</option>
       </select>
     </div>
-    
-    <button class="action-btn secondary" id="undoBtn"><i class="fas fa-undo"></i> Desfazer</button>
-    <button class="action-btn" id="clearBtn"><i class="fas fa-rotate-right"></i> Novo</button>
+
+    <!-- Actions -->
+    <div class="action-buttons">
+      <button class="action-btn" id="undoBtn" data-interactive="true" title="Desfazer">
+        <i class="fas fa-undo"></i>
+      </button>
+      <button class="action-btn" id="clearBtn" data-interactive="true" title="Limpar">
+        <i class="fas fa-rotate-right"></i>
+      </button>
+    </div>
+
   </div>
-  
+
+  <!-- Pattern Size Selector -->
   <div class="pattern-types">
-    <button class="pattern-type-btn active" data-size="8">8x8 Calmo</button>
-    <button class="pattern-type-btn" data-size="12">12x12 Médio</button>
-    <button class="pattern-type-btn" data-size="16">16x16 Detalhado</button>
+    <button class="pattern-type-btn active" data-size="8" data-interactive="true">8×8 Calmo</button>
+    <button class="pattern-type-btn" data-size="12" data-interactive="true">12×12 Médio</button>
+    <button class="pattern-type-btn" data-size="16" data-interactive="true">16×16 Detalhado</button>
   </div>
-  
+
+  <!-- Symmetry Preview -->
   <div class="symmetry-preview">
     <small style="color:var(--gray); display:block; margin-bottom:0.5rem;">Pré-visualização</small>
     <canvas id="previewCanvas" width="200" height="200"></canvas>
   </div>
-  
+
+  <!-- Pattern Grid - PROTECTED -->
   <div id="gameContainer">
-    <div class="pattern-wrapper" id="patternGrid"></div>
+    <div class="pattern-wrapper" id="patternGrid" data-interactive="true">
+      <!-- Cells generated by JS -->
+    </div>
   </div>
-  
+
+  <!-- ADHD-Friendly Instructions -->
   <div class="adhd-hint">
     <strong>🧘 Ritmo e repetição:</strong> Crie padrões que se repetem. O movimento previsível ajuda a acalmar a mente. Não precisa ser perfeito — só siga o fluxo. 💜
   </div>
-  
-  <div class="game-ad">
+
+  <!-- Ad Space - ISOLATED CONTAINER -->
+  <div class="game-ad" data-ad-container="true">
     <span class="ad-label">Publicidade</span>
-    <script <script>
-  atOptions = {
-    'key' : '977bd9c66aa87346321290ab413c768c',
-    'format' : 'iframe',
-    'height' : 300,
-    'width' : 160,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/977bd9c66aa87346321290ab413c768c/invoke.js"></script></script>
+    <!-- Adsterra Native Banner - Fixed script tags -->
+    <script async="async" data-cfasync="false" src="https://pl28845410.effectivegatecpm.com/3c2eb1000098aa584074fbf52f463bc0/invoke.js"></script>
     <div id="container-3c2eb1000098aa584074fbf52f463bc0"></div>
   </div>
-  
-  <script src="https://pl28876220.effectivegatecpm.com/30/b8/d1/30b8d1458b08c08f30d9f4f413e7a20d.js"></script>
-  
+
+  <!-- Save Modal -->
+  <div class="modal" id="saveModal">
+    <div class="modal-content">
+      <h3>🌀 Seu Padrão Está Pronto!</h3>
+      <p>Que lindo! Sua criação simétrica foi salva.</p>
+      
+      <div class="modal-preview">
+        <canvas id="modalCanvas" width="400" height="400"></canvas>
+      </div>
+      
+      <div class="modal-buttons">
+        <button class="modal-btn primary" id="downloadPngBtn" data-interactive="true">
+          <i class="fas fa-download"></i> Baixar PNG
+        </button>
+        <button class="modal-btn secondary" id="closeModalBtn" data-interactive="true">
+          <i class="fas fa-times"></i> Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Bar Ad - ISOLATED -->
+  <div data-ad-container="true">
+    <script src="https://pl28876220.effectivegatecpm.com/30/b8/d1/30b8d1458b08c08f30d9f4f413e7a20d.js"></script>
+  </div>
+
+  <!-- ========== PROTECTION SCRIPT - MUST LOAD BEFORE POPUNDER ========== -->
   <script>
-    // Cores suaves para TDAH
+    // ========== PROTEÇÃO DE INTERAÇÕES CONTRA AD HIJACK ==========
+    (function() {
+      'use strict';
+      
+      // Elementos que NÃO devem ser interceptados por anúncios
+      const protectedSelectors = [
+        '[data-interactive="true"]',
+        '.pattern-cell',
+        '.pattern-wrapper',
+        '.shape-btn',
+        '.color-btn',
+        '.pattern-type-btn',
+        '.action-btn',
+        '.save-btn',
+        '.back-btn',
+        '.modal-btn',
+        '#symmetryMode',
+        '#patternGrid',
+        '#previewCanvas',
+        '#modalCanvas'
+      ].join(', ');
+      
+      // Função para verificar se elemento é protegido
+      function isProtected(element) {
+        if (!element) return false;
+        return element.matches(protectedSelectors) || 
+               element.closest(protectedSelectors) ||
+               element.closest('[data-ad-container="true"]') === null;
+      }
+      
+      // Intercepta cliques com prioridade máxima (capture phase)
+      document.addEventListener('click', function(e) {
+        if (isProtected(e.target)) {
+          e.stopImmediatePropagation();
+          e.stopPropagation();
+          return true;
+        }
+      }, true);
+      
+      // Também protege touch events para mobile
+      document.addEventListener('touchstart', function(e) {
+        if (isProtected(e.target)) {
+          e.stopImmediatePropagation();
+          e.stopPropagation();
+          return true;
+        }
+      }, true);
+      
+      // Protege mousedown também (para grid interaction)
+      document.addEventListener('mousedown', function(e) {
+        if (isProtected(e.target)) {
+          e.stopImmediatePropagation();
+          e.stopPropagation();
+          return true;
+        }
+      }, true);
+      
+    })();
+  </script>
+
+  <!-- Pattern Maker Logic Script -->
+  <script>
+    // ========== CONFIGURAÇÃO ==========
     const colors = ['#6366f1','#8b5cf6','#a78bfa','#06b6d4','#22d3ee','#10b981','#34d399','#f472b6','#f9a8d4'];
     const shapes = {
       circle: '⚪', square: '⬛', triangle: '🔺', star: '⭐', heart: '💜'
@@ -221,13 +686,15 @@
     const previewCanvas = document.getElementById('previewCanvas');
     const previewCtx = previewCanvas.getContext('2d');
     
-    // Paleta de cores
+    // ========== PALETA DE CORES ==========
     const colorPalette = document.getElementById('colorPalette');
     colors.forEach(color => {
       const btn = document.createElement('button');
       btn.className = 'color-btn' + (color === currentColor ? ' active' : '');
       btn.style.background = color;
-      btn.addEventListener('click', () => {
+      btn.setAttribute('data-interactive', 'true');
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
         document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentColor = color;
@@ -235,24 +702,27 @@
       colorPalette.appendChild(btn);
     });
     
-    // Seleção de formas
+    // ========== SELEÇÃO DE FORMAS ==========
     document.querySelectorAll('.shape-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
         document.querySelectorAll('.shape-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
         currentShape = this.dataset.shape;
       });
     });
     
-    // Modo de simetria
+    // ========== MODO DE SIMETRIA ==========
     document.getElementById('symmetryMode').addEventListener('change', (e) => {
+      e.stopPropagation();
       symmetryMode = e.target.value;
       updatePreview();
     });
     
-    // Tamanho da grade
+    // ========== TAMANHO DA GRADE ==========
     document.querySelectorAll('.pattern-type-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
         document.querySelectorAll('.pattern-type-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
         gridSize = parseInt(this.dataset.size);
@@ -260,7 +730,7 @@
       });
     });
     
-    // Criar grade de padrões
+    // ========== CRIAR GRADE DE PADRÕES ==========
     function createGrid() {
       patternGrid.innerHTML = '';
       patternGrid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
@@ -272,9 +742,18 @@
           cell.className = 'pattern-cell';
           cell.dataset.row = row;
           cell.dataset.col = col;
+          cell.setAttribute('data-interactive', 'true');
           
-          cell.addEventListener('click', () => toggleCell(row, col));
-          cell.addEventListener('touchstart', (e) => { e.preventDefault(); toggleCell(row, col); });
+          // Prevent ad hijacking on cell click
+          cell.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleCell(row, col);
+          });
+          cell.addEventListener('touchstart', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            toggleCell(row, col);
+          });
           
           patternGrid.appendChild(cell);
         }
@@ -284,8 +763,8 @@
       saveState();
     }
     
+    // ========== TOGGLE CELL ==========
     function toggleCell(row, col) {
-      // Aplicar simetria
       const cellsToToggle = getSymmetricCells(row, col);
       
       cellsToToggle.forEach(({r, c}) => {
@@ -311,16 +790,15 @@
       saveState();
     }
     
+    // ========== SIMETRIA ==========
     function getSymmetricCells(row, col) {
       const cells = [{ row, col }];
-      const center = gridSize / 2;
       
       if (symmetryMode === 'horizontal') {
         cells.push({ row: gridSize - 1 - row, col });
       } else if (symmetryMode === 'vertical') {
         cells.push({ row, col: gridSize - 1 - col });
       } else if (symmetryMode === 'radial') {
-        // Simetria radial (4 direções)
         cells.push(
           { row: gridSize - 1 - row, col },
           { row, col: gridSize - 1 - col },
@@ -332,6 +810,7 @@
       return [...new Set(cells.map(c => JSON.stringify(c)))].map(c => JSON.parse(c));
     }
     
+    // ========== PREVIEW CANVAS ==========
     function updatePreview() {
       previewCtx.fillStyle = '#1e293b';
       previewCtx.fillRect(0, 0, 200, 200);
@@ -353,7 +832,6 @@
             } else if (cell.shape === 'square') {
               previewCtx.fillRect(x + 2, y + 2, cellSize - 4, cellSize - 4);
             } else {
-              // Emoji para outras formas
               previewCtx.font = `${cellSize - 4}px Arial`;
               previewCtx.textAlign = 'center';
               previewCtx.textBaseline = 'middle';
@@ -364,6 +842,7 @@
       }
     }
     
+    // ========== HISTÓRICO (UNDO) ==========
     function saveState() {
       history.push(JSON.stringify(pattern));
       if (history.length > 20) history.shift();
@@ -396,41 +875,104 @@
       }
     }
     
-    // Actions
-    document.getElementById('clearBtn').addEventListener('click', () => {
+    // ========== ACTIONS ==========
+    document.getElementById('clearBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
       if (confirm('Começar um novo padrão?')) {
         createGrid();
       }
     });
     
-    document.getElementById('undoBtn').addEventListener('click', undo);
+    document.getElementById('undoBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      undo();
+    });
     
-    document.getElementById('saveBtn').addEventListener('click', () => {
-      // Exportar preview como imagem
-      const link = document.createElement('a');
-      link.download = `pattern-${Date.now()}.png`;
-      link.href = previewCanvas.toDataURL('image/png');
-      link.click();
+    // ========== SALVAR COMO PNG ==========
+    document.getElementById('saveBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      saveAsPng();
+    });
+    
+    function saveAsPng() {
+      const exportCanvas = document.getElementById('modalCanvas');
+      const exportCtx = exportCanvas.getContext('2d');
+      
+      // Clear and background
+      exportCtx.fillStyle = '#1e293b';
+      exportCtx.fillRect(0, 0, 400, 400);
+      
+      const cellSize = 400 / gridSize;
+      
+      // Draw pattern
+      for (let row = 0; row < gridSize; row++) {
+        for (let col = 0; col < gridSize; col++) {
+          const cell = pattern[row][col];
+          if (cell) {
+            exportCtx.fillStyle = cell.color;
+            const x = col * cellSize;
+            const y = row * cellSize;
+            
+            if (cell.shape === 'circle') {
+              exportCtx.beginPath();
+              exportCtx.arc(x + cellSize/2, y + cellSize/2, cellSize/2 - 3, 0, Math.PI * 2);
+              exportCtx.fill();
+            } else if (cell.shape === 'square') {
+              exportCtx.fillRect(x + 3, y + 3, cellSize - 6, cellSize - 6);
+            } else {
+              exportCtx.font = `${cellSize - 6}px Arial`;
+              exportCtx.textAlign = 'center';
+              exportCtx.textBaseline = 'middle';
+              exportCtx.fillText(shapes[cell.shape], x + cellSize/2, y + cellSize/2);
+            }
+          }
+        }
+      }
+      
+      // Show modal
+      const modal = document.getElementById('saveModal');
+      modal.classList.add('show');
+      
+      // Download button
+      document.getElementById('downloadPngBtn').onclick = () => {
+        const link = document.createElement('a');
+        link.download = `pattern-${currentShape}-${Date.now()}.png`;
+        link.href = exportCanvas.toDataURL('image/png');
+        link.click();
+      };
+    }
+    
+    // Modal close
+    document.getElementById('closeModalBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('saveModal').classList.remove('show');
+    });
+    
+    document.getElementById('saveModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('saveModal')) {
+        document.getElementById('saveModal').classList.remove('show');
+      }
     });
     
     // Keyboard shortcut
     document.addEventListener('keydown', (e) => {
-      if (e.ctrlKey && e.key === 'z') { e.preventDefault(); undo(); }
+      if (e.ctrlKey && e.key === 'z') {
+        e.preventDefault();
+        e.stopPropagation();
+        undo();
+      }
+      if (e.key === 'Escape') {
+        document.getElementById('saveModal').classList.remove('show');
+      }
     });
     
-    // Iniciar
-    createGrid();
+    // ========== INICIALIZAÇÃO ==========
+    window.addEventListener('load', () => {
+      createGrid();
+    });
   </script>
-  
-  <script src="<script>
-  atOptions = {
-    'key' : '977bd9c66aa87346321290ab413c768c',
-    'format' : 'iframe',
-    'height' : 300,
-    'width' : 160,
-    'params' : {}
-  };
-</script>
-<script src=" ... "></script>"></script>
+
+  <!-- Popunder Ad - LOADED LAST with protection already in place -->
+  <script src=" ... "></script>
 </body>
 </html>

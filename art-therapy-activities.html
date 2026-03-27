@@ -517,7 +517,45 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* RESPONSIVE */
+  /* PREVIEW GRID */
+  .preview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .preview-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.07);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .preview-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+  }
+
+  .preview-card img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+  }
+
+  .preview-card p {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-align: center;
+    padding: 12px;
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 900px) {
+    .preview-grid { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 60px 32px; }
@@ -539,18 +577,18 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="badge">Art Therapy · Emotional Well-Being</div>
+    <div class="badge">Art Therapy · Kids Ages 4–15</div>
 
     <h1 class="hero-title">
       Art Therapy<br><em>activities</em>
     </h1>
 
     <p class="hero-subtitle">
-      For Emotional Expression &amp; Well-Being
+      Helping children express feelings through creative play
     </p>
 
     <p class="hero-desc">
-      46 guided art therapy activities thoughtfully designed for neurodivergent individuals, educators, and therapists. No artistic experience needed — just a safe space to slow down, reconnect, and express yourself freely.
+      46 ready-to-use art therapy activities for children ages 4–15. Designed to help kids identify emotions, build self-awareness, and find calm — through drawing, colouring, and guided creative exercises. Perfect for parents, teachers, and therapists.
     </p>
 
     <div class="cta-group">
@@ -558,9 +596,8 @@
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         <span>Get the eBook</span>
       </a>
-     
       <div class="price-note">
-        <strong>  </strong>
+        <strong>CAD $9.00</strong>
         Instant digital download
       </div>
     </div>
@@ -568,7 +605,7 @@
 
   <div class="hero-right">
     <div class="book-wrap">
-      <img src="img/1.png" alt="img/1.png" class="book-img">
+      <img src="1.png" alt="Art Therapy Activities eBook cover" class="book-img">
 
       <div class="floating-tag tag1">
         <span class="num">46</span>
@@ -600,34 +637,58 @@
 
   <div class="activities-grid">
     <div class="activity-card">
+      <div class="activity-icon">🌡️</div>
+      <h3>Feelings Thermometer</h3>
+      <p>Kids pick a number and colour to show how strong their emotion feels right now — a simple, visual way to name and track feelings over time.</p>
+    </div>
+    <div class="activity-card">
+      <div class="activity-icon">✋</div>
+      <h3>Hands Past & Future</h3>
+      <p>Children fill hand outlines with images and words — one hand for memories, one for dreams. A gentle way to explore identity and hope.</p>
+    </div>
+    <div class="activity-card">
       <div class="activity-icon">🎨</div>
-      <h3>Emotional Expression</h3>
-      <p>Exercises designed to help you identify, process, and communicate feelings through colour, shape, and mark-making — no words needed.</p>
+      <h3>Colouring & Mandalas</h3>
+      <p>Detailed colouring pages with patterns, characters, and scenes. Repetitive mark-making calms the nervous system and builds focus and patience.</p>
     </div>
     <div class="activity-card">
-      <div class="activity-icon">🧠</div>
-      <h3>Self-Awareness</h3>
-      <p>Guided prompts that invite you to observe your inner world with curiosity and compassion, building emotional literacy at your own pace.</p>
+      <div class="activity-icon">🔤</div>
+      <h3>Word & Image Play</h3>
+      <p>Fun literacy-linked activities that combine art with language — spotting, sorting, and creating — great for bilingual and early readers.</p>
     </div>
     <div class="activity-card">
-      <div class="activity-icon">🌿</div>
-      <h3>Calm & Focus</h3>
-      <p>Structured, repetitive activities that engage the hands and quiet the mind — especially helpful for ADHD and sensory processing needs.</p>
+      <div class="activity-icon">💬</div>
+      <h3>Emotion Vocabulary</h3>
+      <p>Guided prompts that expand how children describe their inner world — moving beyond "fine" or "mad" into richer emotional language.</p>
     </div>
     <div class="activity-card">
-      <div class="activity-icon">✨</div>
-      <h3>Creative Freedom</h3>
-      <p>Open-ended exercises with no right or wrong outcome. The process matters more than the result — this is a space free of judgment.</p>
+      <div class="activity-icon">📐</div>
+      <h3>Print & Go Format</h3>
+      <p>Every activity is one page, ready to print or use digitally. No prep time, no special materials — just download and start with any child.</p>
     </div>
-    <div class="activity-card">
-      <div class="activity-icon">🔗</div>
-      <h3>Inner Connection</h3>
-      <p>Activities that gently bring you back to yourself — grounding practices that reconnect body, mind, and creative energy.</p>
+  </div>
+</section>
+
+<!-- ACTIVITY PREVIEWS -->
+<section class="section" style="padding-top: 0;">
+  <p class="section-label">Activity previews</p>
+  <h2 class="section-title" style="margin-bottom: 32px;">A peek inside<br>the pages</h2>
+  <div class="preview-grid">
+    <div class="preview-card">
+      <img src="7.png" alt="Feeling Thermometer activity">
+      <p>Feeling Thermometer</p>
     </div>
-    <div class="activity-card">
-      <div class="activity-icon">📚</div>
-      <h3>Pedagogical Foundation</h3>
-      <p>Created by a licensed art educator with post-graduate training, combining evidence-informed approaches with genuine therapeutic intent.</p>
+    <div class="preview-card">
+      <img src="13.png" alt="Word search activity">
+      <p>Word &amp; Image Play</p>
+    </div>
+    <div class="preview-card">
+      <img src="16.png" alt="Hands Past and Future activity">
+      <p>Hands Past &amp; Future</p>
+    </div>
+    <div class="preview-card">
+      <img src="44.png" alt="Colouring page activity">
+      <p>Creative Colouring</p>
     </div>
   </div>
 </section>
@@ -640,23 +701,23 @@
   <div class="who-grid">
     <div class="who-card">
       <div class="who-num">01</div>
-      <h3>Neurodivergent individuals</h3>
-      <p>Designed with ADHD, autism, and sensory processing differences in mind. Calm, structured, and accessible activities that work with — not against — how your brain works.</p>
+      <h3>Parents at home</h3>
+      <p>Looking for meaningful screen-free time? These activities open conversations about feelings in a natural, low-pressure way — no therapy training needed, just time together.</p>
     </div>
     <div class="who-card">
       <div class="who-num">02</div>
-      <h3>Educators & therapists</h3>
-      <p>A practical resource for professionals looking to integrate art therapy approaches into sessions, classrooms, or support plans without needing specialist training.</p>
+      <h3>Teachers & educators</h3>
+      <p>Ready-to-print pages that fit into any classroom routine — morning circles, calm-down corners, or dedicated SEL time. Works for ages 4–15 with minimal adaptation.</p>
     </div>
     <div class="who-card">
       <div class="who-num">03</div>
-      <h3>Anyone seeking well-being</h3>
-      <p>You don't need a diagnosis or a reason. If you want a gentle, creative practice for stress, anxiety, or simply reconnecting with yourself — this is for you.</p>
+      <h3>Therapists & counsellors</h3>
+      <p>A practical toolkit for sessions with children who find it hard to talk about feelings. Art bypasses words — and these activities are structured enough to guide, open enough to reveal.</p>
     </div>
     <div class="who-card">
       <div class="who-num">04</div>
-      <h3>Beginners & first-timers</h3>
-      <p>Every activity is simple, clear, and welcoming. No artistic skills, no special materials, no expectations — just you, a page, and something to make.</p>
+      <h3>Kids with ADHD or autism</h3>
+      <p>Calm, structured, and sensory-friendly. Each activity has a clear start and end, engaging hands and focus without overwhelming — designed by an educator who understands neurodivergence.</p>
     </div>
   </div>
 </section>
@@ -665,7 +726,7 @@
 <div class="quote-section">
   <div class="quote-line"></div>
   <p class="quote-text">
-    "This is more than an activity book — it's an invitation to slow down, reconnect, and express yourself freely."
+    "When children can't find the words, they can find the colours — and that's where the real conversation begins."
   </p>
 </div>
 
@@ -673,7 +734,7 @@
 <section class="final-cta">
   <p class="section-label">Start today</p>
   <h2 class="section-title">Your creative journey<br>begins here</h2>
-  <p class="hero-subtitle">Instant download · 47 pages · 46 guided activities</p>
+  <p class="hero-subtitle">46 print-ready activities · Ages 4–15 · Instant download</p>
 
   <div class="final-price"><sup>CAD </sup>9<sup>.00</sup></div>
   <p class="final-note">+ applicable fees at checkout · Secure payment via Hotmart</p>

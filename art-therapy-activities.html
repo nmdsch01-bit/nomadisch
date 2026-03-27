@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Art Therapy Activities — J. Bernardini</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sky: #7ec8d8;
+    --sage: #a8c5a0;
+    --cream: #fdf8f0;
+    --deep: #1a2a1e;
+    --red: #d63c3c;
+    --muted: #5a6e5c;
+    --light: #e8f4e8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 80% at 30% 50%, rgba(126,200,216,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 80% 20%, rgba(168,197,160,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(126,200,216,0.2);
+    border: 1px solid rgba(126,200,216,0.5);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    width: fit-content;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--sky);
+    border-radius: 50%;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 5.5vw, 80px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 300;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 40px;
+    line-height: 1.5;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #3d4f3e;
+    max-width: 460px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .cta-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 18px 36px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--sky);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(26,42,30,0.25);
+  }
+
+  .btn-primary:hover::after { opacity: 0.15; }
+
+  .btn-primary svg { position: relative; z-index: 1; }
+  .btn-primary span { position: relative; z-index: 1; }
+
+  .price-note {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .price-note strong {
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--deep);
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* HERO RIGHT — book display */
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 60px 80px 60px 20px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .book-wrap {
+    position: relative;
+    width: 300px;
+  }
+
+  .book-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(126,200,216,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.7; }
+  }
+
+  .book-img {
+    width: 100%;
+    border-radius: 4px 12px 12px 4px;
+    box-shadow: 
+      -6px 0 0 rgba(0,0,0,0.15),
+      -8px 6px 30px rgba(0,0,0,0.2),
+      20px 20px 60px rgba(26,42,30,0.15);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .book-img:hover {
+    transform: rotate(-2deg) translateY(-8px);
+    box-shadow: 
+      -6px 0 0 rgba(0,0,0,0.15),
+      -8px 6px 30px rgba(0,0,0,0.2),
+      30px 30px 80px rgba(26,42,30,0.2);
+  }
+
+  .floating-tag {
+    position: absolute;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--deep);
+    z-index: 2;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .tag1 { top: 15%; right: -20px; animation-delay: 0s; }
+  .tag2 { bottom: 20%; left: -30px; animation-delay: 1.5s; }
+
+  .floating-tag .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--red);
+    display: block;
+    line-height: 1;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* DIVIDER */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 48px 80px;
+    background: var(--deep);
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    overflow: hidden;
+  }
+
+  .divider-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .divider-dot {
+    width: 4px; height: 4px;
+    background: var(--sky);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* WHAT'S INSIDE */
+  .section {
+    padding: 100px 80px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 60px;
+  }
+
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .activity-card {
+    background: white;
+    padding: 36px 32px;
+    transition: background 0.3s;
+  }
+
+  .activity-card:hover { background: var(--light); }
+
+  .activity-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(126,200,216,0.3), rgba(168,197,160,0.3));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .activity-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--deep);
+  }
+
+  .activity-card p {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  /* FOR WHO */
+  .for-who {
+    padding: 100px 80px;
+    background: var(--deep);
+    color: white;
+  }
+
+  .for-who .section-label { color: var(--sky); }
+  .for-who .section-title { color: white; }
+
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .who-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 36px;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .who-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--sky), var(--sage));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .who-card:hover { 
+    border-color: rgba(126,200,216,0.3);
+    background: rgba(126,200,216,0.05);
+  }
+  .who-card:hover::before { opacity: 1; }
+
+  .who-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: white;
+  }
+
+  .who-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .who-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(126,200,216,0.2);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  /* QUOTE SECTION */
+  .quote-section {
+    padding: 80px;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    background: var(--light);
+  }
+
+  .quote-line {
+    width: 4px;
+    height: 120px;
+    background: linear-gradient(180deg, var(--sky), var(--sage));
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--deep);
+  }
+
+  /* FINAL CTA */
+  .final-cta {
+    padding: 120px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 80% at 50% 50%, rgba(126,200,216,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .final-cta .section-title {
+    max-width: 600px;
+    margin: 0 auto 16px;
+  }
+
+  .final-cta .hero-subtitle {
+    margin-bottom: 48px;
+  }
+
+  .final-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--deep);
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+
+  .final-price sup {
+    font-size: 24px;
+    vertical-align: super;
+  }
+
+  .final-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+
+  .guarantee {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 24px;
+    letter-spacing: 0.04em;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 80px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--deep);
+    font-style: italic;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 60px 32px; }
+    .hero-right { padding: 0 32px 60px; }
+    .book-wrap { width: 220px; }
+    .tag1, .tag2 { display: none; }
+    .section, .for-who, .final-cta { padding: 60px 32px; }
+    .quote-section { padding: 60px 32px; flex-direction: column; gap: 32px; }
+    .quote-line { width: 60px; height: 4px; }
+    .activities-grid { grid-template-columns: 1fr; }
+    .who-grid { grid-template-columns: 1fr; }
+    .divider { padding: 32px; flex-wrap: wrap; gap: 16px; }
+    footer { padding: 32px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="badge">Art Therapy · Emotional Well-Being</div>
+
+    <h1 class="hero-title">
+      Art Therapy<br><em>activities</em>
+    </h1>
+
+    <p class="hero-subtitle">
+      For Emotional Expression &amp; Well-Being
+    </p>
+
+    <p class="hero-desc">
+      46 guided art therapy activities thoughtfully designed for neurodivergent individuals, educators, and therapists. No artistic experience needed — just a safe space to slow down, reconnect, and express yourself freely.
+    </p>
+
+    <div class="cta-group">
+      <a href="https://hotmart.com/en/marketplace/products/art-therapy-activities/L105053930H" target="_blank" class="btn-primary">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <span>Get the eBook</span>
+      </a>
+      <div class="price-note">
+        <strong>CAD $9.00</strong>
+        Instant digital download
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="book-wrap">
+      <img src="1.png" alt="Art Therapy Activities eBook cover" class="book-img">
+
+      <div class="floating-tag tag1">
+        <span class="num">46</span>
+        activities
+      </div>
+
+      <div class="floating-tag tag2">
+        <span class="num">47</span>
+        pages
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER STRIP -->
+<div class="divider">
+  <div class="divider-item"><span class="divider-dot"></span> Neurodivergent friendly</div>
+  <div class="divider-item"><span class="divider-dot"></span> No art experience needed</div>
+  <div class="divider-item"><span class="divider-dot"></span> Instant download</div>
+  <div class="divider-item"><span class="divider-dot"></span> 46 guided activities</div>
+  <div class="divider-item"><span class="divider-dot"></span> Created by an art educator</div>
+  <div class="divider-item"><span class="divider-dot"></span> Self-paced</div>
+</div>
+
+<!-- WHAT'S INSIDE -->
+<section class="section">
+  <p class="section-label">What's inside</p>
+  <h2 class="section-title">46 activities,<br>one per page</h2>
+
+  <div class="activities-grid">
+    <div class="activity-card">
+      <div class="activity-icon">🎨</div>
+      <h3>Emotional Expression</h3>
+      <p>Exercises designed to help you identify, process, and communicate feelings through colour, shape, and mark-making — no words needed.</p>
+    </div>
+    <div class="activity-card">
+      <div class="activity-icon">🧠</div>
+      <h3>Self-Awareness</h3>
+      <p>Guided prompts that invite you to observe your inner world with curiosity and compassion, building emotional literacy at your own pace.</p>
+    </div>
+    <div class="activity-card">
+      <div class="activity-icon">🌿</div>
+      <h3>Calm & Focus</h3>
+      <p>Structured, repetitive activities that engage the hands and quiet the mind — especially helpful for ADHD and sensory processing needs.</p>
+    </div>
+    <div class="activity-card">
+      <div class="activity-icon">✨</div>
+      <h3>Creative Freedom</h3>
+      <p>Open-ended exercises with no right or wrong outcome. The process matters more than the result — this is a space free of judgment.</p>
+    </div>
+    <div class="activity-card">
+      <div class="activity-icon">🔗</div>
+      <h3>Inner Connection</h3>
+      <p>Activities that gently bring you back to yourself — grounding practices that reconnect body, mind, and creative energy.</p>
+    </div>
+    <div class="activity-card">
+      <div class="activity-icon">📚</div>
+      <h3>Pedagogical Foundation</h3>
+      <p>Created by a licensed art educator with post-graduate training, combining evidence-informed approaches with genuine therapeutic intent.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="for-who">
+  <p class="section-label">Who is this for</p>
+  <h2 class="section-title">Made for those who<br>feel deeply</h2>
+
+  <div class="who-grid">
+    <div class="who-card">
+      <div class="who-num">01</div>
+      <h3>Neurodivergent individuals</h3>
+      <p>Designed with ADHD, autism, and sensory processing differences in mind. Calm, structured, and accessible activities that work with — not against — how your brain works.</p>
+    </div>
+    <div class="who-card">
+      <div class="who-num">02</div>
+      <h3>Educators & therapists</h3>
+      <p>A practical resource for professionals looking to integrate art therapy approaches into sessions, classrooms, or support plans without needing specialist training.</p>
+    </div>
+    <div class="who-card">
+      <div class="who-num">03</div>
+      <h3>Anyone seeking well-being</h3>
+      <p>You don't need a diagnosis or a reason. If you want a gentle, creative practice for stress, anxiety, or simply reconnecting with yourself — this is for you.</p>
+    </div>
+    <div class="who-card">
+      <div class="who-num">04</div>
+      <h3>Beginners & first-timers</h3>
+      <p>Every activity is simple, clear, and welcoming. No artistic skills, no special materials, no expectations — just you, a page, and something to make.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <div class="quote-line"></div>
+  <p class="quote-text">
+    "This is more than an activity book — it's an invitation to slow down, reconnect, and express yourself freely."
+  </p>
+</div>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <p class="section-label">Start today</p>
+  <h2 class="section-title">Your creative journey<br>begins here</h2>
+  <p class="hero-subtitle">Instant download · 47 pages · 46 guided activities</p>
+
+  <div class="final-price"><sup>CAD </sup>9<sup>.00</sup></div>
+  <p class="final-note">+ applicable fees at checkout · Secure payment via Hotmart</p>
+
+  <a href="https://hotmart.com/en/marketplace/products/art-therapy-activities/L105053930H" target="_blank" class="btn-primary" style="font-size:15px; padding: 20px 48px;">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    <span>Get instant access</span>
+  </a>
+
+  <div class="guarantee">
+    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+    Secure checkout · Digital delivery · Hotmart platform
+  </div>
+
+  <p style="margin-top: 48px; font-size: 13px; color: var(--muted); font-family: 'Cormorant Garamond', serif; font-style: italic;">
+    Created by J. Bernardini · Art Educator &amp; Therapist
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">J. Bernardini</span>
+  <span>Art Therapy Activities eBook · All rights reserved</span>
+  <a href="https://hotmart.com/en/marketplace/products/art-therapy-activities/L105053930H" target="_blank" style="color: var(--deep); font-weight: 500; text-decoration: none;">Buy now →</a>
+</footer>
+
+</body>
+</html>

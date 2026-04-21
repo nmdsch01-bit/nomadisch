@@ -1,0 +1,106 @@
+[
+  {
+    "id": "ai-tools-2026",
+    "slug": "ai-tools-everyone-is-using-2026",
+    "lang": "en",
+    "title": "AI Tools Everyone Is Using in 2026",
+    "subtitle": "The definitive guide to the tools reshaping how we work and live",
+    "category": "Technology",
+    "tags": ["AI", "productivity", "tools", "technology"],
+    "author": "Nomadisch Team",
+    "date": "2026-04-15",
+    "readTime": 7,
+    "featured": true,
+    "image": "assets/images/posts/ai-tools-2026.jpg",
+    "imageAlt": "Person using AI tools on laptop",
+    "imageWidth": 1200,
+    "imageHeight": 630,
+    "excerpt": "From writing assistants to image generators, these are the AI tools that went from niche to essential — and how to use them to stay ahead.",
+    "content": "<p>Artificial intelligence isn't coming — it's already here, embedded in every layer of how we work, create, and communicate. In 2026, the real question isn't <em>whether</em> to use AI tools, but <em>which ones</em> are worth your time.</p><p>We've tested dozens of platforms so you don't have to. Here are the standouts.</p><h2>1. Writing & Content</h2><p>Claude by Anthropic has emerged as the favorite for long-form writing, nuanced analysis, and coding assistance. Its ability to maintain context over long documents makes it ideal for reports, articles, and even entire book chapters...</p><!-- AFFILIATE LINK PLACEHOLDER: Add affiliate link for Claude Pro subscription here --><p>Notion AI integrates directly into your existing workspace, making it a frictionless upgrade for teams already using Notion...</p><h2>2. Image Generation</h2><p>Midjourney v7 and Adobe Firefly continue to dominate the professional creative space, with Firefly having the edge for commercial use due to its copyright-safe training data...</p><h2>3. Productivity & Automation</h2><p>Zapier's AI features have matured significantly, now capable of building multi-step automations from a plain-English description...</p>",
+    "affiliateLinks": [
+      {
+        "label": "Try Claude Pro — Best AI Writing Assistant",
+        "url": "https://claude.ai",
+        "cta": "Start Free Trial →"
+      }
+    ]
+  },
+  {
+    "id": "ferramentas-ia-2026",
+    "slug": "ferramentas-ia-que-todo-mundo-usa-2026",
+    "lang": "pt",
+    "title": "Ferramentas de IA Que Todo Mundo Está Usando em 2026",
+    "subtitle": "O guia definitivo das ferramentas que estão transformando trabalho e criatividade",
+    "category": "Tecnologia",
+    "tags": ["IA", "produtividade", "ferramentas", "tecnologia"],
+    "author": "Equipe Nomadisch",
+    "date": "2026-04-15",
+    "readTime": 7,
+    "featured": true,
+    "image": "assets/images/posts/ferramentas-ia-2026.jpg",
+    "imageAlt": "Pessoa usando ferramentas de IA no laptop",
+    "imageWidth": 1200,
+    "imageHeight": 630,
+    "excerpt": "De assistentes de escrita a geradores de imagem, essas são as ferramentas de IA que passaram de nicho para indispensável — e como usá-las para sair na frente.",
+    "content": "<p>A inteligência artificial não está chegando — já chegou, embutida em cada camada de como trabalhamos, criamos e nos comunicamos. Em 2026, a verdadeira questão não é <em>se</em> usar ferramentas de IA, mas <em>quais</em> realmente valem o seu tempo.</p><p>Testamos dezenas de plataformas para você não precisar. Aqui estão as que se destacaram.</p><h2>1. Escrita e Conteúdo</h2><p>O Claude da Anthropic se consolidou como favorito para escrita longa, análise aprofundada e assistência em código...</p><!-- LINK DE AFILIADO: Adicione o link de afiliado do Claude Pro aqui --><h2>2. Geração de Imagens</h2><p>Midjourney v7 e Adobe Firefly continuam dominando o espaço criativo profissional...</p><h2>3. Produtividade e Automação</h2><p>Os recursos de IA do Zapier amadureceram significativamente...</p>",
+    "affiliateLinks": [
+      {
+        "label": "Experimente o Claude Pro — Melhor Assistente de IA",
+        "url": "https://claude.ai",
+        "cta": "Começar Grátis →"
+      }
+    ]
+  },
+  {
+    "id": "travel-hacks-2026",
+    "slug": "travel-hacks-save-money-2026",
+    "lang": "en",
+    "title": "15 Travel Hacks That Will Save You Thousands in 2026",
+    "subtitle": "Insider tricks the travel industry doesn't want you to know",
+    "category": "Travel",
+    "tags": ["travel", "saving", "budget", "tips"],
+    "author": "Nomadisch Team",
+    "date": "2026-04-10",
+    "readTime": 9,
+    "featured": false,
+    "image": "assets/images/posts/travel-hacks.jpg",
+    "imageAlt": "Travel bags and passport on a map",
+    "imageWidth": 1200,
+    "imageHeight": 630,
+    "excerpt": "Frequent flyer miles, cashback cards, and hotel loyalty programs are just the start. These are the tricks that seasoned travelers swear by.",
+    "content": "<p>The difference between a $3,000 trip and a $900 trip often isn't about going to a cheaper destination — it's about knowing the system.</p><!-- AFFILIATE LINK PLACEHOLDER: Travel credit card affiliate link --><h2>Book Flights on Tuesdays</h2><p>Airlines typically release fare sales on Monday nights, and competitor prices drop by Tuesday morning...</p>",
+    "affiliateLinks": [
+      {
+        "label": "Best Travel Credit Card with Lounge Access",
+        "url": "#affiliate-travel-card",
+        "cta": "See Card Benefits →"
+      }
+    ]
+  },
+  {
+    "id": "dicas-viagem-2026",
+    "slug": "dicas-viagem-economizar-2026",
+    "lang": "pt",
+    "title": "15 Dicas de Viagem Que Vão Te Economizar Milhares em 2026",
+    "subtitle": "Truques exclusivos que a indústria do turismo não quer que você saiba",
+    "category": "Viagens",
+    "tags": ["viagem", "economia", "dicas", "orçamento"],
+    "author": "Equipe Nomadisch",
+    "date": "2026-04-10",
+    "readTime": 9,
+    "featured": false,
+    "image": "assets/images/posts/travel-hacks.jpg",
+    "imageAlt": "Malas e passaporte em cima de mapa",
+    "imageWidth": 1200,
+    "imageHeight": 630,
+    "excerpt": "Milhas aéreas, cartões com cashback e programas de fidelidade são apenas o começo. Esses são os truques que viajantes experientes usam.",
+    "content": "<p>A diferença entre uma viagem de R$15.000 e uma de R$4.500 muitas vezes não está em ir para um destino mais barato — mas em conhecer o sistema.</p><!-- LINK DE AFILIADO: Link de cartão de crédito de viagem aqui --><h2>Reserve Voos nas Terças</h2><p>As companhias aéreas normalmente lançam promoções nas noites de segunda-feira, e os preços dos concorrentes caem na manhã de terça...</p>",
+    "affiliateLinks": [
+      {
+        "label": "Melhor Cartão de Viagem com Acesso a Lounges",
+        "url": "#afiliado-cartao-viagem",
+        "cta": "Ver Benefícios →"
+      }
+    ]
+  }
+]

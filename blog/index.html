@@ -1,63 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Nomadisch Trends</title>
-
-<link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nomadisch Trends — Viral Stories, Reviews & Real Talk</title>
+  <meta name="description" content="Trending stories, reviews, and real talk — in English and Portuguese. Your daily source for tech, travel, money, and lifestyle content."/>
+  <meta property="og:title" content="Nomadisch Trends"/>
+  <meta property="og:description" content="Trending stories, reviews, and real talk in EN & PT."/>
+  <meta property="og:image" content="assets/images/og-image.jpg"/>
+  <!-- ✅ REPLACE WITH YOUR GOOGLE ADSENSE CODE -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/main.css"/>
 </head>
-
 <body>
 
-<header>
+  <!-- ============================================================
+       HEADER / NAV
+  ============================================================ -->
+  <header class="site-header">
+    <div class="header-top">
+      <div class="container">
+        <div class="header-top-inner">
+          <span class="header-date" id="current-date"></span>
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en" onclick="switchLang('en')">EN</button>
+            <span class="lang-sep">|</span>
+            <button class="lang-btn" data-lang="pt" onclick="switchLang('pt')">PT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="site-logo">
+          <span class="logo-nomad">NOMADISCH</span>
+          <span class="logo-trends">TRENDS</span>
+        </a>
+        <nav class="main-nav" id="main-nav">
+          <a href="index.html" class="nav-link active" data-en="Home" data-pt="Início">Home</a>
+          <a href="#technology" class="nav-link" data-en="Technology" data-pt="Tecnologia">Technology</a>
+          <a href="#travel" class="nav-link" data-en="Travel" data-pt="Viagens">Travel</a>
+          <a href="#lifestyle" class="nav-link" data-en="Lifestyle" data-pt="Estilo">Lifestyle</a>
+          <a href="#money" class="nav-link" data-en="Money" data-pt="Dinheiro">Money</a>
+        </nav>
+        <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
 
-<h1>Nomadisch Trends</h1>
-<p>Trending stories, reviews and viral topics.</p>
+  <!-- ============================================================
+       AD SLOT — LEADERBOARD TOP (728×90 desktop / 320×50 mobile)
+       ✅ Replace with your AdSense or ad network code
+  ============================================================ -->
+  <div class="ad-slot ad-leaderboard-top" aria-label="Advertisement">
+    <div class="ad-placeholder">
+      <!-- AdSense Leaderboard 728×90 -->
+      <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins> -->
+      <div class="ad-label">AD · 728×90</div>
+    </div>
+  </div>
 
-</header>
+  <!-- ============================================================
+       HERO SECTION — FEATURED POST
+  ============================================================ -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-inner" id="hero-post">
+        <!-- Dynamically filled by JS -->
+      </div>
+    </div>
+  </section>
 
-<main>
+  <!-- ============================================================
+       MAIN CONTENT GRID + SIDEBAR
+  ============================================================ -->
+  <main class="main-content">
+    <div class="container">
+      <div class="content-layout">
 
-<div class="post-grid">
+        <!-- LEFT: Posts Grid -->
+        <div class="posts-area">
 
-<a href="posts/post1.html" class="post-card">
-<img src="https://picsum.photos/400/250?1">
-<h2>AI Tools Everyone Is Using</h2>
-</a>
+          <!-- Category filter tabs -->
+          <div class="category-tabs" id="category-tabs">
+            <button class="tab-btn active" data-cat="all" data-en="All" data-pt="Todos">All</button>
+            <button class="tab-btn" data-cat="Technology" data-en="Technology" data-pt="Tecnologia">Technology</button>
+            <button class="tab-btn" data-cat="Travel" data-en="Travel" data-pt="Viagens">Travel</button>
+            <button class="tab-btn" data-cat="Lifestyle" data-en="Lifestyle" data-pt="Lifestyle">Lifestyle</button>
+            <button class="tab-btn" data-cat="Money" data-en="Money" data-pt="Dinheiro">Money</button>
+          </div>
 
-<a href="posts/post2.html" class="post-card">
-<img src="https://picsum.photos/400/250?2">
-<h2>Travel Hacks That Save Money</h2>
-</a>
+          <!-- Posts grid — filled by JS -->
+          <div class="posts-grid" id="posts-grid"></div>
 
-<a href="posts/post3.html" class="post-card">
-<img src="https://picsum.photos/400/250?3">
-<h2>Apps Going Viral In The US</h2>
-</a>
+          <!-- ✅ AD SLOT — IN-FEED (between posts rows, 300×250 or native)
+               Place after every 4-6 posts for best CTR -->
+          <div class="ad-slot ad-infeed" aria-label="Advertisement">
+            <div class="ad-placeholder">
+              <!-- AdSense In-Feed / In-Article 300×250 -->
+              <!-- <ins class="adsbygoogle" ...></ins> -->
+              <div class="ad-label">AD · IN-FEED 300×250</div>
+            </div>
+          </div>
 
-<a href="keto-creator.html" class="post-card">
-<img src="https://picsum.photos/400/250?4">
-<h2>Keto Creator Review</h2>
-</a>
+          <!-- More posts (second batch) -->
+          <div class="posts-grid posts-grid--secondary" id="posts-grid-2"></div>
 
-  <a href="misterio.html" class="post-card">
-<img src="https://picsum.photos/400/250?5">
-<h2>Cientistas em Pânico: O "Sinal Zeta"...</h2>
-</a>
+          <!-- Load More -->
+          <div class="load-more-area">
+            <button class="btn-load-more" id="load-more" data-en="Load More Stories" data-pt="Carregar Mais">Load More Stories</button>
+          </div>
+        </div>
 
-  <a href="cortes-curtos-2026/" class="post-card">
-<img src="https://picsum.photos/400/250?6">
-<h2>Hair 2026</h2>
-</a>
-  
-</div>
+        <!-- RIGHT: Sidebar -->
+        <aside class="sidebar">
 
-</main>
+          <!-- ✅ AD SLOT — SIDEBAR RECTANGLE (300×250)
+               Best performing slot. Replace placeholder with real ad. -->
+          <div class="sidebar-widget ad-slot ad-sidebar-top" aria-label="Advertisement">
+            <div class="ad-placeholder ad-placeholder--rect">
+              <!-- AdSense 300×250 -->
+              <!-- <ins class="adsbygoogle" data-ad-slot="XXXXXXXX" ...></ins> -->
+              <div class="ad-label">AD · 300×250<br/><small>Sidebar Top — Highest CTR</small></div>
+            </div>
+          </div>
 
+          <!-- Newsletter signup -->
+          <div class="sidebar-widget widget-newsletter">
+            <h3 class="widget-title" data-en="Get Viral Stories" data-pt="Receba os Virais">Get Viral Stories</h3>
+            <p class="widget-desc" data-en="Join 12,000+ readers. No spam, ever." data-pt="Mais de 12.000 leitores. Sem spam.">Join 12,000+ readers. No spam, ever.</p>
+            <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+              <input type="email" class="newsletter-input" placeholder="your@email.com" required/>
+              <button type="submit" class="btn-subscribe" data-en="Subscribe" data-pt="Assinar">Subscribe</button>
+            </form>
+          </div>
+
+          <!-- Trending -->
+          <div class="sidebar-widget widget-trending">
+            <h3 class="widget-title" data-en="🔥 Trending Now" data-pt="🔥 Em Alta">🔥 Trending Now</h3>
+            <ul class="trending-list" id="trending-list"></ul>
+          </div>
+
+          <!-- ✅ AD SLOT — SIDEBAR STICKY (300×600 half page)
+               Highest CPM slot. Implement with sticky CSS. -->
+          <div class="sidebar-widget ad-slot ad-sidebar-sticky" aria-label="Advertisement">
+            <div class="ad-placeholder ad-placeholder--half-page">
+              <!-- AdSense 300×600 Half Page — sticky on scroll -->
+              <!-- <ins class="adsbygoogle" data-ad-slot="XXXXXXXX" data-ad-format="auto" ...></ins> -->
+              <div class="ad-label">AD · 300×600<br/><small>Half Page — Highest CPM<br/>Make this sticky on scroll</small></div>
+            </div>
+          </div>
+
+          <!-- Tags cloud -->
+          <div class="sidebar-widget widget-tags">
+            <h3 class="widget-title" data-en="Popular Topics" data-pt="Tópicos Populares">Popular Topics</h3>
+            <div class="tags-cloud" id="tags-cloud"></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       AD SLOT — BETWEEN SECTIONS (Responsive Banner)
+       ✅ Great for affiliate banners (728×90 or 970×90)
+  ============================================================ -->
+  <div class="ad-slot ad-between-sections" aria-label="Advertisement">
+    <div class="container">
+      <div class="ad-placeholder ad-placeholder--banner">
+        <!-- Affiliate Banner OR AdSense 970×90 -->
+        <!-- Example affiliate banner: <a href="YOUR_AFFILIATE_LINK"><img src="banner.jpg" width="970" height="90" alt="Sponsored"/></a> -->
+        <div class="ad-label">AD · AFFILIATE BANNER 970×90<br/><small>Perfect for affiliate banners (Amazon, travel, finance, etc.)</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="site-logo footer-logo">
+            <span class="logo-nomad">NOMADISCH</span>
+            <span class="logo-trends">TRENDS</span>
+          </span>
+          <p class="footer-tagline" data-en="Viral stories, real talk — in EN & PT" data-pt="Histórias virais, conteúdo real — em PT e EN">Viral stories, real talk — in EN &amp; PT</p>
+        </div>
+        <div class="footer-links">
+          <h4 data-en="Categories" data-pt="Categorias">Categories</h4>
+          <a href="#technology" data-en="Technology" data-pt="Tecnologia">Technology</a>
+          <a href="#travel" data-en="Travel" data-pt="Viagens">Travel</a>
+          <a href="#lifestyle" data-en="Lifestyle" data-pt="Lifestyle">Lifestyle</a>
+          <a href="#money" data-en="Money" data-pt="Dinheiro">Money</a>
+        </div>
+        <div class="footer-links">
+          <h4 data-en="Info" data-pt="Info">Info</h4>
+          <a href="about.html" data-en="About" data-pt="Sobre">About</a>
+          <a href="contact.html" data-en="Contact" data-pt="Contato">Contact</a>
+          <a href="privacy.html" data-en="Privacy Policy" data-pt="Privacidade">Privacy Policy</a>
+          <a href="advertise.html" data-en="Advertise" data-pt="Anuncie">Advertise</a>
+        </div>
+        <div class="footer-social">
+          <h4 data-en="Follow Us" data-pt="Siga-nos">Follow Us</h4>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Instagram">IG</a>
+            <a href="#" class="social-btn" aria-label="Twitter/X">X</a>
+            <a href="#" class="social-btn" aria-label="TikTok">TK</a>
+            <a href="#" class="social-btn" aria-label="YouTube">YT</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Nomadisch Trends. All rights reserved.</p>
+        <p class="footer-disclaimer" data-en="This site may contain affiliate links. We earn a commission at no extra cost to you." data-pt="Este site pode conter links de afiliados. Recebemos comissão sem custo adicional para você.">This site may contain affiliate links. We earn a commission at no extra cost to you.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       AD SLOT — EXIT INTENT POPUP (optional)
+       Activate via JS when user moves cursor to leave page
+  ============================================================ -->
+  <div class="popup-overlay" id="exit-popup" style="display:none;">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closePopup()">✕</button>
+      <div class="ad-placeholder ad-placeholder--popup">
+        <!-- 400×300 popup ad or affiliate offer -->
+        <div class="ad-label">AD · EXIT INTENT POPUP 400×300<br/><small>High-conversion affiliate offer goes here</small></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

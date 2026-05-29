@@ -58,16 +58,16 @@
   --font-body:          'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Escala tipográfica */
-  --text-xs:    0.6875rem;   /* 11px */
-  --text-sm:    0.8125rem;   /* 13px */
-  --text-base:  0.9375rem;   /* 15px */
-  --text-md:    1.0625rem;   /* 17px */
-  --text-lg:    1.25rem;     /* 20px */
-  --text-xl:    1.5rem;      /* 24px */
-  --text-2xl:   2rem;        /* 32px */
-  --text-3xl:   2.75rem;     /* 44px */
-  --text-4xl:   3.75rem;     /* 60px */
-  --text-5xl:   5rem;        /* 80px */
+  --text-xs:    0.75rem;      /* 12px */
+  --text-sm:    0.9375rem;    /* 15px */
+  --text-base:  1rem;         /* 16px */
+  --text-md:    1.125rem;     /* 18px */
+  --text-lg:    1.35rem;      /* 21px */
+  --text-xl:    1.7rem;       /* 27px */
+  --text-2xl:   2.2rem;       /* 35px */
+  --text-3xl:   3.2rem;       /* 51px */
+  --text-4xl:   4.4rem;       /* 70px */
+  --text-5xl:   5.8rem;       /* 92px */
 
   /* Espaçamentos */
   --space-1:  0.25rem;

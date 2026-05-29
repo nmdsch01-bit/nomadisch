@@ -4,7 +4,7 @@
   ============================================================
   ARQUIVO: style.css
   LOCAL NO REPOSITÓRIO: raiz do projeto (/)
-  Exemplo: nomadisch.github.io/style.css
+  Exemplo: nomadisch.github.com.br/style.css
 
   Estrutura deste arquivo:
   01. Custom Properties (variáveis CSS)
@@ -36,12 +36,12 @@
 ============================================================ */
 :root {
   /* Cores principais */
-  --color-bg:           #FAFAF8;      /* Fundo: branco levemente quente */
+  --color-bg:           #F6F5F2;      /* Fundo: branco levemente quente */
   --color-surface:      #F4F4F0;      /* Superfície secundária */
-  --color-ink:          #111111;      /* Texto principal: quase preto */
-  --color-ink-muted:    #6B6B67;      /* Texto secundário */
-  --color-ink-faint:    #B5B5B0;      /* Texto muito suave, meta */
-  --color-rule:         #E2E2DC;      /* Linhas divisórias */
+  --color-ink:          #0F0F0E;      /* Texto principal: quase preto */
+  --color-ink-muted:    #5E5E59;      /* Texto secundário */
+  --color-ink-faint:    #8C8C85;      /* Texto muito suave, meta */
+  --color-rule:         #D7D5CE;      /* Linhas divisórias */
   --color-accent:       #111110;      /* Cor de destaque (igual ao ink) */
   --color-hover:        #E8E8E3;      /* Hover em chips e botões */
 

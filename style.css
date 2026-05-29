@@ -749,7 +749,7 @@ p {
 
 /* Conteúdo textual do card em destaque */
 .featured-card__content {
-  padding-top: var(--space-4);
+  padding-top: 0;
 }
 
 .featured-card__title {

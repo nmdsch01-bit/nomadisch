@@ -36,22 +36,22 @@
 ============================================================ */
 :root {
   /* Cores principais */
-  --color-bg:           #F6F5F2;      /* Fundo: branco levemente quente */
-  --color-surface:      #F4F4F0;      /* Superfície secundária */
-  --color-ink:          #0F0F0E;      /* Texto principal: quase preto */
-  --color-ink-muted:    #5E5E59;      /* Texto secundário */
-  --color-ink-faint:    #8C8C85;      /* Texto muito suave, meta */
-  --color-rule:         #D7D5CE;      /* Linhas divisórias */
+  --color-bg:           #F6F5F2;      /* fundo editorial quente */
+  --color-surface:      #ECEAE4;      /* cards e superfícies */
+  --color-ink:          #0F0F0E;      /* quase preto elegante */
+  --color-ink-muted:    #5E5E59;      /* subtítulos MAIS visíveis */
+  --color-ink-faint:    #8C8C85;      /* meta texto mais legível */
+  --color-rule:         #D7D5CE;      /* linhas mais sofisticadas */
   --color-accent:       #111110;      /* Cor de destaque (igual ao ink) */
-  --color-hover:        #E8E8E3;      /* Hover em chips e botões */
+  --color-hover:        #DFDDD6;      /* Hover em chips e botões */
 
-  /* Placeholders editoriais — paleta de cinzas e tons naturais */
-  --ph-warm-1:          #E9E6DF;
-  --ph-warm-2:          #DDD8CE;
-  --ph-cool-1:          #E0E4E8;
-  --ph-cool-2:          #D5DAE0;
-  --ph-sage:            #D8DDD4;
-  --ph-sand:            #E6DDD0;
+  /* Placeholders editoriais */
+  --ph-warm-1:          #E5E1D8;
+  --ph-warm-2:          #D8D1C4;
+  --ph-cool-1:          #DDE1E5;
+  --ph-cool-2:          #CFD5DC;
+  --ph-sage:            #D4D8CF;
+  --ph-sand:            #DED3C4;
 
   /* Tipografia */
   --font-display:       'Cormorant Garamond', Georgia, serif;

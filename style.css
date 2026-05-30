@@ -699,6 +699,14 @@ p {
 .featured-card__image {
   aspect-ratio: 4 / 3;
   overflow: hidden;
+  border-radius: 4px;
+}
+
+.featured-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* Placeholder editorial — substitui imagem real */
@@ -749,7 +757,6 @@ p {
 
 /* Conteúdo textual do card em destaque */
 .featured-card__content {
-  padding-top: 0;
 }
 
 .featured-card__title {
